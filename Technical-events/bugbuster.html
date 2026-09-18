@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BugBuster | Erronix 2K26</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="../assets/weblogofinal.png">
+<style>
+  :root {
+    --primary-navy: #0C1E29;
+    --secondary-navy: #13283A;
+    --ice-white: #F8FBFF;
+    --soft-sky-blue: #EAF6FF;
+    --metallic-gold: #D4A72C;
+    --bright-gold: #F4C430;
+    --secondary-blue: #28469E;
+  }
+
+  body{ 
+    margin:0; 
+    font-family:'Open Sans',sans-serif; 
+    background:var(--ice-white); 
+    color:var(--primary-navy); 
+    font-size: 1.2rem;
+  }
+  .container{ 
+    max-width:900px; 
+    margin:50px auto; 
+    padding:20px; 
+    background:var(--soft-sky-blue); 
+    border-radius:12px; 
+    border:2px solid var(--metallic-gold);
+    box-shadow:0 4px 16px rgba(12,30,41,0.08); 
+  }
+  @media (max-width: 600px) {
+    .container {
+      margin: 20px 12px;
+      padding: 16px;
+    }
+  }
+  h1{ 
+    font-family:'Roboto Slab',serif; 
+    color:var(--primary-navy); 
+    margin-bottom:20px; 
+    text-align:center; 
+  }
+  h2{ 
+    color:var(--secondary-blue); 
+    margin-top:25px; 
+    margin-bottom:12px; 
+    border-left:5px solid var(--metallic-gold); 
+    padding-left:10px;
+  }
+  p, li{ 
+    color:var(--primary-navy); 
+    line-height:1.6; 
+    font-size: 1.1rem;
+  }
+  ul, ol{ 
+    margin-left:20px; 
+    margin-bottom:18px; 
+  }
+  li{ 
+    margin-bottom:8px; 
+  }
+
+  /* Section Box */
+  .rule-section{ 
+    border:1px solid var(--metallic-gold); 
+    border-radius:8px; 
+    padding:15px 20px; 
+    margin-bottom:20px; 
+    background:var(--ice-white); 
+  }
+  .contact-link {
+    color: var(--secondary-blue);
+    font-weight: 600;
+  }
+
+  /* Register Button */
+  .register-btn{
+    display:inline-block; 
+    padding:12px 24px; 
+    font-weight:700; 
+    font-size:1rem;
+    border:none; 
+    border-radius:10px; 
+    background:linear-gradient(45deg, var(--metallic-gold), var(--bright-gold)); 
+    color:var(--primary-navy);
+    cursor:pointer; 
+    text-decoration:none; 
+    transition:transform .2s ease, box-shadow .2s ease;
+    margin-top:10px;
+    box-shadow: 0 4px 12px rgba(212, 167, 44, 0.25);
+  }
+  .register-btn:hover{ transform:scale(1.05); box-shadow: 0 6px 16px rgba(244, 196, 48, 0.4); }
+
+  /* Centering */
+  .btn-container{ text-align:center; margin-top:30px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>BugBuster</h1>
+
+  <h2>About the Event</h2>
+  <p>
+    BugBuster is a challenging debugging competition that tests programming and problem-solving skills. 
+    Participants will be given code snippets containing errors which they must identify and correct, demonstrating logical thinking, coding precision, and efficiency.
+  </p>
+
+  <!-- ✅ New Section: Event Timing & Venue -->
+  <h2>Event Timing & Venue</h2>
+  <div class="rule-section">
+    <ul>
+      <li><b>Date:</b> 31th October 2025</li>
+      <li><b>Time:</b> 11.00 AM to 12.00 PM</li>
+      <li><b>Venue:</b>will be updated soon</li>
+    </ul>
+  </div>
+
+  <h2>Category & Participation</h2>
+  <div class="rule-section">
+    <ul>
+      <li><b>Category/Theme:</b> Programming / Problem-Solving</li>
+      <li><b>Participation:</b> Individual only</li>
+    </ul>
+  </div>
+
+  <h2>Registration & Submission</h2>
+  <div class="rule-section">
+    <ul>
+      <li>Registration Process: Online / First-come, first-served.</li>
+      <li>Registration Deadline: <b>29/10/2025</b>.</li>
+      <li>Prerequisite: No prior submission required.</li>
+    </ul>
+  </div>
+
+  <h2>General Rules</h2>
+  <div class="rule-section">
+    <ol>
+      <li>Only individual participation is allowed.</li>
+      <li>Participants must use original effort; malpractice leads to disqualification.</li>
+      <li>The decision of the judges/organizers will be final.</li>
+    </ol>
+  </div>
+
+<h2>Specific Rules</h2>
+<div class="rule-section">
+  <ol>
+    <li>Each participant will receive a set of debugging questions covering <b>C, Java, and Python</b>.</li>
+    <li>All participants must attempt questions from all three languages within the given time limit of <b>40 minutes</b>.</li>
+    <li>Each question will contain syntax and/or logical errors that participants must identify and correct.</li>
+    <li>Internet usage is strictly prohibited during the event.</li>
+    <li>Only the allocated systems must be used.</li>
+    <li>Participants must ensure the corrected programs produce the expected output before submission.</li>
+    <li>No gadgets to be brought inside.</li>
+  </ol>
+    <p><b>DON’Ts:</b></p>
+  <ol>
+    <li>No cheating or malpractice will be tolerated.</li>
+    <li>Do not discuss questions or answers with other participants.</li>
+    <li>Electronic devices (smartphones, smartwatches, etc.) are strictly prohibited.</li>
+    <li>Avoid any behavior that could be considered unfair or against the rules.</li>
+    <li>Respect the judges’ and officials’ decisions; disputes are not allowed.</li>
+  </ol>
+</div>
+
+
+  <h2>Event Flow & Time Allocation</h2>
+  <div class="rule-section">
+    <ul>
+      <li>Total Duration: 40–45 minutes.</li>
+      <li>Format: Single round.</li>
+    </ul>
+  </div>
+
+  <h2>Evaluation Criteria</h2>
+  <div class="rule-section">
+    <ul>
+      <li>Number of bugs correctly fixed.</li>
+      <li>Time taken to fix the bugs.</li>
+      <li>Ranking is based on more bugs fixation in less time.</li>
+    </ul>
+  </div>
+  <h2>Rewards & Recognition</h2>
+  <div class="rule-section">
+    <ul>
+      <li>All participants will receive a <b>Participation Certificate</b>.</li>
+      <li><b>Winners and Runners-up</b> will be awarded special prizes in recognition of their outstanding performance.</li>
+    </ul>
+  </div>
+  <h2>Code of Conduct</h2>
+  <div class="rule-section">
+    <ul>
+      <li>Participants must report on time.</li>
+      <li>Maintain professionalism and decorum throughout the event.</li>
+      <li>Any violation of rules may lead to disqualification.</li>
+    </ul>
+  </div>
+
+  <h2>Contact Information</h2>
+  <div class="rule-section">
+    <p><b>Event Coordinators:</b></p>
+    <ul>
+      <li>Ghousiya</li>
+      <li>Baskar – +91 90429 29481</li>
+    </ul>
+  </div>
+
+  <!-- Centered Register Button -->
+  <div class="btn-container">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" 
+       class="register-btn" target="_blank">
+       Register Now
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

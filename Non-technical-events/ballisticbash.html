@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ballistic Bash | Erronix 2K26</title>
+<link rel="icon" type="image/x-icon" href="../assets/weblogofinal.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-navy: #0C1E29;
+    --secondary-navy: #13283A;
+    --ice-white: #F8FBFF;
+    --soft-sky-blue: #EAF6FF;
+    --metallic-gold: #D4A72C;
+    --bright-gold: #F4C430;
+    --secondary-blue: #28469E;
+  }
+
+  body {
+    margin:0; padding:0; font-family:'Open Sans',sans-serif; background:var(--ice-white); color:var(--primary-navy);
+  }
+
+  .container { 
+    max-width:900px; 
+    margin:40px auto; 
+    padding:30px 25px; 
+    background: var(--soft-sky-blue);
+    border-radius:12px; 
+    border: 2px solid var(--metallic-gold);
+    box-shadow:0 4px 16px rgba(12,30,41,0.08);
+  }
+
+  h1 { 
+    font-family:'Roboto Slab', serif; 
+    color:var(--primary-navy); 
+    font-size:2.6rem; 
+    margin-bottom:20px; 
+    text-align:center;
+  }
+
+  p { 
+    color:var(--primary-navy); 
+    font-size:1rem; 
+    line-height:1.6; 
+    margin-bottom:20px; 
+    text-align:justify; 
+  }
+
+  h2 { 
+    color:var(--secondary-blue); 
+    margin-top:25px; 
+    margin-bottom:12px; 
+    border-left:5px solid var(--metallic-gold); 
+    padding-left:10px;
+  }
+
+  ul { 
+    text-align:left; 
+    margin:0 auto 20px auto; 
+    max-width:700px; 
+    padding-left:20px; 
+    color:var(--primary-navy);
+  }
+
+  li { margin:8px 0; }
+
+  /* Section Box */
+  .rule-section{ 
+    border:1px solid var(--metallic-gold); 
+    border-radius:10px; 
+    padding:18px 20px; 
+    margin-bottom:25px; 
+    background:var(--ice-white); 
+  }
+  a { color: var(--secondary-blue); }
+
+  /* Register Button */
+  .register-btn {
+    display:inline-block;
+    padding:14px 28px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:1rem;
+    background:linear-gradient(45deg, var(--metallic-gold), var(--bright-gold));
+    color:var(--primary-navy);
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .2s ease, box-shadow .2s ease;
+    margin-top:20px;
+    box-shadow: 0 4px 12px rgba(212, 167, 44, 0.25);
+  }
+  .register-btn:hover { 
+    transform:scale(1.05);
+    box-shadow: 0 6px 16px rgba(244, 196, 48, 0.4);
+  }
+
+  .btn-container { text-align:center; margin-top:30px; }
+
+  @media (max-width:600px){
+    .container{ padding:20px 15px; }
+    h1{ font-size:2rem; }
+    h2{ font-size:1.3rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ballistic Bash</h1>
+    <p>
+      Ballistic Bash is a thrilling non-technical event that tests participants’ balance, focus, and teamwork. 
+      Teams must carefully balance a ball on a pen and move from start to finish without dropping it. 
+      It’s a game of patience, precision, and coordination — one slip can send you back to the start!
+    </p>
+
+    <h2>Time & Venue</h2>
+    <div class="rule-section">
+      <p><b>Date:</b> 31/10/2025</p>
+      <p><b>Time:</b> 2.00 PM to 3.00 PM</p>
+      <p><b>Venue:</b> Will be updated soon.</p>
+    </div>
+
+    <h2>Event Rules & Guidelines</h2>
+
+    <h3>1. Teams and Players</h3>
+    <div class="rule-section">
+      <ul>
+        <li>A total of <b>five (5)</b> teams will participate in the event.</li>
+        <li>Each team shall consist of <b>three (3)</b> players.</li>
+        <li>All teams will be provided with an equal opportunity to participate.</li>
+      </ul>
+    </div>
+
+    <h3>2. Equipment: Balls and Pens</h3>
+    <div class="rule-section">
+      <ul>
+        <li>Each team will be provided with <b>five (5) balls</b>.</li>
+        <li>Each team member will receive <b>one (1) pen</b> to balance the ball.</li>
+        <li>Only the materials provided by the organizers may be used during the event.</li>
+      </ul>
+    </div>
+
+    <h3>3. Throw and Aim Instructions</h3>
+    <div class="rule-section">
+      <ul>
+        <li>All team members must stand behind the <b>start line</b> before beginning.</li>
+        <li>Participants must balance the ball on the pen and move carefully from the start line to the end line.</li>
+        <li>If the ball falls to the ground at any point, the team must <b>restart</b> from the start line.</li>
+        <li>Crossing the start line before beginning or during the attempt will result in a restart or disqualification as determined by the judges.</li>
+      </ul>
+    </div>
+
+    <h3>4. Time Limit</h3>
+    <div class="rule-section">
+      <ul>
+        <li>Each team must complete their attempt within <b>three (3) minutes</b>.</li>
+      </ul>
+    </div>
+
+    <h3>5. Winning Criteria</h3>
+    <div class="rule-section">
+      <ul>
+        <li>A successful attempt is counted when the ball is balanced and transferred completely from the start line to the end line without falling.</li>
+        <li>The team that completes the task first will be declared the winner (<b>first come, first serve</b> basis).</li>
+        <li>The judges’ and coordinators’ decisions are <b>final and binding</b> on all participants.</li>
+      </ul>
+    </div>
+
+    <h3>6. Key Rules to Remember</h3>
+    <div class="rule-section">
+      <ul>
+        <li>Do not cross the start line during the attempt.</li>
+        <li>Use only the balls and pens provided by the event coordinators.</li>
+        <li>Hands must not be used to support or balance the ball at any time.</li>
+        <li>Any violation of the rules will result in disqualification.</li>
+      </ul>
+    </div>
+
+    <h2>Rewards & Recognition</h2>
+    <div class="rule-section">
+      <ul>
+        <li>Exciting prizes are waiting for participants who showcase exceptional balance, teamwork, and creativity.</li>
+      </ul>
+    </div>
+
+    <div class="rule-section">
+      <p><b>Student Coordinators:</b></p>
+      <ul>
+        <li>Srinithi K</li>
+        <li>Vinothkumar – <a href="tel:+918098262103" class="contact-link">+91 80982 62103</a></li>
+      </ul>
+      <p style="margin-top: 10px;">
+        For any event or registration-related queries, feel free to reach out to the coordinators.
+      </p>
+    </div>
+
+    <div class="btn-container">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" 
+         class="register-btn" target="_blank">
+         Register Now
+      </a>
+    </div>
+  </div>
+</body>
+</html>
+
+

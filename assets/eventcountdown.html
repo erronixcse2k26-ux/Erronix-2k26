@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Countdown</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    margin: 0;
+    flex-direction: column;
+    color: #fff;
+  }
+
+  h1 {
+    font-size: 3.5em;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  }
+
+  .countdown {
+    display: flex;
+    gap: 25px;
+  }
+
+  .time-card {
+    perspective: 1000px;
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .flip-card {
+    background: rgba(0,0,0,0.4);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    padding: 30px 20px;
+    font-size: 3em; /* increased font size */
+    position: relative;
+    color: #ffd700;
+  }
+
+  .flip-card::before, .flip-card::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    left: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .flip-card::before {
+    top: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  .flip-card::after {
+    bottom: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .label {
+    font-size: 0.7em; /* slightly bigger labels */
+    margin-top: 10px;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  /* Flip animation */
+  .flip {
+    animation: flip 0.7s ease forwards;
+  }
+
+  @keyframes flip {
+    0% { transform: rotateX(0deg); }
+    50% { transform: rotateX(-90deg); }
+    100% { transform: rotateX(0deg); }
+  }
+</style>
+</head>
+<body>
+  <h1>Event Countdown</h1>
+  <div class="countdown">
+    <div class="time-card">
+      <div id="days" class="flip-card">0</div>
+      <div class="label">DAYS</div>
+    </div>
+    <div class="time-card">
+      <div id="hours" class="flip-card">0</div>
+      <div class="label">HOURS</div>
+    </div>
+    <div class="time-card">
+      <div id="minutes" class="flip-card">0</div>
+      <div class="label">MINUTES</div>
+    </div>
+    <div class="time-card">
+      <div id="seconds" class="flip-card">0</div>
+      <div class="label">SECONDS</div>
+    </div>
+  </div>
+
+<script>
+const eventDate = new Date("September 25, 2025 00:00:00").getTime();
+
+let previous = {days:0, hours:0, minutes:0, seconds:0};
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+
+  if(distance < 0){
+    document.querySelector('.countdown').innerHTML = "<h2>The event has started!</h2>";
+    clearInterval(timer);
+    return;
+  }
+
+  const days = Math.floor(distance / (1000*60*60*24));
+  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  // Animate flip only when value changes
+  if(days !== previous.days) flipAnimation('days', days);
+  if(hours !== previous.hours) flipAnimation('hours', hours);
+  if(minutes !== previous.minutes) flipAnimation('minutes', minutes);
+  if(seconds !== previous.seconds) flipAnimation('seconds', seconds);
+
+  previous = {days, hours, minutes, seconds};
+}
+
+function flipAnimation(id, value){
+  const el = document.getElementById(id);
+  el.classList.remove('flip');
+  void el.offsetWidth; // trigger reflow
+  el.textContent = value;
+  el.classList.add('flip');
+}
+
+updateCountdown();
+const timer = setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>

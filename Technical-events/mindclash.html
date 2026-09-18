@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mindclash | Erronix 2K26</title>
+<link rel="icon" type="image/x-icon" href="../assets/weblogofinal.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-navy: #0C1E29;
+    --secondary-navy: #13283A;
+    --ice-white: #F8FBFF;
+    --soft-sky-blue: #EAF6FF;
+    --metallic-gold: #D4A72C;
+    --bright-gold: #F4C430;
+    --secondary-blue: #28469E;
+  }
+
+  /* Reset */
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{ 
+    font-family:'Open Sans',sans-serif; 
+    background: var(--ice-white);
+    color:var(--primary-navy);
+    font-size:1.1rem;
+    line-height:1.6;
+  }
+
+  .container{
+    max-width:900px;
+    margin:60px auto;
+    padding:30px 25px;
+    background: var(--soft-sky-blue);
+    border-radius:16px;
+    border:2px solid var(--metallic-gold);
+    box-shadow:0 4px 16px rgba(12,30,41,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .container:hover {
+    transform: translateY(-5px);
+    box-shadow:0 8px 24px rgba(12,30,41,0.12);
+  }
+
+  h1{
+    font-family:'Roboto Slab',serif;
+    color:var(--primary-navy);
+    text-align:center;
+    margin-bottom:30px;
+    font-size:2.2rem;
+  }
+
+  h2{
+    color:var(--secondary-blue);
+    font-size:1.5rem;
+    margin:30px 0 15px;
+    border-left:5px solid var(--metallic-gold);
+    padding-left:12px;
+  }
+
+  p, li{
+    color:var(--primary-navy);
+  }
+
+  ul, ol{
+    margin-left:25px;
+    margin-bottom:18px;
+  }
+
+  li{
+    margin-bottom:10px;
+  }
+
+  /* Rule Section Box */
+  .rule-section{
+    border:1px solid var(--metallic-gold);
+    border-radius:10px;
+    padding:18px 20px;
+    margin-bottom:25px;
+    background:var(--ice-white);
+  }
+  a { color: var(--secondary-blue); }
+
+  /* Register Button */
+  .register-btn{
+    display:inline-block; 
+    padding:14px 28px; 
+    font-weight:700; 
+    font-size:1rem;
+    border:none; 
+    border-radius:10px; 
+    background:linear-gradient(45deg, var(--metallic-gold), var(--bright-gold)); 
+    color:var(--primary-navy);
+    cursor:pointer; 
+    text-decoration:none; 
+    transition:transform .2s ease, box-shadow .2s ease;
+    margin-top:10px;
+    box-shadow: 0 4px 12px rgba(212, 167, 44, 0.25);
+  }
+  .register-btn:hover{ transform:scale(1.05); box-shadow: 0 6px 16px rgba(244, 196, 48, 0.4); }
+
+  /* Centering */
+  .btn-container{ text-align:center; margin-top:30px; }
+
+  /* Responsive adjustments */
+  @media (max-width:600px){
+    .container{ padding:20px 15px; }
+    h1{ font-size:1.8rem; }
+    h2{ font-size:1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Mindclash – Technical Quiz</h1>
+
+  <h2>About the Event</h2>
+  <p>
+    Mindclash is a technical quiz designed to test knowledge, analytical skills, and quick thinking of Computer Science enthusiasts. 
+    The event consists of multiple rounds with increasing difficulty, covering core computer science topics and emerging technologies.
+  </p>
+
+  <h2>Time & Venue</h2>
+  <div class="rule-section">
+    <ul>
+      <li><b>Date:</b> 31/10/2025</li>
+      <li><b>Time:</b> 12.00 PM to 1.00 PM</li>
+      <li><b>Venue:</b> will be updated soon</li>
+    </ul>
+  </div>
+
+  <h2>Category & Participation</h2>
+  <div class="rule-section">
+    <ul>
+      <li><b>Category/Theme:</b> Computer Science & Engineering (CSE)</li>
+      <li><b>Participation:</b> Individual (Solo)</li>
+    </ul>
+  </div>
+
+  <h2>Registration & Prerequisites</h2>
+  <div class="rule-section">
+    <ul>
+      <li>Registration Process: Online</li>
+      <li>Prerequisite: Registration must be completed before the deadline on <b>29/10/2025</b>.</li>
+      <li>Participants must arrive at the venue at least <b>10 minutes</b> before the start time</li>
+      <li>The quiz will be conducted <b>online</b></li>
+    </ul>
+  </div>
+
+  <h2>Event Overview</h2>
+  <div class="rule-section">
+    <ul>
+      <li>The quiz is divided into <b>three rounds</b> with increasing difficulty.</li>
+      <li>Participants are expected to manage their time effectively and answer accurately.</li>
+    </ul>
+  </div>
+
+<h2>General Rules & Guidelines</h2>
+<div class="rule-section">
+  <p><b>DOs:</b></p>
+  <ol>
+    <li>Arrive at the quiz venue before the scheduled time.</li>
+    <li>Carefully read and understand the quiz rules and format.</li>
+    <li>Participants are required to complete the quiz in a single browser window/tab without switching to other tabs or windows during the quiz.</li>
+    <li>Any attempt to switch tabs or windows will result in immediate disqualification from the quiz.</li>
+    <li>A countdown timer will be displayed on the quiz page, and participants must submit their answers before the timer expires.</li>
+    <li>Failure to submit answers before the timer expires will result in the quiz being automatically submitted with any unanswered questions marked as "Not Attempted".</li>
+    <li>In the event of any technical issues or disruptions during the quiz, participants must immediately notify the student co-ordinators to seek assistance.</li>
+  </ol>
+  
+  <p><b>DON’Ts:</b></p>
+  <ol>
+    <li>No cheating or malpractice will be tolerated.</li>
+    <li>Do not discuss questions or answers with other participants.</li>
+    <li>Electronic devices (smartphones, smartwatches, etc.) are strictly prohibited inside the quiz venue.</li>
+    <li>Avoid any behavior that could be considered unfair or against the rules.</li>
+    <li>Respect the judges’ and officials’ decisions; disputes are not allowed.</li>
+  </ol>
+</div>
+
+
+  <h2>Event Flow & Time Allocation</h2>
+  <div class="rule-section">
+    <ul>
+      <li><b>Round 1 – Elimination:</b> 20 Easy Questions </li>
+      <li><b>Round 2 – Elimination:</b> 15 Medium Questions </li>
+      <li><b>Round 3 – Winner Selection:</b> 10 Hard Questions </li>
+    </ul>
+  </div>
+
+  <h2>Evaluation Criteria</h2>
+  <div class="rule-section">
+    <ul>
+      <li>Correctness of answers</li>
+      <li>Accuracy in coding/problem-solving (Round 3)</li>
+    </ul>
+  </div>
+  <h2>Rewards & Recognition</h2>
+  <div class="rule-section">
+    <ul>
+      <li>All participants will receive a <b>Participation Certificate</b>.</li>
+      <li><b>Winners and Runners-up</b> will be awarded special prizes in recognition of their outstanding performance.</li>
+    </ul>
+  </div>
+  <h2>Code of Conduct</h2>
+  <div class="rule-section">
+    <ul>
+      <li>Participants must follow all rules strictly.</li>
+      <li>Misbehaviour, disputes, or violations may lead to disqualification.</li>
+      <li>Maintain professionalism and decorum during the quiz.</li>
+    </ul>
+  </div>
+
+  <h2>Contact Information</h2>
+  <div class="rule-section">
+    <p><b>Event Coordinators:</b></p>
+    <ul>
+      <li>Subhasri - +91 63740 03424</li>
+      <li>Santhosh Kumar – +91 80726 55413</li>
+    </ul>
+  </div>
+
+  <!-- Centered Register Button -->
+  <div class="btn-container">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" 
+       class="register-btn" target="_blank">
+       Register Now
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
