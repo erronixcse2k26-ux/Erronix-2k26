@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Epic Frame — Wireframing | Erronix 2K26</title>
+<title>Code Relay | Erronix 2K26</title>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
@@ -92,43 +92,62 @@
 
   /* Centering container */
   .btn-container{ text-align:center; margin-top:20px; }
+  .back-btn-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--primary-navy);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1.5px solid var(--metallic-gold);
+    border-radius: 8px;
+    background: var(--ice-white);
+    transition: all 0.25s ease;
+    margin-bottom: 20px;
+  }
+  .back-btn-top:hover {
+    background: var(--primary-navy);
+    color: var(--bright-gold);
+    border-color: var(--primary-navy);
+  }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Epic Frames — Wireframing Contest</h1>
+  <a href="../index.html#events" class="back-btn-top">&#8592; Back to Events</a>
+  <h1>Code Relay</h1>
 
   <h2>About the Event</h2>
   <p>
-    Epic Frames is a creative wireframing competition where participants showcase their UI/UX design skills 
-    by creating wireframes for an on-the-spot topic. The contest emphasizes problem-solving, clarity, usability, 
-    and innovation in design, testing participants’ ability to convert abstract ideas into effective digital blueprints.
+    A collaborative coding challenge where teammates take turns solving, debugging and completing a programming problem under time constraints. Code Relay tests teamwork, code comprehension, logical continuity, and rapid problem-solving under competitive pressure.
   </p>
 
   <!-- 📌 Event Schedule Section -->
   <h2>Event Schedule</h2>
   <div class="rule-section">
     <ul>
-      <li><b>Date:</b> 31th October 2025</li>
-      <li><b>Time:</b> 11.00 PM to 12.00 PM</li>
-      <li><b>Venue:</b> will be updated soon</li>
+      <li><b>Date:</b> October 2026</li>
+      <li><b>Time:</b> 11.00 AM to 1.00 PM</li>
+      <li><b>Venue:</b> Computer Science Laboratory</li>
     </ul>
   </div>
 
   <h2>Category & Participation</h2>
   <div class="rule-section">
     <ul>
-      <li><b>Category/Theme:</b> UI/UX Design, Wireframing</li>
-      <li><b>Participation:</b> Individual (first-come-first-serve)</li>
+      <li><b>Category/Theme:</b> Competitive Programming &amp; Relay Debugging</li>
+      <li><b>Participation:</b> Teams of 2 (First-come-first-serve)</li>
     </ul>
   </div>
 
   <h2>Registration & Prerequisites</h2>
   <div class="rule-section">
     <ul>
-      <li>Registration Process: Online / First-come, first-served.(No on spot registration)</li>
-      <li>Registration Deadline: <b>29/10/2025</b>.</li>
+      <li>Registration Process: Online / First-come, first-served (No on-spot registration).</li>
+      <li>Registration Deadline: Advance Online Registration Mandatory</li>
       <li>Prerequisite: Valid college ID card for verification</li>
     </ul>
   </div>
@@ -137,49 +156,35 @@
 <div class="rule-section">
   <p><b>General Rules:</b></p>
   <ul>
-    <li>Must carry a valid college ID card.</li>
-    <li>Only original work is allowed; plagiarism will lead to disqualification.</li>
-    <li>Judges’ decisions are final.</li>
-    <li>Maintain decorum throughout the event.</li>
+    <li>Must carry a valid college ID card for campus entry and verification.</li>
+    <li>Only original code solutions allowed; any malpractice or cheating will lead to immediate disqualification.</li>
+    <li>Judges’ decisions are final and binding.</li>
+    <li>Maintain laboratory decorum throughout the event.</li>
   </ul>
 
-  <p><b>Specific Rules:</b></p>
+  <p><b>Relay Format Rules:</b></p>
   <ul>
-    <li>Design tool: <b>Figma</b> (no plugins, AI tools, or external templates allowed).</li>
-    <li>Topic/question will be given on the spot (same for all participants).</li>
-    <li>Wireframe must solve or support the scenario/problem described in the question.</li>
-    <li>Participants must use only the Gmail account provided on the event system for Figma access.</li>
-    <li>Design must be for <b>mobile view</b> only (not desktop or tablet).</li>
-    <li>Page Limit: Minimum 2 pages, maximum 3 pages.</li>
-    <li>Do NOT use sample templates or copy designs from other sources.</li>
-    <li>No preview designs will be provided; design must be created from scratch.</li>
-    <li>All submissions must be shared via the Google Form provided during the event.</li>
-    <li>Electronic devices (smartphones, smartwatches, etc.) are strictly prohibited unless part of the event system.</li>
+    <li>Supported Languages: <b>C, C++, Java, Python</b>.</li>
+    <li>Teammates swap places at fixed time intervals to continue code written by their partner.</li>
+    <li>No verbal communication or whispering is permitted during relay handovers.</li>
+    <li>Participants must understand their teammate's code logic quickly and push the solution forward.</li>
+    <li>The final solution must successfully pass all automated test cases within the allotted time limit.</li>
   </ul>
 
   <p><b>Evaluation Criteria:</b></p>
   <ul>
-    <li>How well the design meets the given problem and requirements.</li>
-    <li>Creativity, innovation, and overall presentation of the wireframe.</li>
-    <li>Clarity, consistency, and usability of the design flow between screens.</li>
-    <li>Visual aesthetics, alignment, spacing, and overall design quality.</li>
-  </ul>
-
-
-  <p><b>Submission:</b></p>
-  <ul>
-    <li>Final Figma file link must be submitted using the Google Form shared with participants.</li>
-    <li>Ensure your Figma design uses only the Gmail account provided on the event system.</li>
+    <li>Correctness and test case coverage.</li>
+    <li>Execution speed and submission time.</li>
+    <li>Code modularity, logic quality, and algorithmic efficiency.</li>
   </ul>
 </div>
-
 
   <h2>Event Flow & Time Allocation</h2>
   <div class="rule-section">
     <ul>
-      <li>Design Time: 40–45 minutes</li>
-      <li>Evaluation Time: 15 minutes</li>
-      <li>Number of Rounds: Single round (on-the-spot wireframe design)</li>
+      <li>Coding &amp; Relay Time: 45–60 minutes</li>
+      <li>Evaluation &amp; Review: 15 minutes</li>
+      <li>Format: Fast-paced elimination / timed problem sets</li>
     </ul>
   </div>
   <h2>Rewards & Recognition</h2>

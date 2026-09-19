@@ -179,7 +179,14 @@ nav ul li a:hover::after { width: 100%; }
   display: none !important;
 }
 
-.menu-toggle { display: none; cursor: pointer; }
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1200;
+  padding: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
 .menu-toggle span {
   display: block;
   width: 26px;
@@ -187,6 +194,16 @@ nav ul li a:hover::after { width: 100%; }
   background: var(--primary-navy);
   margin: 5px 0;
   border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* ========= HERO SECTION (ErrONiX 2K26 Poster Style) ========= */
@@ -776,144 +793,11 @@ nav ul li a:hover::after { width: 100%; }
 .sub-cards.show .sub-card:nth-child(3) { transition-delay: 0.6s; }
 .sub-cards.show .sub-card:nth-child(4) { transition-delay: 0.8s; }
 .sub-cards.show .sub-card:nth-child(5) { transition-delay: 1s; }
-/* ========= TECHNICAL EVENTS 2K26 STYLING ========= */
-.tech-card-2k26 {
-  background: var(--ice-white);
-  border: 1px solid var(--metallic-gold);
-  border-radius: 16px;
-  padding: 22px 20px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  min-height: 180px;
-  width: 100%;
-  opacity: 1 !important;
-  transform: none !important;
-  box-shadow: 0 4px 16px rgba(12, 30, 41, 0.08);
-  transition: all 0.3s ease;
-}
-
-.tech-card-2k26:hover {
-  border-color: var(--bright-gold);
-  transform: translateY(-4px) !important;
-  box-shadow: 0 8px 24px rgba(212, 167, 44, 0.25);
-}
-
-.tech-card-badge {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--secondary-blue);
-  background: var(--soft-sky-blue);
-  border: 1px solid var(--metallic-gold);
-  padding: 3px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-.tech-icon-wrapper {
-  width: 54px;
-  height: 54px;
-  border-radius: 12px;
-  background: var(--primary-navy);
-  border: 1.5px solid var(--metallic-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--metallic-gold);
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(12, 30, 41, 0.15);
-}
-
-.tech-icon-wrapper svg {
-  width: 26px;
-  height: 26px;
-}
-
-.tech-event-title {
-  font-family: 'Audiowide', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--primary-navy);
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
-}
-
-.tech-event-desc {
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: var(--secondary-navy);
-  margin-bottom: 22px;
-  flex-grow: 1;
-}
-
-.tech-card-actions {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  margin-top: auto;
-}
-
-.btn-tech-details {
-  flex: 1;
-  padding: 10px 12px;
-  background: var(--ice-white);
-  color: var(--primary-navy);
-  border: 1.5px solid var(--primary-navy);
-  border-radius: 8px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-tech-details:hover {
-  background: var(--soft-sky-blue);
-  border-color: var(--secondary-blue);
-  color: var(--secondary-blue);
-}
-
-.btn-tech-register {
-  flex: 1;
-  padding: 10px 12px;
-  background: var(--primary-navy);
-  color: var(--ice-white);
-  border: 1.5px solid var(--metallic-gold);
-  border-radius: 8px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(12, 30, 41, 0.15);
-}
-
-.btn-tech-register:hover {
-  background: var(--metallic-gold);
-  color: var(--primary-navy);
-  border-color: var(--bright-gold);
-  box-shadow: 0 4px 14px rgba(212, 167, 44, 0.35);
-}
-
-/* ========= EVENTS SECTION GRID SYSTEM ========= */
+/* ========= EVENT EXPLORER (ErrONiX 2K26) ========= */
 .events-section-2k26 {
   background: var(--soft-sky-blue);
-  padding: 60px 20px;
+  padding: 70px 20px 80px 20px;
+  position: relative;
 }
 
 .events-container-2k26 {
@@ -923,7 +807,7 @@ nav ul li a:hover::after { width: 100%; }
 
 .events-header-2k26 {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .events-badge-2k26 {
@@ -934,64 +818,343 @@ nav ul li a:hover::after { width: 100%; }
   color: var(--secondary-blue);
   background: var(--ice-white);
   border: 1px solid var(--metallic-gold);
-  padding: 4px 14px;
+  padding: 4px 16px;
   border-radius: 20px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(12, 30, 41, 0.06);
 }
 
 .events-title-2k26 {
   font-family: 'Audiowide', sans-serif;
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 4vw, 2.7rem);
   color: var(--primary-navy);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 .events-subtitle-2k26 {
   font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--secondary-navy);
+  max-width: 650px;
+  margin: 0 auto;
 }
 
-.events-categories-grid {
+/* Category Navigation Switcher */
+.events-tab-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin: 32px auto 44px auto;
+  max-width: 580px;
+  background: rgba(12, 30, 41, 0.07);
+  padding: 6px;
+  border-radius: 40px;
+  border: 1.5px solid rgba(212, 167, 44, 0.35);
+}
+
+.events-tab-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 24px;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--primary-navy);
+  background: transparent;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.events-tab-btn .tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.events-tab-btn .tab-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.events-tab-btn:hover {
+  color: var(--secondary-blue);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.events-tab-btn.active {
+  background: var(--primary-navy);
+  color: var(--bright-gold);
+  box-shadow: 0 4px 16px rgba(12, 30, 41, 0.2);
+  border: 1px solid var(--metallic-gold);
+}
+
+.events-tab-btn.active .tab-icon svg {
+  stroke: var(--bright-gold);
+  transform: scale(1.1);
+}
+
+/* Event Panels */
+.events-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.events-panel.active {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  opacity: 1;
+  transform: translateY(0);
+  animation: eventPanelFade 0.4s ease forwards;
 }
 
-@media (max-width: 900px) {
-  .events-categories-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+@keyframes eventPanelFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.category-header-2k26 {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid var(--metallic-gold);
-}
-
-.category-header-2k26 svg {
-  width: 26px;
-  height: 26px;
-  color: var(--metallic-gold);
-}
-
-.category-title-2k26 {
-  font-family: 'Audiowide', sans-serif;
-  font-size: 1.5rem;
-  color: var(--primary-navy);
-}
-
-.events-cards-stack {
+/* Event Cards (2x2 Grid) */
+.event-explorer-card {
+  background: var(--ice-white);
+  border: 1.5px solid rgba(212, 167, 44, 0.4);
+  border-radius: 18px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  box-shadow: 0 6px 20px rgba(12, 30, 41, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.event-explorer-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--bright-gold);
+  box-shadow: 0 12px 32px rgba(212, 167, 44, 0.22);
+}
+
+/* Image Container */
+.event-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--primary-navy);
+}
+
+.event-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.event-explorer-card:hover .event-card-img {
+  transform: scale(1.04);
+}
+
+/* Badges overlay on image */
+.event-media-badges {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.event-num-pill {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  background: var(--bright-gold);
+  padding: 4px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.event-cat-pill {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--ice-white);
+  background: rgba(12, 30, 41, 0.88);
+  border: 1px solid rgba(212, 167, 44, 0.7);
+  padding: 4px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Card Content */
+.event-card-body {
+  padding: 24px 22px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.event-card-title {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 1.35rem;
+  color: var(--primary-navy);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+.event-card-desc {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--secondary-navy);
+  margin-bottom: 22px;
+  flex-grow: 1;
+}
+
+/* Card CTA Action Buttons */
+.event-card-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn-event-details {
+  flex: 1;
+  padding: 11px 14px;
+  background: var(--ice-white);
+  color: var(--primary-navy);
+  border: 1.5px solid var(--primary-navy);
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-event-details:hover {
+  background: var(--soft-sky-blue);
+  color: var(--secondary-blue);
+  border-color: var(--secondary-blue);
+  transform: translateY(-2px);
+}
+
+.btn-event-register {
+  flex: 1;
+  padding: 11px 14px;
+  background: var(--primary-navy);
+  color: var(--ice-white);
+  border: 1.5px solid var(--metallic-gold);
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(12, 30, 41, 0.15);
+}
+
+.btn-event-register:hover {
+  background: linear-gradient(135deg, var(--metallic-gold), var(--bright-gold));
+  color: var(--primary-navy);
+  border-color: var(--bright-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 167, 44, 0.35);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 992px) {
+  .events-panel.active {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .event-card-body {
+    padding: 20px 18px;
+  }
+  .event-card-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .events-section-2k26 {
+    padding: 50px 16px 60px 16px;
+  }
+  .events-panel.active {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .events-tab-nav {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .events-tab-btn {
+    padding: 11px 16px;
+    font-size: 0.82rem;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-tab-nav {
+    flex-direction: row;
+    padding: 4px;
+  }
+  .events-tab-btn {
+    padding: 9px 10px;
+    font-size: 0.74rem;
+    letter-spacing: 0.4px;
+  }
+  .event-card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .btn-event-details,
+  .btn-event-register {
+    width: 100%;
+    padding: 10px;
+  }
 }
 
 /* ========= DATE & COUNTDOWN SECTION (ErrONiX 2K26) ========= */
@@ -2086,6 +2249,9 @@ html, body {
     padding: 20px;
     gap: 14px;
     align-items: center;
+    z-index: 1100;
+    max-height: 80vh;
+    overflow-y: auto;
   }
   nav ul.show { display: flex; }
   nav ul li a {
@@ -2177,135 +2343,176 @@ html, body {
 
 /* ========= FOOTER ========= */
 footer {
-  padding: 40px 20px;
-  background: var(--primary-navy);
+  background: linear-gradient(180deg, var(--primary-navy) 0%, #061017 100%);
   color: var(--ice-white);
+  padding: 50px 20px 30px 20px;
   text-align: center;
-}
-.contacts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-.contact { font-size: 1.5rem; color: var(--ice-white); }
-.sponsor-marquee { margin-top: 20px; overflow: hidden; }
-.sponsor-wrapper {
-  width: 100%;
-  overflow: hidden;   /* hides extra logos */
+  border-top: 2px solid var(--metallic-gold);
   position: relative;
+  overflow: hidden;
 }
 
-.company-card {
-  background: rgba(15, 23, 42, 0.75);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 16px;
-  padding: 28px 20px;
-  transition: all 0.3s ease;
-  text-align: center;
-  backdrop-filter: blur(8px);
-}
-.company-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--bright-gold, #ffd700);
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
-}
-
-.sponsor-track {
-  display: flex;
-  gap: 30px;
-  width: max-content;   /* ✅ ensures all logos fit in row */
-  animation: scrollLeft 15s linear infinite; /* ✅ faster speed */
-}
-
-.sponsor-track img {
-  height: 60px;
-  border-radius: 8px;
-  border: 1px solid var(--metallic-gold);
-  background: var(--ice-white);
-}
-
-/* Right → Left scroll */
-@keyframes scrollLeft {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-
-.footer-instagram { margin-top: 20px; font-size: .9rem; color: var(--soft-sky-blue); }
-
-/* Center card groups */
-.main-cards-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
-}
-.card-group {
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-brand .footer-title {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--ice-white);
+  letter-spacing: 2.5px;
+}
+
+.footer-brand .footer-title span {
+  color: var(--bright-gold);
+}
+
+.footer-tagline {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.92rem;
+  color: var(--soft-sky-blue);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
+  margin: 8px 0;
 }
 
-
-
-
-.urgent-glow {
-  animation: glowPulse 1.5s infinite alternate;
-  box-shadow: 0 0 25px 10px rgba(212, 167, 44, 0.6);
-  border-radius: 12px;
+.footer-links a {
+  color: var(--soft-sky-blue);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
-@keyframes glowPulse {
-  from {
-    box-shadow: 0 0 15px 5px rgba(212, 167, 44, 0.5);
-  }
-  to {
-    box-shadow: 0 0 35px 15px rgba(244, 196, 48, 0.8);
-  }
+.footer-links a:hover {
+  color: var(--bright-gold);
+  transform: translateY(-2px);
 }
 
-.footer-icons {
-  margin-top: 25px;
+.footer-divider {
+  width: 100%;
+  max-width: 900px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 167, 44, 0.5), transparent);
+  margin: 10px 0;
+}
+
+.footer-bottom {
+  width: 100%;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;        /* allows wrapping on smaller screens */
-  gap: 20px;
-}
-
-.footer-icons a {
-  display: inline-flex;    /* better centering */
   align-items: center;
+}
+
+.footer-bottom p.copy {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--soft-sky-blue);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  transition: transform 0.3s ease;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.8;
 }
 
-.footer-icons a:hover {
-  transform: scale(1.2);
+.footer-sep {
+  color: var(--metallic-gold);
+  opacity: 0.7;
 }
 
-.footer-logo {
-  width: 65px;             /* default desktop size */
-  max-width: 100%;         /* keeps it within container */
-  height: auto;            /* maintain aspect ratio */
-  object-fit: contain;     /* prevents distortion */
-  filter: drop-shadow(0 0 8px rgba(212, 167, 44, 0.6));
-  border-radius: 12px;     /* optional: softer edges */
+.designer-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* 🔹 Responsive scaling for smaller devices */
+.mr-dark-badge {
+  background: linear-gradient(135deg, rgba(212, 167, 44, 0.2), rgba(244, 196, 48, 0.35));
+  color: var(--bright-gold);
+  border: 1px solid var(--bright-gold);
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 0 12px rgba(244, 196, 48, 0.35);
+  display: inline-block;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.mr-dark-badge:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(244, 196, 48, 0.6);
+  background: linear-gradient(135deg, rgba(212, 167, 44, 0.4), rgba(244, 196, 48, 0.6));
+  color: #ffffff;
+}
+
+/* Responsive Footer Adjustments */
 @media (max-width: 768px) {
-  .footer-logo {
-    width: 50px;
+  footer {
+    padding: 40px 16px 24px 16px;
+  }
+  .footer-brand .footer-title {
+    font-size: 1.6rem;
+  }
+  .footer-links {
+    gap: 12px 16px;
+  }
+  .footer-links a {
+    font-size: 0.82rem;
+  }
+  .footer-bottom p.copy {
+    font-size: 0.88rem;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .footer-sep {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .footer-logo {
-    width: 40px;
+  footer {
+    padding: 35px 12px 20px 12px;
+  }
+  .footer-brand .footer-title {
+    font-size: 1.4rem;
+  }
+  .footer-tagline {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  .footer-bottom p.copy {
+    font-size: 0.82rem;
+  }
+  .mr-dark-badge {
+    font-size: 0.78rem;
+    padding: 2px 10px;
   }
 }
 
@@ -2829,188 +3036,247 @@ input:checked + label .description {
   </div>
 </section>
 
-<!-- Events Section (ErrONiX 2K26 Responsive Grid Layout) -->
+<!-- Events Section (ErrONiX 2K26 Event Explorer) -->
 <section id="events" class="events-section-2k26">
   <div class="events-container-2k26">
     
     <div class="events-header-2k26">
-      <span class="events-badge-2k26">COMPETE & INNOVATE</span>
-      <h2 class="events-title-2k26">Our Events</h2>
+      <span class="events-badge-2k26">COMPETE &amp; INNOVATE</span>
+      <h2 class="events-title-2k26">OUR EVENTS</h2>
       <p class="events-subtitle-2k26">Explore our official technical and non-technical competitions for ErrONiX 2K26.</p>
     </div>
 
-    <div class="events-categories-grid">
-      
-      <!-- TECHNICAL EVENTS COLUMN -->
-      <div class="events-category-column">
-        <div class="category-header-2k26">
+    <!-- Category Navigation Switcher -->
+    <div class="events-tab-nav" role="tablist" aria-label="Events Category Navigation">
+      <button type="button" class="events-tab-btn active" data-target="panel-technical" id="tab-technical" role="tab" aria-selected="true" aria-controls="panel-technical">
+        <span class="tab-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="16 18 22 12 16 6"></polyline>
             <polyline points="8 6 2 12 8 18"></polyline>
           </svg>
-          <h3 class="category-title-2k26">Technical Events</h3>
+        </span>
+        TECHNICAL EVENTS
+      </button>
+      <button type="button" class="events-tab-btn" data-target="panel-non-technical" id="tab-non-technical" role="tab" aria-selected="false" aria-controls="panel-non-technical">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </span>
+        NON-TECHNICAL EVENTS
+      </button>
+    </div>
+
+    <!-- 1. TECHNICAL EVENTS PANEL -->
+    <div id="panel-technical" class="events-panel active" role="tabpanel" aria-labelledby="tab-technical">
+      
+      <!-- Tech Event 01: TechTalkX -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Paper Presentation.png" alt="TechTalkX Paper Presentation" class="event-card-img" loading="lazy">
+          <div class="event-media-badges">
+            <span class="event-num-pill">01</span>
+            <span class="event-cat-pill">TECHNICAL EVENT</span>
+          </div>
         </div>
-
-        <div class="events-cards-stack">
-          <!-- 1. TechTalkX -->
-          <div class="tech-card-2k26">
-            <span class="tech-card-badge">Technical</span>
-            <div class="tech-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-              </svg>
-            </div>
-            <h3 class="tech-event-title">TechTalkX</h3>
-            <p class="tech-event-desc">National level research paper and technical presentation competition. Present innovative ideas, research papers, and futuristic technical projects.</p>
-            <div class="tech-card-actions">
-              <a href="Technical-events/paperpresentation.html" class="btn-tech-details">View Details</a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-tech-register">Register</a>
-            </div>
-          </div>
-
-          <!-- 2. Code Relay -->
-          <div class="tech-card-2k26">
-            <span class="tech-card-badge">Technical</span>
-            <div class="tech-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>
-            </div>
-            <h3 class="tech-event-title">Code Relay</h3>
-            <p class="tech-event-desc">High-stakes team code relay and speed debugging challenge. Test your syntax precision, algorithmic logic, and rapid problem solving under time pressure.</p>
-            <div class="tech-card-actions">
-              <a href="Technical-events/bugbuster.html" class="btn-tech-details">View Details</a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-tech-register">Register</a>
-            </div>
-          </div>
-
-          <!-- 3. Prompt War -->
-          <div class="tech-card-2k26">
-            <span class="tech-card-badge">Technical</span>
-            <div class="tech-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
-              </svg>
-            </div>
-            <h3 class="tech-event-title">Prompt War</h3>
-            <p class="tech-event-desc">Generative AI prompt engineering and creative UI/UX design battle. Craft precision AI prompts and wireframes to build compelling digital solutions.</p>
-            <div class="tech-card-actions">
-              <a href="Technical-events/epicframe.html" class="btn-tech-details">View Details</a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-tech-register">Register</a>
-            </div>
-          </div>
-
-          <!-- 4. CyberQuest -->
-          <div class="tech-card-2k26">
-            <span class="tech-card-badge">Technical</span>
-            <div class="tech-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-            </div>
-            <h3 class="tech-event-title">CyberQuest</h3>
-            <p class="tech-event-desc">The ultimate computer science technical quiz and cybersecurity challenge. Test your mastery across core CS, cybersecurity concepts, and tech trivia.</p>
-            <div class="tech-card-actions">
-              <a href="Technical-events/mindclash.html" class="btn-tech-details">View Details</a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-tech-register">Register</a>
-            </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">TechTalkX</h3>
+          <p class="event-card-desc">A technology-focused speaking event where participants present ideas, trends, innovations and concepts from the world of computing.</p>
+          <div class="event-card-actions">
+            <a href="Technical-events/Tech_Talkz.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-event-register">
+              Register
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- NON-TECHNICAL EVENTS COLUMN -->
-      <div class="events-category-column">
-        <div class="category-header-2k26">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-          <h3 class="category-title-2k26">Non-Technical Events</h3>
+      <!-- Tech Event 02: Code Relay -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Code Relay.png" alt="Code Relay Programming Challenge" class="event-card-img" loading="lazy">
+          <div class="event-media-badges">
+            <span class="event-num-pill">02</span>
+            <span class="event-cat-pill">TECHNICAL EVENT</span>
+          </div>
         </div>
-
-        <div class="events-cards-stack">
-          <!-- 1. Act & Guess -->
-          <div class="tech-card-2k26">
-            <span class="tech-card-badge" style="color: var(--metallic-gold); background: var(--primary-navy);">Non-Technical</span>
-            <div class="tech-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                <line x1="15" y1="9" x2="15.01" y2="9"></line>
-              </svg>
-            </div>
-            <h3 class="tech-event-title">Act &amp; Guess</h3>
-            <p class="tech-event-desc">Expressive non-verbal charades and quick action guessing game. Test your team's visual coordination and silent communication skills under pressure.</p>
-            <div class="tech-card-actions">
-              <a href="Non-technical-events/charades.html" class="btn-tech-details">View Details</a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-tech-register">Register</a>
-            </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">Code Relay</h3>
+          <p class="event-card-desc">A collaborative coding challenge where teammates take turns solving, debugging and completing a programming problem under time constraints.</p>
+          <div class="event-card-actions">
+            <a href="Technical-events/Code_Relay.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-event-register">
+              Register
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
           </div>
+        </div>
+      </div>
 
-          <!-- 2. Treasure Hunt -->
-          <div class="tech-card-2k26">
-            <span class="tech-card-badge" style="color: var(--metallic-gold); background: var(--primary-navy);">Non-Technical</span>
-            <div class="tech-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-              </svg>
-            </div>
-            <h3 class="tech-event-title">Treasure Hunt</h3>
-            <p class="tech-event-desc">High-energy campus clue solving and navigational treasure quest. Decipher cryptic riddles and locate hidden checkpoints across campus.</p>
-            <div class="tech-card-actions">
-              <a href="Non-technical-events/rythmriddle.html" class="btn-tech-details">View Details</a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-tech-register">Register</a>
-            </div>
+      <!-- Tech Event 03: Prompt War -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Prompt War.png" alt="Prompt War AI Challenge" class="event-card-img" loading="lazy">
+          <div class="event-media-badges">
+            <span class="event-num-pill">03</span>
+            <span class="event-cat-pill">TECHNICAL EVENT</span>
           </div>
-
-          <!-- 3. Mystery box -->
-          <div class="tech-card-2k26">
-            <span class="tech-card-badge" style="color: var(--metallic-gold); background: var(--primary-navy);">Non-Technical</span>
-            <div class="tech-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-              </svg>
-            </div>
-            <h3 class="tech-event-title">Mystery box</h3>
-            <p class="tech-event-desc">Thrilling tactile challenge and surprise task challenge. Rely on touch, instinct, and quick thinking to uncover hidden mystery challenges.</p>
-            <div class="tech-card-actions">
-              <a href="Non-technical-events/pingpong.html" class="btn-tech-details">View Details</a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-tech-register">Register</a>
-            </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">Prompt War</h3>
+          <p class="event-card-desc">An AI prompt engineering challenge where participants compete to create effective prompts and solve creative tasks using generative AI.</p>
+          <div class="event-card-actions">
+            <a href="Technical-events/Prompt_War.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-event-register">
+              Register
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
           </div>
+        </div>
+      </div>
 
-          <!-- 4. IPL Auction -->
-          <div class="tech-card-2k26">
-            <span class="tech-card-badge" style="color: var(--metallic-gold); background: var(--primary-navy);">Non-Technical</span>
-            <div class="tech-icon-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-                <path d="M4 22h16"></path>
-                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                <path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path>
-              </svg>
-            </div>
-            <h3 class="tech-event-title">IPL Auction</h3>
-            <p class="tech-event-desc">Strategic cricket team bidding simulation and budget management competition. Build your dream XI team using tactical auction bidding strategy.</p>
-            <div class="tech-card-actions">
-              <a href="Non-technical-events/ballisticbash.html" class="btn-tech-details">View Details</a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-tech-register">Register</a>
-            </div>
+      <!-- Tech Event 04: CyberQuest -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Cyber Quest.png" alt="CyberQuest Cybersecurity Challenge" class="event-card-img" loading="lazy">
+          <div class="event-media-badges">
+            <span class="event-num-pill">04</span>
+            <span class="event-cat-pill">TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">CyberQuest</h3>
+          <p class="event-card-desc">A cybersecurity challenge designed to test problem-solving, security awareness, logical thinking and technical skills.</p>
+          <div class="event-card-actions">
+            <a href="Technical-events/Cyber_Quest.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-event-register">
+              Register
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
           </div>
         </div>
       </div>
 
     </div>
+
+    <!-- 2. NON-TECHNICAL EVENTS PANEL -->
+    <div id="panel-non-technical" class="events-panel" role="tabpanel" aria-labelledby="tab-non-technical">
+      
+      <!-- Non-Tech Event 01: Act & Guess -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Act & Guess.png" alt="Act & Guess Team Challenge" class="event-card-img" loading="lazy">
+          <div class="event-media-badges">
+            <span class="event-num-pill">01</span>
+            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">Act &amp; Guess</h3>
+          <p class="event-card-desc">An entertaining team challenge that combines acting, observation and quick thinking to identify words, phrases and concepts.</p>
+          <div class="event-card-actions">
+            <a href="Non-technical-events/Act_Guess.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-event-register">
+              Register
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Tech Event 02: Treasure Hunt -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Treasure Hunt.png" alt="Treasure Hunt Campus Adventure" class="event-card-img" loading="lazy">
+          <div class="event-media-badges">
+            <span class="event-num-pill">02</span>
+            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">Treasure Hunt</h3>
+          <p class="event-card-desc">An exciting clue-based adventure where teams solve puzzles, follow hidden clues and race to discover the final treasure.</p>
+          <div class="event-card-actions">
+            <a href="Non-technical-events/Tresure_Hunt.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-event-register">
+              Register
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Tech Event 03: Mystery Box -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Mystery Box.png" alt="Mystery Box Surprise Challenge" class="event-card-img" loading="lazy">
+          <div class="event-media-badges">
+            <span class="event-num-pill">03</span>
+            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">Mystery Box</h3>
+          <p class="event-card-desc">A surprise-filled challenge where participants use creativity, logic and teamwork to solve tasks hidden inside mystery boxes.</p>
+          <div class="event-card-actions">
+            <a href="Non-technical-events/Mystrey_Box.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-event-register">
+              Register
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Tech Event 04: IPL Auction -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/IPL Auction.png" alt="IPL Auction Strategic Experience" class="event-card-img" loading="lazy">
+          <div class="event-media-badges">
+            <span class="event-num-pill">04</span>
+            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">IPL Auction</h3>
+          <p class="event-card-desc">A strategic team-based auction experience where participants build their dream IPL squad through bidding, planning and decision-making.</p>
+          <div class="event-card-actions">
+            <a href="Non-technical-events/IPL_Auction.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-event-register">
+              Register
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -3150,16 +3416,6 @@ input:checked + label .description {
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- ========== FOOTER ========== -->
-<footer>
-  <p class="copy">&copy; 2025 Erronix. All Rights Reserved. | Designed by 
-    <span style="color: var(--bright-gold);">CSE Department</span>
-  </p>
-
-
 <!-- Coordinators Section (ErrONiX 2K26) -->
 <section id="coordinators" class="coordinators-section">
   <div class="coordinators-container">
@@ -3225,7 +3481,7 @@ input:checked + label .description {
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
           </div>
           <div class="coord-role-badge gold-role">SECRETARY</div>
-          <h4 class="coord-name">Sanjay S (IV/CSE)</h4>
+          <h4 class="coord-name">Divya Shripriya(IV/CSE)</h4>
           <a href="tel:+917812884714" class="coord-contact-link">+91 78128 84714</a>
         </div>
 
@@ -3301,7 +3557,7 @@ input:checked + label .description {
       <!-- Company 4: Amazon -->
       <div class="company-card">
         <div style="width: 60px; height: 60px; margin: 0 auto 16px; background: rgba(255, 153, 0, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 153, 0, 0.4);">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="#FF9900"><path d="M15.93 17.09c-2.68 1.98-6.57 3.03-9.92 3.03-4.7 0-8.92-1.73-12.11-4.62-.25-.23-.03-.54.27-.37 3.42 1.96 7.61 3.14 11.84 3.14 2.97 0 6.22-.64 9.17-1.96.44-.2.84.34.75.78zM17.44 15.69c-.34-.44-2.25-.21-3.11-.11-.27.03-.32-.2-.07-.37 1.6-1.11 4.19-.79 4.47-.44.28.36-.08 2.97-1.57 4.22-.24.2-.47.09-.37-.17.33-.87.99-2.69.65-3.13zM13.62 10.45c0-1.42.34-2.51 1.02-3.26.68-.75 1.64-1.12 2.87-1.12 1.25 0 2.19.39 2.83 1.17.64.78.96 1.88.96 3.29 0 1.44-.32 2.55-.96 3.32-.64.77-1.59 1.16-2.85 1.16-1.24 0-2.19-.38-2.86-1.14-.67-.76-1.01-1.89-1.01-3.42zm2.59.08c0 .94.17 1.63.51 2.06.34.43.83.65 1.47.65.63 0 1.11-.22 1.45-.65.34-.43.51-1.12.51-2.06 0-.93-.17-1.61-.5-2.03-.33-.42-.81-.64-1.44-.64-.64 0-1.13.21-1.48.64-.35.43-.52 1.1-.52 2.03z"/></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="#FF9900"><path d="M15.93 17.09c-2.68 1.98-6.57 3.03-9.92 3.03-4.7 0-8.92-1.73-12.11-4.62-.25-.23-.03-.54.27-.37 3.42 1.96 7.61 3.14 11.84 3.14 2.97 0 6.22-.64 9.17-1.96.44-.2.84.34.75.78zM17.44 15.69c-.34-.44-2.25-.21-3.11-.11-.27.03-.32-.2-.07-.37 1.6-1.11 4.19-.79 4.47-.44.28.36-.08 2.97-1.57 4.22-.24.2-.47.09-.37-.17.33-.87.99-2.69.65-3.13zM13.62 10.45c0-1.42.34-2.51 1.02-3.26.68-.75 1.64-1.12 2.87-1.12 1.25 0 2.19.39 2.83 1.17.64.78.96 1.88.96 3.29 0 1.44-.32 2.55-.96 3.32-.64.77-1.59 1.16-2.85 1.16-1.24 0-2.19-.38-2.86-1.14-.67-.76-1.01-1.89-1.01-3.42zm2.59.08c0 .94.17 1.63.51 2.06.34.43.83.65 1.47.65.63 0 1.11-.22 1.45-.65.35-.43.51-1.12.51-2.06 0-.93-.17-1.61-.5-2.03-.33-.42-.81-.64-1.44-.64-.64 0-1.13.21-1.48.64-.35.43-.52 1.1-.52 2.03z"/></svg>
         </div>
         <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 8px;">Amazon</h3>
         <p style="color: var(--soft-sky-blue, #94a3b8); font-size: 0.95rem; line-height: 1.5; margin: 0;">E-Commerce, Cloud Computing &amp; AI</p>
@@ -3408,11 +3664,43 @@ input:checked + label .description {
 
   </div>
 </section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-title">ErrONiX <span>2K26</span></div>
+      <div class="footer-tagline">Department of Computer Science &amp; Engineering</div>
+    </div>
+
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#events">Events</a>
+      <a href="#countdownSection">Schedule</a>
+      <a href="#registrationProtocol">Registration</a>
+      <a href="#coordinators">Coordinators</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p class="copy">
+        &copy; 2026 Erronix. All Rights Reserved.
+        <span class="footer-sep">|</span>
+        <span class="designer-credit">
+          Designed by <span style="color: var(--bright-gold); font-weight: 600;">CSE Department</span> &amp; <span class="mr-dark-badge">MR DARK</span>
+        </span>
+      </p>
+    </div>
+  </div>
 </footer>
 
   
 <script>
-<!-- ========== SCRIPTS ========== -->
+/* ========== SCRIPTS ========== */
 
 /* ================= NAVBAR TOGGLE ================= */
 const menuToggle = document.getElementById('menu-toggle');
@@ -3420,6 +3708,50 @@ const menu = document.getElementById('menu');
 if (menuToggle && menu) {
   menuToggle.addEventListener('click', () => {
     menu.classList.toggle('show');
+    menuToggle.classList.toggle('active');
+  });
+
+  /* Close menu when a nav link is clicked (mobile) */
+  document.querySelectorAll('#menu .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('show');
+      menuToggle.classList.remove('active');
+    });
+  });
+
+  /* Close menu when clicking outside */
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+      menu.classList.remove('show');
+      menuToggle.classList.remove('active');
+    }
+  });
+}
+
+/* ================= EVENT EXPLORER CATEGORY TABS ================= */
+const eventTabBtns = document.querySelectorAll('.events-tab-btn');
+const eventPanels = document.querySelectorAll('.events-panel');
+
+if (eventTabBtns.length > 0 && eventPanels.length > 0) {
+  eventTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      
+      eventTabBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      eventPanels.forEach(p => {
+        p.classList.remove('active');
+      });
+
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const activePanel = document.getElementById(targetId);
+      if (activePanel) {
+        activePanel.classList.add('active');
+      }
+    });
   });
 }
 
@@ -3544,7 +3876,7 @@ updateCountdown();
     }, { passive: true });
   }
 
-
+</script>
 
 <!-- Brochure / Pamphlet Modal -->
 <div id="brochure-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:2000; justify-content:center; align-items:center;">
@@ -3582,9 +3914,4 @@ updateCountdown();
 </script>
 </body>
 </html>
-
-
-
-
-
 
