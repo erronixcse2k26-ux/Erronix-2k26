@@ -1,194 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Mystery Box | Erronix 2K26</title>
-<link rel="icon" type="image/x-icon" href="../assets/weblogofinal.png">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --primary-navy: #0C1E29;
-    --secondary-navy: #13283A;
-    --ice-white: #F8FBFF;
-    --soft-sky-blue: #EAF6FF;
-    --metallic-gold: #D4A72C;
-    --bright-gold: #F4C430;
-    --secondary-blue: #28469E;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mystery Box | ErrONiX 2K26 - National Level Technical Symposium</title>
+  <meta name="description" content="Mystery Box - Tactile problem solving and puzzle trial at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
 
-  body{ 
-    margin:0; 
-    font-family:'Open Sans',sans-serif; 
-    background:var(--ice-white); 
-    color:var(--primary-navy); 
-    font-size: 1.1rem;
-  }
-  .container{ 
-    max-width:900px; 
-    margin:50px auto; 
-    padding:20px; 
-    background:var(--soft-sky-blue); 
-    border-radius:12px; 
-    border: 2px solid var(--metallic-gold);
-    box-shadow:0 4px 16px rgba(12,30,41,0.08); 
-  }
-  h1{ 
-    font-family:'Roboto Slab',serif; 
-    color:var(--primary-navy); 
-    margin-bottom:20px; 
-    text-align:center; 
-  }
-  h2{ 
-    color:var(--secondary-blue); 
-    margin-top:25px; 
-    margin-bottom:12px; 
-    border-left:5px solid var(--metallic-gold); 
-    padding-left:10px;
-  }
-  p, li{ 
-    color:var(--primary-navy); 
-    line-height:1.6; 
-  }
-  ul, ol{ 
-    margin-left:20px; 
-    margin-bottom:18px; 
-  }
-  li{ 
-    margin-bottom:8px; 
-  }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/weblogofinal.png">
 
-  /* Section Box */
-  .rule-section{ 
-    border:1px solid var(--metallic-gold); 
-    border-radius:8px; 
-    padding:15px 20px; 
-    margin-bottom:20px; 
-    background:var(--ice-white); 
-  }
-  a { color: var(--secondary-blue); }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans:wght@400;600;700&family=Roboto:wght@500;700&family=Roboto+Slab:wght@600;700;800&display=swap" rel="stylesheet">
 
-  /* Register Button */
-  .register-btn{
-    display:inline-block; 
-    padding:12px 24px; 
-    font-weight:700; 
-    font-size:1rem;
-    border:none; 
-    border-radius:10px; 
-    background:linear-gradient(45deg, var(--metallic-gold), var(--bright-gold)); 
-    color:var(--primary-navy);
-    cursor:pointer; 
-    text-decoration:none; 
-    transition:transform .2s ease, box-shadow .2s ease;
-    margin-top:10px;
-    box-shadow: 0 4px 12px rgba(212, 167, 44, 0.25);
-  }
-  .register-btn:hover{ transform:scale(1.05); box-shadow: 0 6px 16px rgba(244, 196, 48, 0.4); }
-
-  /* Centering */
-  .btn-container{ text-align:center; margin-top:30px; }
-  .back-btn-top {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--primary-navy);
-    text-decoration: none;
-    padding: 8px 16px;
-    border: 1.5px solid var(--metallic-gold);
-    border-radius: 8px;
-    background: var(--ice-white);
-    transition: all 0.25s ease;
-    margin-bottom: 20px;
-  }
-  .back-btn-top:hover {
-    background: var(--primary-navy);
-    color: var(--bright-gold);
-    border-color: var(--primary-navy);
-  }
-</style>
+  <!-- Shared Event Detail Stylesheet -->
+  <link rel="stylesheet" href="../assets/event-detail.css">
 </head>
 <body>
 
-<div class="container">
-  <a href="../index.html#events" class="back-btn-top">&#8592; Back to Events</a>
-  <h1>Mystery Box</h1>
+  <div class="event-page-wrapper">
+    <!-- Top Bar Navigation -->
+    <header class="event-top-bar">
+      <a href="../index.html#events" class="back-to-events-btn" id="backToEventsTop">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        BACK TO EVENTS
+      </a>
+      <div class="symposium-pill">
+        <span></span>
+        ErrONiX 2K26 • CSE SYMPOSIUM
+      </div>
+    </header>
 
-  <h2>About the Event</h2>
-  <div class="rule-section">
-    <p>
-      A surprise-filled challenge where participants use creativity, logic and teamwork to solve tasks hidden inside mystery boxes. Teams face unexpected tactile, puzzle-solving, and coordination obstacles concealed within themed mystery containers.
-    </p>
+    <!-- Event Hero Section -->
+    <section class="event-hero" id="hero">
+      <div class="hero-content">
+        <div class="hero-badge-row">
+          <span class="category-badge non-technical">NON-TECHNICAL EVENT</span>
+          <span class="event-number-badge">EVENT 04</span>
+        </div>
+        <h1 class="event-title">Mystery Box</h1>
+        <p class="event-tagline">
+          A surprise-packed challenge of tactile deductions, hidden cipher locks, and spontaneous problem-solving sealed within mysterious boxes.
+        </p>
+        <div class="hero-cta-group">
+          <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-primary-register" id="heroRegisterBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+            REGISTER NOW
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual-frame">
+        <img src="../assets/Mystery Box.png" alt="Mystery Box Event Poster" loading="eager">
+        <div class="hero-visual-overlay-badge">ERRONIX 2K26</div>
+      </div>
+    </section>
+
+    <!-- Event Information Strip -->
+    <section class="info-strip-grid" aria-label="Event Key Details">
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Date</span>
+          <span class="info-val">07 OCT 2026</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Category</span>
+          <span class="info-val">Non-Tech</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Team Size</span>
+          <span class="info-val">2 to 3 Members</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Venue</span>
+          <span class="info-val">Activity Arena</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Time</span>
+          <span class="info-val">11:00 AM - 12:30 PM</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About The Event -->
+    <section class="detail-section" id="about">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          ABOUT THE EVENT
+        </h2>
+      </div>
+      <div class="about-lead-box">
+        Mystery Box presents an enigmatic sensory trial where logic, tactile exploration, and teamwork unlock secrets concealed within sealed puzzle containers.
+      </div>
+      <p class="about-body-text">
+        Teams face progressive challenge tiers featuring blind tactile object identification, lock combination decryption, and rapid coordination tasks. Fast hands, keen deduction, and steady nerves determine which team unseals victory.
+      </p>
+    </section>
+
+    <!-- Rules & Regulations -->
+    <section class="detail-section" id="rules-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          RULES &amp; REGULATIONS
+        </h2>
+      </div>
+      <div class="rules-list">
+        <div class="rule-item-card">
+          <div class="rule-number">01</div>
+          <div class="rule-content">
+            <b>Participation:</b> Teams must comprise <b>2 to 3 members</b>. Advance online registration is mandatory. Carry official college ID cards.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">02</div>
+          <div class="rule-content">
+            <b>No Peeking Protocol:</b> <span class="rule-badge-tag">STRICT</span> In tactile rounds, participants must not peek, lift blinders, or shine mobile phone torches. Any attempt leads to immediate disqualification.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">03</div>
+          <div class="rule-content">
+            <b>Box Integrity:</b> Forcing locks, tearing seals, or damaging the mystery containers will result in immediate round forfeiture.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">04</div>
+          <div class="rule-content">
+            <b>Strict Time Windows:</b> Each round features an aggressive timer of 1 to 2 minutes. Actions performed after the buzzer are void.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">05</div>
+          <div class="rule-content">
+            <b>Scoring System:</b> Points are credited based on object identification accuracy, puzzle completion, and speed.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">06</div>
+          <div class="rule-content">
+            <b>Judges' Decisions:</b> All decisions made by coordinators and judges are final, conclusive, and binding.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Coordinators -->
+    <section class="detail-section" id="coordinators">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          EVENT COORDINATORS
+        </h2>
+      </div>
+      <div class="coordinators-grid">
+        <div class="coordinator-card">
+          <div class="coord-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div class="coord-info">
+            <div class="name">Devi P</div>
+            <div class="phone" style="color: #6C8295;">Student Coordinator</div>
+          </div>
+        </div>
+        <div class="coordinator-card">
+          <div class="coord-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div class="coord-info">
+            <div class="name">Balaji K</div>
+            <a href="tel:+919655259112" class="phone">+91 96552 59112</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Registration Callout -->
+    <section class="bottom-registration-cta">
+      <div class="cta-tag">OPEN THE UNKNOWN</div>
+      <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
+      <p class="cta-subtext">
+        Face the mystery boxes, outsmart the countdown timers, and prove your team's instinctive coordination at ErrONiX 2K26.
+      </p>
+      <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="cta-btn-large" id="bottomRegisterBtn">
+        REGISTER FOR MYSTERY BOX NOW
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="event-page-footer">
+      <p>© 2026 ErrONiX • Department of Computer Science and Engineering, UCE Arni</p>
+    </footer>
   </div>
 
-  <h2>Time & Venue</h2>
-  <div class="rule-section">
-    <p><b>Date:</b> October 2026</p>
-    <p><b>Time:</b> 11.00 AM to 12.30 PM</p>
-    <p><b>Venue:</b> Activity &amp; Non-Technical Arena</p>
-  </div>
-
-  <h2>Event Rules and Guidelines</h2>
-  <div class="rule-section">
-    <h3>1. Teams and Structure</h3>
-    <ul>
-      <li>Participation: Teams of 2 to 3 members.</li>
-      <li>Each team is assigned a sequence of sealed mystery boxes containing unknown items, puzzles, and sensory tasks.</li>
-    </ul>
-
-    <h3>2. Challenge Format</h3>
-    <ul>
-      <li><b>Round 1 – Tactile Touch &amp; Guess:</b> Identify mysterious items strictly through touch without peeking.</li>
-      <li><b>Round 2 – Mystery Puzzle Unlock:</b> Decrypt cipher locks and mechanical puzzles inside the box to retrieve secret tokens.</li>
-      <li><b>Round 3 – Sudden Death Task:</b> Rapid physical and mental team challenge revealed upon opening the final mystery vault.</li>
-    </ul>
-
-    <h3>3. Time Limit &amp; Scoring</h3>
-    <ul>
-      <li>Each stage has a strictly enforced timer of 1 to 2 minutes.</li>
-      <li>Points are awarded based on identification accuracy, time elapsed, and completed puzzle tasks.</li>
-      <li>Judges' decisions are final and binding.</li>
-    </ul>
-  </div>
-
-  <h2>General Guidelines</h2>
-  <div class="rule-section">
-    <ul>
-      <li>Respect the coordinators and follow all given instructions.</li>
-      <li>No cheating, tampering, or interference allowed.</li>
-      <li>Maintain fair play and sportsmanship throughout the event.</li>
-      <li>Judges’ and coordinators’ decisions are final.</li>
-    </ul>
-  </div>
-
-  <h2>Rewards & Recognition</h2>
-  <div class="rule-section">
-    <ul>
-      <li>Exciting prizes are waiting for participants who showcase exceptional talent and creativity.</li>
-    </ul>
-  </div>
-
-  <div class="rule-section">
-    <p><b>Student Coordinators:</b></p>
-    <ul>
-      <li>Devi P</li>
-      <li>Balaji K– <a href="tel:+919655259112" class="contact-link">+91 96552 59112</a></li>
-    </ul>
-    <p style="margin-top: 10px;">
-      For any event or registration-related queries, feel free to reach out to the coordinators.
-    </p>
-  </div>
-  
-  <!-- Centered Register Button -->
-  <div class="btn-container">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" 
-       class="register-btn" target="_blank">
-       Register Now
-    </a>
-  </div>
-</div>
-
-
-
+</body>
+</html>

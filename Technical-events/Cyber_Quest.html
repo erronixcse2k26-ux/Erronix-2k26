@@ -1,256 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CyberQuest | Erronix 2K26</title>
-<link rel="icon" type="image/x-icon" href="../assets/weblogofinal.png">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --primary-navy: #0C1E29;
-    --secondary-navy: #13283A;
-    --ice-white: #F8FBFF;
-    --soft-sky-blue: #EAF6FF;
-    --metallic-gold: #D4A72C;
-    --bright-gold: #F4C430;
-    --secondary-blue: #28469E;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberQuest | ErrONiX 2K26 - National Level Technical Symposium</title>
+  <meta name="description" content="CyberQuest - Cybersecurity and CTF challenge at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
 
-  /* Reset */
-  *{ margin:0; padding:0; box-sizing:border-box; }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/weblogofinal.png">
 
-  body{ 
-    font-family:'Open Sans',sans-serif; 
-    background: var(--ice-white);
-    color:var(--primary-navy);
-    font-size:1.1rem;
-    line-height:1.6;
-  }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans:wght@400;600;700&family=Roboto:wght@500;700&family=Roboto+Slab:wght@600;700;800&display=swap" rel="stylesheet">
 
-  .container{
-    max-width:900px;
-    margin:60px auto;
-    padding:30px 25px;
-    background: var(--soft-sky-blue);
-    border-radius:16px;
-    border:2px solid var(--metallic-gold);
-    box-shadow:0 4px 16px rgba(12,30,41,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .container:hover {
-    transform: translateY(-5px);
-    box-shadow:0 8px 24px rgba(12,30,41,0.12);
-  }
-
-  h1{
-    font-family:'Roboto Slab',serif;
-    color:var(--primary-navy);
-    text-align:center;
-    margin-bottom:30px;
-    font-size:2.2rem;
-  }
-
-  h2{
-    color:var(--secondary-blue);
-    font-size:1.5rem;
-    margin:30px 0 15px;
-    border-left:5px solid var(--metallic-gold);
-    padding-left:12px;
-  }
-
-  p, li{
-    color:var(--primary-navy);
-  }
-
-  ul, ol{
-    margin-left:25px;
-    margin-bottom:18px;
-  }
-
-  li{
-    margin-bottom:10px;
-  }
-
-  /* Rule Section Box */
-  .rule-section{
-    border:1px solid var(--metallic-gold);
-    border-radius:10px;
-    padding:18px 20px;
-    margin-bottom:25px;
-    background:var(--ice-white);
-  }
-  a { color: var(--secondary-blue); }
-
-  /* Register Button */
-  .register-btn{
-    display:inline-block; 
-    padding:14px 28px; 
-    font-weight:700; 
-    font-size:1rem;
-    border:none; 
-    border-radius:10px; 
-    background:linear-gradient(45deg, var(--metallic-gold), var(--bright-gold)); 
-    color:var(--primary-navy);
-    cursor:pointer; 
-    text-decoration:none; 
-    transition:transform .2s ease, box-shadow .2s ease;
-    margin-top:10px;
-    box-shadow: 0 4px 12px rgba(212, 167, 44, 0.25);
-  }
-  .register-btn:hover{ transform:scale(1.05); box-shadow: 0 6px 16px rgba(244, 196, 48, 0.4); }
-
-  /* Centering */
-  .btn-container{ text-align:center; margin-top:30px; }
-
-  .back-btn-top {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--primary-navy);
-    text-decoration: none;
-    padding: 8px 16px;
-    border: 1.5px solid var(--metallic-gold);
-    border-radius: 8px;
-    background: var(--ice-white);
-    transition: all 0.25s ease;
-    margin-bottom: 20px;
-  }
-  .back-btn-top:hover {
-    background: var(--primary-navy);
-    color: var(--bright-gold);
-    border-color: var(--primary-navy);
-  }
-
-  /* Responsive adjustments */
-  @media (max-width:600px){
-    .container{ padding:20px 15px; }
-    h1{ font-size:1.8rem; }
-    h2{ font-size:1.3rem; }
-  }
-</style>
+  <!-- Shared Event Detail Stylesheet -->
+  <link rel="stylesheet" href="../assets/event-detail.css">
 </head>
 <body>
 
-<div class="container">
-  <a href="../index.html#events" class="back-btn-top">&#8592; Back to Events</a>
-  <h1>CyberQuest</h1>
+  <div class="event-page-wrapper">
+    <!-- Top Bar Navigation -->
+    <header class="event-top-bar">
+      <a href="../index.html#events" class="back-to-events-btn" id="backToEventsTop">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        BACK TO EVENTS
+      </a>
+      <div class="symposium-pill">
+        <span></span>
+        ErrONiX 2K26 • CSE SYMPOSIUM
+      </div>
+    </header>
 
-  <h2>About the Event</h2>
-  <p>
-    A cybersecurity challenge designed to test problem-solving, security awareness, logical thinking and technical skills. CyberQuest challenges participants to identify system vulnerabilities, solve CTF flags, decipher cryptographic ciphers, and defend digital infrastructure.
-  </p>
+    <!-- Event Hero Section -->
+    <section class="event-hero" id="hero">
+      <div class="hero-content">
+        <div class="hero-badge-row">
+          <span class="category-badge">TECHNICAL EVENT</span>
+          <span class="event-number-badge">EVENT 04</span>
+        </div>
+        <h1 class="event-title">CyberQuest</h1>
+        <p class="event-tagline">
+          An adrenaline-fueled cybersecurity challenge testing vulnerability analysis, cryptographic cipher breaking, and capture-the-flag (CTF) defense.
+        </p>
+        <div class="hero-cta-group">
+          <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-primary-register" id="heroRegisterBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+            REGISTER NOW
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual-frame">
+        <img src="../assets/Cyber Quest.png" alt="CyberQuest Event Poster" loading="eager">
+        <div class="hero-visual-overlay-badge">ERRONIX 2K26</div>
+      </div>
+    </section>
 
-  <h2>Time & Venue</h2>
-  <div class="rule-section">
-    <ul>
-      <li><b>Date:</b> October 2026</li>
-      <li><b>Time:</b> 12.00 PM to 1.30 PM</li>
-      <li><b>Venue:</b> Cybersecurity &amp; Networking Lab</li>
-    </ul>
+    <!-- Event Information Strip -->
+    <section class="info-strip-grid" aria-label="Event Key Details">
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Date</span>
+          <span class="info-val">07 OCT 2026</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Category</span>
+          <span class="info-val">Technical</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Team Size</span>
+          <span class="info-val">Individual (Solo)</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Venue</span>
+          <span class="info-val">Cybersecurity Lab</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Time</span>
+          <span class="info-val">11:00 AM - 1:00 PM</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About The Event -->
+    <section class="detail-section" id="about">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          ABOUT THE EVENT
+        </h2>
+      </div>
+      <div class="about-lead-box">
+        CyberQuest places competitors in front of real-world cybersecurity challenges, requiring you to analyze network protocols, dissect cryptographic ciphers, and capture digital flags under timed pressure.
+      </div>
+      <p class="about-body-text">
+        From decoding hidden messages to analyzing web vulnerabilities and investigating compromised systems, CyberQuest tests your technical acumen, analytical depth, and practical cybersecurity instincts.
+      </p>
+    </section>
+
+    <!-- Rules & Regulations -->
+    <section class="detail-section" id="rules-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          RULES &amp; REGULATIONS
+        </h2>
+      </div>
+      <div class="rules-list">
+        <div class="rule-item-card">
+          <div class="rule-number">01</div>
+          <div class="rule-content">
+            <b>Reporting &amp; Verification:</b> Arrive at the cybersecurity lab before scheduled time. Advance online registration is mandatory. Carry official college ID cards.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">02</div>
+          <div class="rule-content">
+            <b>Single Browser Window Protocol:</b> <span class="rule-badge-tag">STRICT</span> Participants must complete the challenge in a single browser window/tab. Any attempt to switch tabs or windows results in immediate automated disqualification.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">03</div>
+          <div class="rule-content">
+            <b>Zero Gadget Policy:</b> Electronic devices (smartphones, smartwatches, earplugs, external storage devices) are strictly prohibited inside the lab.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">04</div>
+          <div class="rule-content">
+            <b>Timer Expiry:</b> A live countdown timer is displayed. Participants must submit answers before it expires; upon 00:00, tests submit automatically.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">05</div>
+          <div class="rule-content">
+            <b>Technical Disruption Protocol:</b> In the event of any technical anomaly or system disruption, notify student coordinators immediately for official assistance.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">06</div>
+          <div class="rule-content">
+            <b>Fair Play:</b> No discussion or sharing flags between participants. Respect decisions of the technical leads and coordinators; decisions are final and binding.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Coordinators -->
+    <section class="detail-section" id="coordinators">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          EVENT COORDINATORS
+        </h2>
+      </div>
+      <div class="coordinators-grid">
+        <div class="coordinator-card">
+          <div class="coord-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div class="coord-info">
+            <div class="name">Subhasri</div>
+            <a href="tel:+916374003424" class="phone">+91 63740 03424</a>
+          </div>
+        </div>
+        <div class="coordinator-card">
+          <div class="coord-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div class="coord-info">
+            <div class="name">Santhosh Kumar</div>
+            <a href="tel:+918072655413" class="phone">+91 80726 55413</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Registration Callout -->
+    <section class="bottom-registration-cta">
+      <div class="cta-tag">DEFEND THE INFRASTRUCTURE</div>
+      <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
+      <p class="cta-subtext">
+        Test your cybersecurity instinct against real-world flags and ciphers. Register your spot for CyberQuest today.
+      </p>
+      <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="cta-btn-large" id="bottomRegisterBtn">
+        REGISTER FOR CYBERQUEST NOW
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="event-page-footer">
+      <p>© 2026 ErrONiX • Department of Computer Science and Engineering, UCE Arni</p>
+    </footer>
   </div>
-
-  <h2>Category & Participation</h2>
-  <div class="rule-section">
-    <ul>
-      <li><b>Category/Theme:</b> Cybersecurity, Cryptography &amp; Network Defense</li>
-      <li><b>Participation:</b> Individual or Teams of 2</li>
-    </ul>
-  </div>
-
-  <h2>Registration & Prerequisites</h2>
-  <div class="rule-section">
-    <ul>
-      <li>Registration Process: Online / First-come, first-served.</li>
-      <li>Prerequisite: Advance Online Registration Mandatory.</li>
-      <li>Participants must carry their official college ID card for verification.</li>
-      <li>Basic knowledge of network protocols, Linux fundamentals, and cryptography recommended.</li>
-    </ul>
-  </div>
-
-  <h2>Event Overview</h2>
-  <div class="rule-section">
-    <ul>
-      <li>The challenge features CTF-style challenges covering cryptography, web security, and forensic analysis.</li>
-      <li>Points are awarded dynamically based on flag difficulty and submission time.</li>
-    </ul>
-  </div>
-
-<h2>General Rules & Guidelines</h2>
-<div class="rule-section">
-  <p><b>DOs:</b></p>
-  <ol>
-    <li>Arrive at the quiz venue before the scheduled time.</li>
-    <li>Carefully read and understand the quiz rules and format.</li>
-    <li>Participants are required to complete the quiz in a single browser window/tab without switching to other tabs or windows during the quiz.</li>
-    <li>Any attempt to switch tabs or windows will result in immediate disqualification from the quiz.</li>
-    <li>A countdown timer will be displayed on the quiz page, and participants must submit their answers before the timer expires.</li>
-    <li>Failure to submit answers before the timer expires will result in the quiz being automatically submitted with any unanswered questions marked as "Not Attempted".</li>
-    <li>In the event of any technical issues or disruptions during the quiz, participants must immediately notify the student co-ordinators to seek assistance.</li>
-  </ol>
-  
-  <p><b>DON’Ts:</b></p>
-  <ol>
-    <li>No cheating or malpractice will be tolerated.</li>
-    <li>Do not discuss questions or answers with other participants.</li>
-    <li>Electronic devices (smartphones, smartwatches, etc.) are strictly prohibited inside the quiz venue.</li>
-    <li>Avoid any behavior that could be considered unfair or against the rules.</li>
-    <li>Respect the judges’ and officials’ decisions; disputes are not allowed.</li>
-  </ol>
-</div>
-
-
-  <h2>Event Flow & Time Allocation</h2>
-  <div class="rule-section">
-    <ul>
-      <li><b>Round 1 – Elimination:</b> 20 Easy Questions </li>
-      <li><b>Round 2 – Elimination:</b> 15 Medium Questions </li>
-      <li><b>Round 3 – Winner Selection:</b> 10 Hard Questions </li>
-    </ul>
-  </div>
-
-  <h2>Evaluation Criteria</h2>
-  <div class="rule-section">
-    <ul>
-      <li>Correctness of answers</li>
-      <li>Accuracy in coding/problem-solving (Round 3)</li>
-    </ul>
-  </div>
-  <h2>Rewards & Recognition</h2>
-  <div class="rule-section">
-    <ul>
-      <li>All participants will receive a <b>Participation Certificate</b>.</li>
-      <li><b>Winners and Runners-up</b> will be awarded special prizes in recognition of their outstanding performance.</li>
-    </ul>
-  </div>
-  <h2>Code of Conduct</h2>
-  <div class="rule-section">
-    <ul>
-      <li>Participants must follow all rules strictly.</li>
-      <li>Misbehaviour, disputes, or violations may lead to disqualification.</li>
-      <li>Maintain professionalism and decorum during the quiz.</li>
-    </ul>
-  </div>
-
-  <h2>Contact Information</h2>
-  <div class="rule-section">
-    <p><b>Event Coordinators:</b></p>
-    <ul>
-      <li>Subhasri - +91 63740 03424</li>
-      <li>Santhosh Kumar – +91 80726 55413</li>
-    </ul>
-  </div>
-
-  <!-- Centered Register Button -->
-  <div class="btn-container">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVVcMIacGliQJLwqJHbGX9MfFLpU1Rz8WBMtshO1jCIdKPGQ/viewform" 
-       class="register-btn" target="_blank">
-       Register Now
-    </a>
-  </div>
-</div>
 
 </body>
 </html>
