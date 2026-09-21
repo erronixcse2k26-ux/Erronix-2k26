@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="assets/weblogofinal.png">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/loader.css">
 
 <style>
 
@@ -1850,8 +1852,126 @@ nav ul li a:hover::after { width: 100%; }
   justify-content: center;
 }
 
+/* Executive Lead Cards (Top Row) */
+.lead-coordinators-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.coord-card-lead {
+  background: var(--ice-white);
+  border: 2px solid var(--metallic-gold);
+  border-radius: 18px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(12, 30, 41, 0.06);
+  position: relative;
+}
+
+.coord-card-lead:hover {
+  transform: translateY(-4px);
+  border-color: var(--bright-gold);
+  box-shadow: 0 12px 28px rgba(212, 167, 44, 0.22);
+}
+
+.coord-card-lead .coord-img-wrapper {
+  width: 104px;
+  height: 104px;
+  min-width: 104px;
+  border-radius: 50%;
+  border: 3px solid var(--metallic-gold);
+  overflow: hidden;
+  margin-bottom: 0;
+  box-shadow: 0 4px 12px rgba(12, 30, 41, 0.12);
+  background: var(--soft-sky-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coord-lead-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.coord-lead-info .coord-role-badge {
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+}
+
+.coord-lead-info .coord-name {
+  font-size: 1.18rem;
+  margin-bottom: 4px;
+  color: var(--primary-navy);
+  line-height: 1.3;
+}
+
+.coord-lead-info .coord-dept {
+  font-size: 0.85rem;
+  color: var(--secondary-navy);
+  line-height: 1.4;
+}
+
+/* 4-Column Balanced Faculty Grid */
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.faculty-grid .coord-card-2k26 {
+  height: 100%;
+  padding: 22px 14px;
+}
+
+.faculty-grid .coord-img-wrapper {
+  width: 90px;
+  height: 90px;
+  min-width: 90px;
+  margin-bottom: 12px;
+}
+
+.faculty-grid .coord-name {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faculty-grid .coord-dept {
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.coord-avatar-placeholder {
+  background: linear-gradient(135deg, #13283A, #0C1E29) !important;
+}
+
 .student-grid {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.single-staff-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.single-staff-grid .coord-card-2k26 {
+  width: 100%;
+  max-width: 320px;
 }
 
 /* Ice-White Coordinator Card */
@@ -1873,6 +1993,35 @@ nav ul li a:hover::after { width: 100%; }
   transform: translateY(-5px);
   border-color: var(--bright-gold);
   box-shadow: 0 12px 28px rgba(212, 167, 44, 0.22);
+}
+
+.coord-img-wrapper {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--metallic-gold);
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: var(--soft-sky-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(12, 30, 41, 0.12);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coord-card-2k26:hover .coord-img-wrapper {
+  transform: scale(1.06);
+  border-color: var(--bright-gold);
+  box-shadow: 0 8px 22px rgba(212, 167, 44, 0.28);
+}
+
+.coord-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
 }
 
 .coord-icon-wrapper {
@@ -1947,9 +2096,29 @@ nav ul li a:hover::after { width: 100%; }
   margin: 40px auto;
 }
 
+@media (max-width: 992px) {
+  .faculty-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .coordinators-grid {
+  .lead-coordinators-grid {
     grid-template-columns: 1fr;
+  }
+  .coordinators-grid, .faculty-grid, .student-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .coord-card-lead {
+    flex-direction: column;
+    text-align: center;
+    padding: 22px 16px;
+  }
+  .coord-lead-info {
+    align-items: center;
   }
 }
 
@@ -2438,7 +2607,7 @@ html, body {
   .reg-main-heading { font-size: 1.75rem; }
   .btn-register-here { width: 100%; text-align: center; min-height: 48px; }
 
-  .coordinators-grid { grid-template-columns: 1fr; }
+  .coordinators-grid, .faculty-grid, .student-grid { grid-template-columns: 1fr; }
   .contact-cards-grid, .social-links-grid { grid-template-columns: 1fr; }
   
   .gallery-slider-frame { height: 280px; }
@@ -2929,36 +3098,99 @@ input:checked + label .description {
 /* Modal content box */
 .modal-content {
   position: relative;
-  background: #fff;
-  padding: 10px;
-  border-radius: 12px;
-  max-width: 90%;
-  max-height: 90%;
+  background: #0C1E29;
+  padding: 16px;
+  border-radius: 14px;
+  max-width: 90vw;
+  max-height: 92vh;
   text-align: center;
   overflow: auto; /* scroll if content too big */
-  box-shadow: 0px 5px 20px rgba(0,0,0,0.4);
+  box-shadow: 0px 10px 35px rgba(0,0,0,0.7), 0 0 20px rgba(244,196,48,0.25);
+  border: 1px solid rgba(244,196,48,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Brochure image */
 .brochure-img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: 75vh;
   height: auto;
   border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 /* Close button */
 .close-btn {
   position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 28px;
+  top: 10px;
+  right: 14px;
+  font-size: 26px;
+  line-height: 1;
   font-weight: bold;
-  color: #333;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   z-index: 10000;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 .close-btn:hover {
-  color: red;
+  color: #fff;
+  background: #e63946;
+  transform: scale(1.08);
+}
+
+.poster-btn-group {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.poster-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.poster-btn-primary {
+  background: linear-gradient(135deg, #F4C430, #D4A72C);
+  color: #0C1E29;
+}
+
+.poster-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244,196,48,0.4);
+}
+
+.poster-btn-secondary {
+  background: rgba(255,255,255,0.12);
+  color: #F8FBFF;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.poster-btn-secondary:hover {
+  background: rgba(255,255,255,0.22);
+  transform: translateY(-2px);
 }
 
 /* -------------------- RESPONSIVE FIXES -------------------- */
@@ -3000,15 +3232,100 @@ input:checked + label .description {
 
   
 
+  <!-- Erronix 2K26 Cinematic Opening & Loading Animation -->
+  <div id="erronix-loader" aria-live="polite" aria-busy="true" role="status">
+    <!-- Interactive Ambient Circuit & Particle Canvas -->
+    <canvas id="loader-canvas"></canvas>
 
+    <!-- Ambient Corner Details Matching Reference Design -->
+    <div class="loader-corner loader-corner-tl">
+      LEARN<br>COMPETE<br>INNOVATE<br>GROW
+    </div>
+    <div class="loader-corner loader-corner-tr">
+      UCE ARNI<br>CSE
+    </div>
+    <div class="loader-corner loader-corner-bl">
+      UNIVERSITY COLLEGE<br>OF ENGINEERING ARNI
+    </div>
+    <div class="loader-corner loader-corner-br">
+      More Than An Event
+    </div>
+    <div class="loader-quote-center">
+      &ldquo; CODE CREATE COLLABORATE &rdquo;
+    </div>
 
+    <!-- Center Content Stage -->
+    <div class="loader-content">
+      <!-- Center Logo & Circular Progress Ring -->
+      <div class="loader-ring-wrapper">
+        <div class="loader-ring-flare"></div>
 
+        <svg class="loader-svg-ring" viewBox="0 0 280 280">
+          <defs>
+            <linearGradient id="ringDualGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00f2fe" />
+              <stop offset="48%" stop-color="#0066ff" />
+              <stop offset="52%" stop-color="#ffa751" />
+              <stop offset="100%" stop-color="#ffe259" />
+            </linearGradient>
+          </defs>
+          <!-- Background Track -->
+          <circle class="ring-bg" cx="140" cy="140" r="120" fill="none" stroke-width="2" />
+          <!-- Dynamic Progress Ring -->
+          <circle id="loader-ring-bar" class="ring-bar" cx="140" cy="140" r="120" fill="none" stroke="url(#ringDualGradient)" stroke-width="4.5" stroke-linecap="round" />
+        </svg>
 
+        <!-- Erronix 2K26 Phoenix Emblem -->
+        <img src="assets/erronix-phoenix.png" alt="ErrONiX 2K26 Phoenix Emblem" class="loader-phoenix-emblem" id="loader-phoenix-img">
+      </div>
 
+      <!-- Typography Section -->
+      <div class="loader-text-group">
+        <img src="assets/erronix-title.png" alt="ErrONiX 2K26 - ERROR TO EXCELLENCE" class="loader-title-img">
 
+        <!-- Subtitle & National Level Tagline -->
+        <div class="loader-tagline-container">
+          <div class="tagline-line"></div>
+          <div class="loader-tagline">A NATIONAL LEVEL TECHNICAL SYMPOSIUM</div>
+          <div class="tagline-line"></div>
+        </div>
 
-  
- 
+        <!-- Horizontal Glowing Progress Pill -->
+        <div class="loader-progress-section">
+          <div class="loader-progress-track">
+            <div id="loader-progress-fill" class="loader-progress-fill"></div>
+          </div>
+          <div id="loader-percent-text" class="loader-percent-text">0%</div>
+        </div>
+
+        <!-- Slogan / Status text -->
+        <div id="loader-status-text" class="loader-status-text">CONNECTING TO ERRONIX 2K26...</div>
+
+        <!-- Milestones: IDEAS - PEOPLE - TECHNOLOGY - COMMUNITY -->
+        <div class="loader-milestones">
+          <div class="milestone-track-line"></div>
+          <div class="milestone-node">
+            <div class="milestone-dot"></div>
+            <span class="milestone-label">IDEAS</span>
+          </div>
+          <div class="milestone-node">
+            <div class="milestone-dot"></div>
+            <span class="milestone-label">PEOPLE</span>
+          </div>
+          <div class="milestone-node">
+            <div class="milestone-dot"></div>
+            <span class="milestone-label">TECHNOLOGY</span>
+          </div>
+          <div class="milestone-node">
+            <div class="milestone-dot"></div>
+            <span class="milestone-label">COMMUNITY</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/loader.js"></script>
+
 <div id="mainPage">
   <nav>
     <div class="nav-brand-container">
@@ -3577,24 +3894,75 @@ input:checked + label .description {
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
         Faculty Coordinators
       </h3>
-      <div class="coordinators-grid">
+      <!-- Lead Coordinators (Executive Horizontal Layout) -->
+      <div class="lead-coordinators-grid">
         <!-- Faculty 1 -->
-        <div class="coord-card-2k26">
-          <div class="coord-icon-wrapper">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <div class="coord-card-lead">
+          <div class="coord-img-wrapper">
+            <img src="assets/HOD.jpeg" alt="Dr. J. SANTHANA KRISHNAN" class="coord-photo" loading="lazy">
           </div>
-          <div class="coord-role-badge">COORDINATOR &amp; HOD</div>
-          <h4 class="coord-name">Dr. J. SANTHANA KRISHNAN, M.E., Ph.D.</h4>
-          <div class="coord-dept">Department of Computer Science &amp; Engineering</div>
+          <div class="coord-lead-info">
+            <span class="coord-role-badge">COORDINATOR &amp; HOD</span>
+            <h4 class="coord-name">Dr. J. SANTHANA KRISHNAN, M.E., Ph.D.</h4>
+            <p class="coord-dept">Department of Computer Science &amp; Engineering</p>
+          </div>
         </div>
 
         <!-- Faculty 2 -->
-        <div class="coord-card-2k26">
-          <div class="coord-icon-wrapper">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <div class="coord-card-lead">
+          <div class="coord-img-wrapper">
+            <img src="assets/VIJAYKUMAR.jpeg" alt="Dr. T. J. Vijay Kumar" class="coord-photo" loading="lazy">
           </div>
-          <div class="coord-role-badge">CO-COORDINATOR</div>
-          <h4 class="coord-name">Dr. T. J. Vijay Kumar, M.E., Ph.D.</h4>
+          <div class="coord-lead-info">
+            <span class="coord-role-badge">CO-COORDINATOR</span>
+            <h4 class="coord-name">Dr. T. J. Vijay Kumar, M.E., Ph.D.</h4>
+            <p class="coord-dept">Department of Computer Science &amp; Engineering</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Faculty Coordinators (Balanced 4-Column Row) -->
+      <div class="faculty-grid">
+        <!-- Faculty 3 -->
+        <div class="coord-card-2k26">
+          <div class="coord-img-wrapper">
+            <img src="assets/SUBALAXMI.jpeg" alt="Mrs. T. Subalaxmi" class="coord-photo" loading="lazy">
+          </div>
+          <div class="coord-role-badge">AP / CSE</div>
+          <h4 class="coord-name">Mrs. T. Subalaxmi</h4>
+          <div class="coord-dept">Department of Computer Science &amp; Engineering</div>
+        </div>
+
+        <!-- Faculty 4 -->
+        <div class="coord-card-2k26">
+          <div class="coord-img-wrapper">
+            <img src="assets/FATHIMA.jpeg" alt="Mrs. S.K. Fathima" class="coord-photo" loading="lazy">
+          </div>
+          <div class="coord-role-badge">AP / CSE</div>
+          <h4 class="coord-name">Mrs. S.K. Fathima</h4>
+          <div class="coord-dept">Department of Computer Science &amp; Engineering</div>
+        </div>
+
+        <!-- Faculty 5 -->
+        <div class="coord-card-2k26">
+          <div class="coord-img-wrapper">
+            <img src="assets/CHANDRASEKAR.jpeg" alt="Mr. S. Chandrasekar" class="coord-photo" loading="lazy">
+          </div>
+          <div class="coord-role-badge">GF / CSE</div>
+          <h4 class="coord-name">Mr. S. Chandrasekar</h4>
+          <div class="coord-dept">Department of Computer Science &amp; Engineering</div>
+        </div>
+
+        <!-- Faculty 6 -->
+        <div class="coord-card-2k26">
+          <div class="coord-img-wrapper coord-avatar-placeholder">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="rgba(212, 167, 44, 0.18)" stroke="var(--metallic-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="coord-role-badge">GF / CSE</div>
+          <h4 class="coord-name">Dr. V. R. Navinkumar</h4>
           <div class="coord-dept">Department of Computer Science &amp; Engineering</div>
         </div>
       </div>
@@ -3603,7 +3971,31 @@ input:checked + label .description {
     <!-- Divider Line -->
     <div class="coord-divider"></div>
 
-    <!-- Group 2: Student Coordinators -->
+    <!-- Group 2: Non-Teaching Staff -->
+    <div class="coordinator-group">
+      <h3 class="group-heading">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Non - Teaching Staff
+      </h3>
+      <div class="single-staff-grid">
+        <!-- Staff 1 -->
+        <div class="coord-card-lead" style="max-width: 520px; width: 100%;">
+          <div class="coord-img-wrapper">
+            <img src="assets/SUMATHI.jpeg" alt="Mrs. C. Sumathi" class="coord-photo" loading="lazy">
+          </div>
+          <div class="coord-lead-info">
+            <span class="coord-role-badge">SG / CSE</span>
+            <h4 class="coord-name">Mrs. C. Sumathi</h4>
+            <div class="coord-dept">Department of Computer Science &amp; Engineering</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider Line -->
+    <div class="coord-divider"></div>
+
+    <!-- Group 3: Student Coordinators -->
     <div class="coordinator-group">
       <h3 class="group-heading">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -4024,10 +4416,18 @@ updateCountdown();
 </script>
 
 <!-- Brochure / Pamphlet Modal -->
-<div id="brochure-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:2000; justify-content:center; align-items:center;">
+<div id="brochure-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); backdrop-filter:blur(5px); z-index:2000; justify-content:center; align-items:center;">
   <div class="modal-content">
-    <span id="close-brochure" class="close-btn">&times;</span>
+    <span id="close-brochure" class="close-btn" title="Close (Esc)">&times;</span>
     <img src="assets/brochure.png" alt="ErrONiX 2K26 Official Pamphlet" class="brochure-img">
+    <div class="poster-btn-group">
+      <a href="assets/brochure.png" download="ErrONiX_2K26_Poster.png" class="poster-btn poster-btn-primary">
+        ⬇ Download Poster
+      </a>
+      <a href="assets/brochure.pdf" target="_blank" class="poster-btn poster-btn-secondary">
+        📄 View Official PDF
+      </a>
+    </div>
   </div>
 </div>
 
@@ -4040,19 +4440,31 @@ updateCountdown();
     brochureBtn.addEventListener("click", (e) => {
       e.preventDefault();
       brochureModal.style.display = "flex";
+      document.body.style.overflow = "hidden"; // Prevent background scroll
     });
   }
 
-  if (closeBrochure && brochureModal) {
-    closeBrochure.addEventListener("click", () => {
+  function closeBrochureModal() {
+    if (brochureModal) {
       brochureModal.style.display = "none";
-    });
+      document.body.style.overflow = "";
+    }
+  }
+
+  if (closeBrochure) {
+    closeBrochure.addEventListener("click", closeBrochureModal);
   }
 
   if (brochureModal) {
     window.addEventListener("click", (e) => {
       if (e.target === brochureModal) {
-        brochureModal.style.display = "none";
+        closeBrochureModal();
+      }
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && brochureModal.style.display === "flex") {
+        closeBrochureModal();
       }
     });
   }
