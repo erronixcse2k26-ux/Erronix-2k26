@@ -1,0 +1,254 @@
+/* ==========================================================================
+   Erronix 2K26 - Module 10: Erronix Logo Micro-Animation
+   Premium, university-appropriate micro-animation for the Erronix logo:
+   - Subtle breathing dual-tone glow (blue left, gold right)
+   - Dual-sided light travel around opposite contours
+   - Occasional circuit node illuminations
+   - Calm floating movement (strictly no continuous spinning)
+   - Hover controlled glow intensification & diagonal light sweep
+   ========================================================================== */
+
+/* Hero Logo Container */
+.hero-logo-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px auto;
+  cursor: pointer;
+  perspective: 600px;
+  /* Very subtle floating movement */
+  animation: logoFloatGentle 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes logoFloatGentle {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-3.5px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Base Logo Image & Subtle Breathing Dual-Glow */
+.hero-logo-img {
+  position: relative;
+  z-index: 2;
+  width: 115px;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+  transition: transform 0.4s var(--motion-ease-out),
+              filter 0.4s var(--motion-ease-out) !important;
+  will-change: transform, filter;
+  /* Dual-tone breathing glow */
+  animation: logoBreathingGlow 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes logoBreathingGlow {
+  0% {
+    filter: drop-shadow(-4px 0 12px rgba(0, 195, 255, 0.4))
+            drop-shadow(4px 0 12px rgba(244, 196, 48, 0.4));
+  }
+  100% {
+    filter: drop-shadow(-8px 0 22px rgba(0, 210, 255, 0.75))
+            drop-shadow(8px 0 22px rgba(255, 190, 30, 0.75));
+  }
+}
+
+/* Dual-Sided Light Travel SVG (Blue Left, Gold Right) */
+.logo-orbit-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 155px;
+  height: 135px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.orbit-arc-base {
+  fill: none;
+  stroke-width: 1.2;
+}
+
+.orbit-arc-blue {
+  stroke: rgba(56, 189, 248, 0.18);
+}
+
+.orbit-arc-gold {
+  stroke: rgba(244, 196, 48, 0.16);
+}
+
+/* Blue Light Traveling on Left Side */
+.orbit-pulse-blue {
+  fill: none;
+  stroke: url(#orbitGradBlue);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 45 155;
+  stroke-dashoffset: 200;
+  filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.8));
+  animation: orbitPulseLeft 6.5s linear infinite;
+}
+
+@keyframes orbitPulseLeft {
+  0% { stroke-dashoffset: 200; opacity: 0; }
+  15% { opacity: 0.95; }
+  50% { stroke-dashoffset: 0; opacity: 0.95; }
+  65% { opacity: 0; }
+  100% { stroke-dashoffset: -200; opacity: 0; }
+}
+
+/* Gold Light Traveling on Right Side */
+.orbit-pulse-gold {
+  fill: none;
+  stroke: url(#orbitGradGold);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 45 155;
+  stroke-dashoffset: 200;
+  filter: drop-shadow(0 0 5px rgba(244, 196, 48, 0.8));
+  animation: orbitPulseRight 7.5s linear infinite;
+  animation-delay: -3.2s; /* Desynchronized from blue */
+}
+
+@keyframes orbitPulseRight {
+  0% { stroke-dashoffset: 200; opacity: 0; }
+  15% { opacity: 0.95; }
+  50% { stroke-dashoffset: 0; opacity: 0.95; }
+  65% { opacity: 0; }
+  100% { stroke-dashoffset: -200; opacity: 0; }
+}
+
+/* Circuit Nodes on Orbit Track */
+.orbit-node {
+  fill: #061220;
+  stroke-width: 1.2;
+}
+
+.orbit-node-blue {
+  stroke: rgba(56, 189, 248, 0.45);
+  animation: nodePulseCyan 6.5s ease-in-out infinite;
+}
+
+.orbit-node-gold {
+  stroke: rgba(244, 196, 48, 0.45);
+  animation: nodePulseGold 7.5s ease-in-out infinite;
+  animation-delay: -3.2s;
+}
+
+@keyframes nodePulseCyan {
+  0%, 35%, 70%, 100% {
+    stroke-color: rgba(56, 189, 248, 0.45);
+    filter: none;
+    transform: scale(1);
+  }
+  48% {
+    stroke: rgba(0, 210, 255, 1);
+    filter: drop-shadow(0 0 6px #00d2ff);
+    transform: scale(1.25);
+  }
+}
+
+@keyframes nodePulseGold {
+  0%, 35%, 70%, 100% {
+    stroke-color: rgba(244, 196, 48, 0.45);
+    filter: none;
+    transform: scale(1);
+  }
+  48% {
+    stroke: rgba(255, 200, 50, 1);
+    filter: drop-shadow(0 0 6px #ffe259);
+    transform: scale(1.25);
+  }
+}
+
+.orbit-node-dot {
+  fill: #00d2ff;
+  opacity: 0.7;
+}
+
+.orbit-node-dot-gold {
+  fill: #ffe259;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Hover Micro-Interactions: Stronger Glow & Diagonal Light Sweep
+   ========================================================================== */
+.hero-logo-container:hover .hero-logo-img {
+  transform: scale(1.045) translateY(-2px);
+  filter: drop-shadow(-10px 0 28px rgba(0, 210, 255, 0.95))
+          drop-shadow(10px 0 28px rgba(255, 190, 30, 0.95)) !important;
+  animation-play-state: paused;
+}
+
+.hero-logo-container:hover .hero-logo-glow {
+  transform: translate(-50%, -50%) scale(1.15);
+  opacity: 1;
+}
+
+/* Diagonal Light Sweep Across Logo */
+.logo-sweep-sheen {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.logo-sweep-sheen::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -130%;
+  width: 50%;
+  height: 220%;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.5) 45%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(56, 189, 248, 0.4) 55%,
+    transparent 80%
+  );
+  transform: rotate(22deg);
+  transition: left 0.75s var(--motion-ease-out);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.hero-logo-container:hover .logo-sweep-sheen::after {
+  left: 170%;
+  opacity: 1;
+}
+
+/* Navbar Logo Micro-Glow & Hover */
+nav .logo img {
+  transition: transform 0.3s var(--motion-ease-out),
+              filter 0.3s var(--motion-ease-out) !important;
+}
+
+nav .logo:hover img {
+  transform: scale(1.05) translateY(-1px);
+  filter: drop-shadow(-3px 0 10px rgba(0, 210, 255, 0.6))
+          drop-shadow(3px 0 10px rgba(244, 196, 48, 0.6));
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-container,
+  .hero-logo-img,
+  .orbit-pulse-blue,
+  .orbit-pulse-gold,
+  .orbit-node-blue,
+  .orbit-node-gold {
+    animation: none !important;
+  }
+  .logo-sweep-sheen {
+    display: none !important;
+  }
+}

@@ -1,0 +1,587 @@
+/* ==========================================================================
+   Erronix 2K26 Symposium - Cinematic Opening & Loading Animation
+   Isolated component styles matching reference aesthetic
+   ========================================================================== */
+
+:root {
+  --loader-bg: #030611;
+  --loader-bg-secondary: #070d1d;
+  --loader-blue-glow: #00d2ff;
+  --loader-blue-deep: #0066ff;
+  --loader-gold-glow: #ffc837;
+  --loader-gold-deep: #ff8008;
+  --loader-text-silver: #d6e2ed;
+  --loader-sub-cyan: #38bdf8;
+  --loader-border-cyan: rgba(56, 189, 248, 0.25);
+  --loader-border-gold: rgba(255, 200, 55, 0.25);
+}
+
+/* Base Loader Container */
+#erronix-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 999999;
+  background-color: var(--loader-bg);
+  background: radial-gradient(circle at 50% 35%, #08142b 0%, #040915 50%, #020409 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #fff;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* Exit Transition State */
+#erronix-loader.loader-finished {
+  opacity: 0;
+  transform: scale(1.04);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+/* Canvas Background for Digital Circuits & Particles */
+#erronix-loader #loader-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ambient Corner Branding & Accents */
+.loader-corner {
+  position: absolute;
+  z-index: 3;
+  font-family: 'Audiowide', 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  font-size: 11px;
+  color: rgba(147, 197, 253, 0.55);
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.loader-corner-tl {
+  top: calc(24px + env(safe-area-inset-top, 0px));
+  left: calc(32px + env(safe-area-inset-left, 0px));
+  line-height: 1.6;
+}
+
+.loader-corner-tr {
+  top: calc(24px + env(safe-area-inset-top, 0px));
+  right: calc(32px + env(safe-area-inset-right, 0px));
+  text-align: right;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+  padding-bottom: 4px;
+}
+
+.loader-corner-bl {
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  left: calc(32px + env(safe-area-inset-left, 0px));
+  max-width: 240px;
+  font-size: 10px;
+  color: rgba(125, 160, 200, 0.45);
+  letter-spacing: 1.5px;
+  line-height: 1.4;
+}
+
+.loader-corner-br {
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  right: calc(32px + env(safe-area-inset-right, 0px));
+  font-family: 'Brush Script MT', 'Segoe Script', 'Great Vibes', cursive, sans-serif;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: #38bdf8;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.7), 0 0 25px rgba(0, 102, 255, 0.5);
+  transform: rotate(-6deg);
+  opacity: 0.85;
+}
+
+.loader-quote-center {
+  position: absolute;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(148, 163, 184, 0.5);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Center Content Container */
+.loader-content {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 640px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Circular Logo & Progress Ring Area */
+.loader-ring-wrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* SVG Circular Ring */
+.loader-svg-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+  filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.35));
+}
+
+.ring-bg {
+  stroke: rgba(255, 255, 255, 0.07);
+}
+
+.ring-bar {
+  transition: stroke-dashoffset 0.1s linear;
+  filter: drop-shadow(0 0 6px rgba(0, 210, 255, 0.8));
+}
+
+/* Ambient Ring Glow Flare */
+.loader-ring-flare {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.12) 0%, rgba(255, 180, 0, 0.08) 50%, transparent 70%);
+  filter: blur(14px);
+  pointer-events: none;
+  animation: flarePulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes flarePulse {
+  0% { transform: scale(0.96); opacity: 0.5; }
+  100% { transform: scale(1.04); opacity: 0.9; }
+}
+
+/* Center Phoenix Emblem */
+.loader-phoenix-emblem {
+  position: relative;
+  z-index: 2;
+  width: 200px;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(-5px 0 16px rgba(0, 210, 255, 0.6))
+          drop-shadow(5px 0 16px rgba(255, 180, 0, 0.6));
+  animation: emblemBreathe 3s ease-in-out infinite alternate;
+  will-change: transform, filter;
+}
+
+@keyframes emblemBreathe {
+  0% {
+    transform: scale(0.97);
+    filter: drop-shadow(-4px 0 14px rgba(0, 210, 255, 0.45))
+            drop-shadow(4px 0 14px rgba(255, 180, 0, 0.45));
+  }
+  100% {
+    transform: scale(1.03);
+    filter: drop-shadow(-8px 0 24px rgba(0, 210, 255, 0.8))
+            drop-shadow(8px 0 24px rgba(255, 190, 20, 0.8));
+  }
+}
+
+/* Typography Section */
+.loader-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.loader-title-img {
+  width: 320px;
+  max-width: 85vw;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.45));
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* Fallback / Complementary Text Header */
+.loader-title-html {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.title-erronix {
+  background: linear-gradient(180deg, #ffffff 0%, #d1e5f8 50%, #7aa8c9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+  position: relative;
+}
+
+.title-year {
+  background: linear-gradient(180deg, #ffe259 0%, #f4c430 45%, #b57a16 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(244, 196, 48, 0.6);
+}
+
+.loader-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: #d1d5db;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.loader-tagline-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 24px;
+}
+
+.tagline-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.4), transparent);
+}
+
+.loader-tagline {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 3.5px;
+  color: #7dd3fc;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* Horizontal Progress Pill (from reference image) */
+.loader-progress-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 14px;
+}
+
+.loader-progress-track {
+  position: relative;
+  flex: 1;
+  height: 18px;
+  background: rgba(8, 20, 42, 0.85);
+  border: 1.5px solid rgba(56, 189, 248, 0.5);
+  border-radius: 20px;
+  padding: 2px;
+  box-shadow: 0 0 12px rgba(0, 150, 255, 0.25), inset 0 0 8px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #0072ff 0%, #00d2ff 45%, #f4c430 85%, #ffa751 100%);
+  box-shadow: 0 0 16px rgba(0, 210, 255, 0.8), 0 0 8px rgba(255, 200, 50, 0.8);
+  transition: width 0.12s linear;
+  position: relative;
+}
+
+.loader-progress-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: #ffffff;
+  border-radius: 50%;
+  filter: blur(2px);
+  box-shadow: 0 0 8px #fff, 0 0 12px #ffe259;
+}
+
+.loader-percent-text {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #e0f2fe;
+  min-width: 46px;
+  text-align: left;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+}
+
+/* Status Slogan */
+.loader-status-text {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 4px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  min-height: 16px;
+}
+
+.loader-status-text.pulse {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+}
+
+/* Milestone Indicators (IDEAS - PEOPLE - TECHNOLOGY - COMMUNITY) */
+.loader-milestones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+}
+
+.milestone-track-line {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  right: 10px;
+  height: 1px;
+  background: rgba(56, 189, 248, 0.25);
+  z-index: 1;
+}
+
+.milestone-node {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.milestone-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #061124;
+  border: 2px solid rgba(56, 189, 248, 0.4);
+  transition: all 0.3s ease;
+}
+
+.milestone-node.active .milestone-dot {
+  border-color: #38bdf8;
+  background: #0284c7;
+  box-shadow: 0 0 10px #38bdf8, 0 0 18px rgba(56, 189, 248, 0.8);
+  transform: scale(1.2);
+}
+
+.milestone-label {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(148, 163, 184, 0.55);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.milestone-node.active .milestone-label {
+  color: #e2e8f0;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+/* ==========================================================================
+   Sequence Phase Enhancements
+   ========================================================================== */
+
+/* Phase 0-20%: Gentle ambient reveal */
+#erronix-loader.phase-0-20 .loader-phoenix-emblem {
+  opacity: 0.6;
+}
+
+/* Phase 20-60%: Emblem lighting up, ring traveling */
+#erronix-loader.phase-20-60 .loader-phoenix-emblem {
+  opacity: 0.88;
+}
+
+/* Phase 60-90%: Title brightening, excellence glow */
+#erronix-loader.phase-60-90 .loader-title-img,
+#erronix-loader.phase-60-90 .loader-title-html {
+  filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.7));
+}
+
+#erronix-loader.phase-60-90 .loader-subtitle {
+  color: #ffffff;
+  text-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
+}
+
+/* Phase 90-100%: Full glory */
+#erronix-loader.phase-90-100 .loader-phoenix-emblem {
+  opacity: 1;
+  filter: drop-shadow(-10px 0 28px rgba(0, 210, 255, 0.95))
+          drop-shadow(10px 0 28px rgba(255, 200, 30, 0.95));
+}
+
+#erronix-loader.phase-90-100 .loader-status-text {
+  color: #38bdf8;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.9);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .loader-ring-wrapper {
+    width: 220px;
+    height: 220px;
+    margin-bottom: 14px;
+  }
+  .loader-phoenix-emblem {
+    width: 165px;
+    max-height: 150px;
+  }
+  .loader-title-img {
+    width: 280px;
+  }
+  .loader-title-html {
+    font-size: 26px;
+  }
+  .loader-subtitle {
+    font-size: 11px;
+    letter-spacing: 4.5px;
+    margin-bottom: 8px;
+  }
+  .loader-tagline-container {
+    max-width: 320px;
+    margin-bottom: 18px;
+  }
+  .loader-tagline {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+  .loader-progress-section {
+    max-width: 320px;
+  }
+  .loader-milestones {
+    max-width: 300px;
+  }
+  .milestone-label {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .loader-corner-tl,
+  .loader-corner-tr {
+    top: 14px;
+    font-size: 9px;
+  }
+  .loader-corner-tl { left: 16px; }
+  .loader-corner-tr { right: 16px; }
+  .loader-corner-bl,
+  .loader-corner-br {
+    display: none;
+  }
+  .loader-quote-center {
+    font-size: 8px;
+    letter-spacing: 2px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loader-ring-wrapper {
+    width: 185px;
+    height: 185px;
+    margin-bottom: 10px;
+  }
+  .loader-phoenix-emblem {
+    width: 140px;
+    max-height: 125px;
+  }
+  .loader-title-img {
+    width: 240px;
+  }
+  .loader-progress-section {
+    max-width: 280px;
+  }
+  .loader-progress-track {
+    height: 15px;
+  }
+  .loader-percent-text {
+    font-size: 13px;
+  }
+  .loader-milestones {
+    max-width: 260px;
+  }
+  .loader-corner-tl,
+  .loader-corner-tr {
+    font-size: 8px;
+  }
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  #erronix-loader {
+    transition: opacity 0.3s ease !important;
+  }
+  #erronix-loader.loader-finished {
+    transform: none !important;
+    filter: none !important;
+  }
+  .loader-phoenix-emblem,
+  .loader-ring-flare {
+    animation: none !important;
+  }
+  #erronix-loader #loader-canvas {
+    display: none !important;
+  }
+  .ring-bar,
+  .loader-progress-fill {
+    transition: none !important;
+  }
+}

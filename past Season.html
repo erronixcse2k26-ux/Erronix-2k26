@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Past Season - Erronix 2K25</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" type="image/x-icon" href="assets/weblogofinal.png">
+  <style>
+    :root {
+      --primary-navy: #0C1E29;
+      --secondary-navy: #13283A;
+      --ice-white: #F8FBFF;
+      --soft-sky-blue: #EAF6FF;
+      --metallic-gold: #D4A72C;
+      --bright-gold: #F4C430;
+      --secondary-blue: #28469E;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body, html {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--ice-white);
+      color: var(--primary-navy);
+      overflow-x: hidden;
+    }
+
+    /* Intro video fullscreen */
+    #introContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-navy);
+    }
+
+    #introVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #introOverlay {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--bright-gold);
+      text-shadow: 2px 2px 8px rgba(12, 30, 41, 0.8);
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    #mainPage {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+      padding: 60px 20px;
+      background: var(--ice-white);
+    }
+
+    #mainPage.show {
+      display: block;
+      opacity: 1;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.5rem;
+      color: var(--primary-navy);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.6rem;
+      color: var(--secondary-blue);
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--secondary-navy);
+      margin-bottom: 30px;
+      text-align: justify;
+    }
+
+    video {
+      border-radius: 15px;
+      max-width: 100%;
+      margin-top: 20px;
+      border: 2px solid var(--metallic-gold);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--primary-navy);
+      padding: 20px;
+      margin-top: 40px;
+      background: var(--soft-sky-blue);
+      border-top: 1px solid var(--metallic-gold);
+    }
+
+    /* Counter section */
+    .counter-section {
+      background: var(--soft-sky-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 40px 20px;
+      margin-top: 30px;
+      border-radius: 16px;
+    }
+
+    .counter-box {
+      background: var(--secondary-navy);
+      padding: 40px 60px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(12, 30, 41, 0.15);
+      border: 2px solid var(--metallic-gold);
+    }
+
+    .counter-box h2 {
+      color: var(--ice-white);
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-family: 'Roboto Slab', serif;
+    }
+
+    .count {
+      font-size: 4rem;
+      font-weight: bold;
+      color: var(--bright-gold);
+      font-family: 'Roboto Slab', serif;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      #introOverlay {
+        font-size: 2.5rem;
+        top: 12%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #introVideo {
+        object-fit: contain;
+        background: var(--primary-navy);
+      }
+
+      #introOverlay {
+        font-size: 2rem;
+        top: 10%;
+      }
+
+      section {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #introOverlay {
+        font-size: 1.5rem;
+        top: 8%;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Intro Video -->
+  <div id="introContainer">
+    <video id="introVideo" autoplay muted playsinline>
+      <source src="assets/past season.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <div id="introOverlay">Past Season</div>
+  </div>
+
+
+  <!-- Main Page -->
+  <div id="mainPage">
+
+    <!-- Past Season Info -->
+    <section>
+      <h1>Ananta Bodha 2k24</h1>
+      <h2>Past Season Highlights</h2>
+      <p>Ananta Bodha was a spectacular event filled with exciting technical and non-technical competitions, workshops, and interactive sessions. Participants showcased their creativity, problem-solving skills, and teamwork. Relive the moments of innovation, learning, and fun from this past season.</p>
+      <video controls>
+        <source src="assets/past season.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </section>
+
+    <!-- 🔥 Phoenix Count-Up Section -->
+    <section class="counter-section" id="counterSection">
+      <div class="counter-box">
+        <h2>Overall Participants of Past Seasons</h2>
+        <div class="count" id="countNumber">0</div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Erronix. All rights reserved | Designed by <span style="color: var(--primary-navy); font-weight: 700; background: var(--bright-gold); padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; display: inline-block; margin-left: 4px;">MR DARK</span></p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const introContainer = document.getElementById('introContainer');
+    const introVideo = document.getElementById('introVideo');
+    const mainPage = document.getElementById('mainPage');
+
+    function showMainPage() {
+      introContainer.style.transition = 'opacity 1s';
+      introContainer.style.opacity = 0;
+      setTimeout(() => {
+        introContainer.style.display = 'none';
+        mainPage.classList.add('show');
+        document.body.style.overflowY = 'auto';
+      }, 1000);
+    }
+
+    setTimeout(showMainPage, 20000);
+    introVideo.addEventListener('ended', showMainPage);
+
+    introVideo.play().catch(() => {
+      document.body.addEventListener('click', () => introVideo.play());
+    });
+
+    // ✅ Count-up animation logic
+    let counted = false;
+
+    function animateCountUp(element, target, duration) {
+      let start = 0;
+      const stepTime = Math.max(10, Math.floor(duration / target));
+
+      const counter = setInterval(() => {
+        start++;
+        element.textContent = start;
+        if (start >= target) clearInterval(counter);
+      }, stepTime);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !counted) {
+          counted = true;
+          const counterEl = document.getElementById("countNumber");
+          animateCountUp(counterEl, 226, 2500);
+        }
+      });
+    }, {
+      threshold: 0.6
+    });
+
+    observer.observe(document.getElementById("counterSection"));
+  </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Erronix 2K26 - Module 08: Animated Digital Circuits
+   Reusable, lightweight SVG/CSS digital circuit background system.
+   Thin traces, connection nodes, tiny glowing points, and desynchronized
+   traveling blue & gold light pulses.
+   ========================================================================== */
+
+/* Fixed Background Circuit Container */
+.digital-circuits-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.85; /* Sits naturally deep in background */
+}
+
+.circuit-viewport-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Base Passive Circuit Traces (Very low opacity) */
+.circuit-trace-base {
+  fill: none;
+  stroke-width: 1.2;
+}
+
+.circuit-trace-cyan {
+  stroke: rgba(56, 189, 248, 0.08);
+}
+
+.circuit-trace-gold {
+  stroke: rgba(244, 196, 48, 0.07);
+}
+
+/* Connection Junction Nodes */
+.circuit-node-base {
+  fill: #071321;
+  stroke-width: 1.2;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.circuit-node-cyan {
+  stroke: rgba(56, 189, 248, 0.28);
+}
+
+.circuit-node-gold {
+  stroke: rgba(244, 196, 48, 0.25);
+}
+
+/* Tiny Internal Core Dots */
+.circuit-node-core {
+  fill: #38bdf8;
+  opacity: 0.4;
+}
+
+.circuit-node-core-gold {
+  fill: #f4c430;
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   Traveling Light Pulses (Desynchronized & Staggered Timing)
+   ========================================================================== */
+.circuit-pulse-line {
+  fill: none;
+  stroke-linecap: round;
+  will-change: stroke-dashoffset, opacity;
+}
+
+/* Path 1: Top-Left to Center-Left (Cyan, 12s cycle) */
+.circuit-pulse-1 {
+  stroke: url(#circuitGradCyan);
+  stroke-width: 2.2;
+  stroke-dasharray: 60 450;
+  stroke-dashoffset: 510;
+  filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.7));
+  animation: pulseTravel1 12s linear infinite;
+  animation-delay: -4s;
+}
+
+@keyframes pulseTravel1 {
+  0% { stroke-dashoffset: 510; opacity: 0; }
+  10% { opacity: 0.85; }
+  35% { stroke-dashoffset: 0; opacity: 0.85; }
+  42% { opacity: 0; }
+  100% { stroke-dashoffset: -510; opacity: 0; }
+}
+
+/* Path 2: Top-Right to Center-Right (Gold, 15s cycle) */
+.circuit-pulse-2 {
+  stroke: url(#circuitGradGold);
+  stroke-width: 2.2;
+  stroke-dasharray: 55 420;
+  stroke-dashoffset: 475;
+  filter: drop-shadow(0 0 5px rgba(244, 196, 48, 0.7));
+  animation: pulseTravel2 15s linear infinite;
+  animation-delay: -9s;
+}
+
+@keyframes pulseTravel2 {
+  0% { stroke-dashoffset: 475; opacity: 0; }
+  12% { opacity: 0.85; }
+  38% { stroke-dashoffset: 0; opacity: 0.85; }
+  45% { opacity: 0; }
+  100% { stroke-dashoffset: -475; opacity: 0; }
+}
+
+/* Path 3: Mid-Left Orthogonal Flow (Cyan, 18s cycle) */
+.circuit-pulse-3 {
+  stroke: url(#circuitGradCyan);
+  stroke-width: 2;
+  stroke-dasharray: 70 500;
+  stroke-dashoffset: 570;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.65));
+  animation: pulseTravel3 18s linear infinite;
+  animation-delay: -14s;
+}
+
+@keyframes pulseTravel3 {
+  0% { stroke-dashoffset: 570; opacity: 0; }
+  8% { opacity: 0.8; }
+  36% { stroke-dashoffset: 0; opacity: 0.8; }
+  44% { opacity: 0; }
+  100% { stroke-dashoffset: -570; opacity: 0; }
+}
+
+/* Path 4: Mid-Right to Bottom-Right (Gold, 22s cycle) */
+.circuit-pulse-4 {
+  stroke: url(#circuitGradGold);
+  stroke-width: 2.2;
+  stroke-dasharray: 65 480;
+  stroke-dashoffset: 545;
+  filter: drop-shadow(0 0 5px rgba(244, 196, 48, 0.7));
+  animation: pulseTravel4 22s linear infinite;
+  animation-delay: -6s;
+}
+
+@keyframes pulseTravel4 {
+  0% { stroke-dashoffset: 545; opacity: 0; }
+  10% { opacity: 0.85; }
+  34% { stroke-dashoffset: 0; opacity: 0.85; }
+  42% { opacity: 0; }
+  100% { stroke-dashoffset: -545; opacity: 0; }
+}
+
+/* Path 5: Bottom-Left Upward Accent (Cyan, 25s cycle) */
+.circuit-pulse-5 {
+  stroke: url(#circuitGradCyan);
+  stroke-width: 2;
+  stroke-dasharray: 50 380;
+  stroke-dashoffset: 430;
+  filter: drop-shadow(0 0 4px rgba(0, 210, 255, 0.6));
+  animation: pulseTravel5 25s linear infinite;
+  animation-delay: -18s;
+}
+
+@keyframes pulseTravel5 {
+  0% { stroke-dashoffset: 430; opacity: 0; }
+  12% { opacity: 0.8; }
+  38% { stroke-dashoffset: 0; opacity: 0.8; }
+  46% { opacity: 0; }
+  100% { stroke-dashoffset: -430; opacity: 0; }
+}
+
+/* ==========================================================================
+   Node Soft Pulse Animation (Synchronized with packet passage)
+   ========================================================================== */
+.circuit-node-pulse-cyan {
+  animation: nodeSoftGlowCyan 12s ease-in-out infinite;
+}
+
+@keyframes nodeSoftGlowCyan {
+  0%, 25%, 50%, 100% {
+    stroke-color: rgba(56, 189, 248, 0.25);
+    filter: none;
+    transform: scale(1);
+  }
+  35% {
+    stroke: rgba(0, 210, 255, 0.8);
+    filter: drop-shadow(0 0 6px rgba(0, 210, 255, 0.9));
+    transform: scale(1.2);
+  }
+}
+
+.circuit-node-pulse-gold {
+  animation: nodeSoftGlowGold 15s ease-in-out infinite;
+}
+
+@keyframes nodeSoftGlowGold {
+  0%, 25%, 50%, 100% {
+    stroke: rgba(244, 196, 48, 0.25);
+    filter: none;
+    transform: scale(1);
+  }
+  38% {
+    stroke: rgba(244, 196, 48, 0.85);
+    filter: drop-shadow(0 0 6px rgba(244, 196, 48, 0.9));
+    transform: scale(1.2);
+  }
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .circuit-pulse-line,
+  .circuit-node-pulse-cyan,
+  .circuit-node-pulse-gold {
+    animation: none !important;
+    display: none !important;
+  }
+  .circuit-trace-base {
+    opacity: 0.04 !important;
+  }
+  .circuit-node-base {
+    opacity: 0.08 !important;
+  }
+}
