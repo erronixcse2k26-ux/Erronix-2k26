@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Code Relay | ErrONiX 2K26 - National Level Technical Symposium</title>
-  <meta name="description" content="Code Relay - Collaborative algorithm and programming challenge at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
+  <title>CODE RELAY | ErrONiX 2K26 - National Level Technical Symposium</title>
+  <meta name="description" content="CODE RELAY - Collaborative coding relay challenge at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/weblogofinal.png">
@@ -16,6 +16,16 @@
 
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
+  <link rel="stylesheet" href="../assets/registration-modal.css">
+  <!-- Instant Theme Loader (Zero Flash) -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -39,18 +49,18 @@
           <span class="category-badge">TECHNICAL EVENT</span>
           <span class="event-number-badge">EVENT 02</span>
         </div>
-        <h1 class="event-title">Code Relay</h1>
+        <h1 class="event-title">CODE RELAY</h1>
         <p class="event-tagline">
-          A high-intensity collaborative programming relay where teammates alternate control to solve and debug algorithmic problems under ticking clocks.
+          A team-based coding relay where two members collaborate during discussion time and take turns coding. Speed, accuracy, debugging skills, and teamwork will be tested through two progressively challenging rounds.
         </p>
         <div class="hero-cta-group">
-          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
-            🔒 OPENS 23-09-2026
+          <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'code-relay')" class="btn-primary-register" id="heroRegisterBtn" title="Register for CODE RELAY">
+            REGISTER NOW
           </a>
         </div>
       </div>
       <div class="hero-visual-frame">
-        <img src="../assets/Code Relay.webp" alt="Code Relay Event Poster" width="800" height="800" loading="eager" decoding="async">
+        <img src="../assets/Code Relay.webp" alt="CODE RELAY Event Poster" width="800" height="800" loading="eager" decoding="async">
         <div class="hero-visual-overlay-badge">ERRONIX 2K26</div>
       </div>
     </section>
@@ -104,32 +114,20 @@
       </div>
     </section>
 
-    <!-- About The Event -->
-    <section class="detail-section" id="about">
+    <!-- Event Format -->
+    <section class="detail-section" id="format">
       <div class="section-header">
         <h2 class="section-title">
-          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
           ABOUT THE EVENT
         </h2>
       </div>
       <div class="about-lead-box">
-        Code Relay tests not only individual coding prowess, but how seamlessly you read, comprehend, and push forward your partner's code without exchanging a single word.
+        A team-based coding relay where two members collaborate during discussion time and take turns coding.
       </div>
       <p class="about-body-text">
-        In this competitive programming relay, pairs must solve algorithmic problems by alternating turns on a single machine at timed buzzer intervals. Member 1 lays the architecture and logic; upon the relay signal, Member 2 steps in to review the code structure, fix defects, and complete edge cases to pass all automated test suites.
+        Speed, accuracy, debugging skills, and teamwork will be tested through two progressively challenging rounds.
       </p>
-
-      <div style="margin-top: 20px;">
-        <h3 style="font-size: 1.1rem; color: var(--secondary-blue); font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom: 8px;">
-          Supported Programming Languages
-        </h3>
-        <div class="topics-cloud">
-          <span class="topic-tag">C</span>
-          <span class="topic-tag">C++ (GCC)</span>
-          <span class="topic-tag">Java (OpenJDK)</span>
-          <span class="topic-tag">Python 3</span>
-        </div>
-      </div>
     </section>
 
     <!-- Rules & Regulations -->
@@ -142,46 +140,159 @@
       </div>
       <div class="rules-list">
         <div class="rule-item-card">
-          <div class="rule-number">01</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">01</div>
           <div class="rule-content">
-            <b>Team Size:</b> Exactly 2 members per team. Advance online registration is mandatory; entries are on a first-come, first-served basis.
+            <b>Team:</b> Each team consists of 2 members.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">02</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">02</div>
           <div class="rule-content">
-            <b>Language Selection:</b> Allowed programming languages are <b>C, C++, Java, and Python</b>. Both teammates must write in the same chosen language.
+            <b>Round 1 – Easy Challenge:</b> Both members get 2 minutes to discuss the given problem. Member 1 then codes for 5 minutes, followed by Member 2 for 5 minutes to continue and complete the solution.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">03</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">03</div>
           <div class="rule-content">
-            <b>Relay Swap Protocol:</b> Teammates must swap places only at the designated buzzer/time interval. When one member is coding, the other must stand behind the designated boundary.
+            <b>Round 2 – Advanced Challenge:</b> Both members get 10 minutes to discuss and plan the solution. Member 1 codes for 10 minutes, after which Member 2 takes over for 10 minutes to debug, continue, and complete the solution.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">04</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">04</div>
           <div class="rule-content">
-            <b>Zero Verbal Communication:</b> <span class="rule-badge-tag">STRICT</span> No talking, whispering, hand gesturing, or note-passing is permitted during the relay handover.
+            <b>Communication:</b> Members can communicate only during the discussion time.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">05</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">05</div>
           <div class="rule-content">
-            <b>Fair Play &amp; Original Code:</b> Only original code solutions generated in the session are accepted. Any unauthorized devices, tab switching, or external assistance results in immediate disqualification.
+            <b>No External Assistance:</b> Internet, mobile phones, AI tools, and external assistance are not allowed.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">06</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">06</div>
           <div class="rule-content">
-            <b>Evaluation Criteria:</b>
-            <ul>
-              <li>Correctness and total number of passed automated test cases.</li>
-              <li>Overall submission speed and elapsed time.</li>
-              <li>Code modularity, algorithmic complexity, and structure.</li>
-            </ul>
+            <b>Evaluation:</b> Teams will be evaluated based on correctness, test cases, and completion within the given time.
           </div>
         </div>
+        <div class="rule-item-card">
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">07</div>
+          <div class="rule-content">
+            <b>Disqualification:</b> Any malpractice will lead to immediate disqualification.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Round Timeline -->
+    <section class="detail-section" id="timeline">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          ROUND TIMELINE
+        </h2>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+
+        <!-- Round 1: Easy Challenge -->
+        <div class="flow-step-card" style="padding: 22px 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(212, 167, 44, 0.25);">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="step-num" style="font-size: 1.3rem; margin-bottom: 0;">01</span>
+              <div>
+                <div class="step-heading" style="margin-bottom: 2px;">ROUND 1 – EASY CHALLENGE</div>
+                <div style="font-size: 0.8rem; color: #6C8295; font-weight: 600;">Sequential Relay Format</div>
+              </div>
+            </div>
+            <div style="background: rgba(212, 167, 44, 0.15); border: 1px solid var(--metallic-gold); padding: 5px 14px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; color: var(--primary-navy); display: flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>TOTAL: 12 MIN</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+            <!-- Step 1 -->
+            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 1</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">2 MIN</span>
+              </div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Discussion</div>
+              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Both members discuss problem understanding and approach together.</div>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 2</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">5 MIN</span>
+              </div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Member 1 Coding</div>
+              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Member 1 starts coding the initial solution on the system.</div>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 3</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">5 MIN</span>
+              </div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Member 2 Relay Swap</div>
+              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Member 2 takes over to continue coding and complete the solution.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Round 2: Advanced Challenge -->
+        <div class="flow-step-card" style="padding: 22px 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(212, 167, 44, 0.25);">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="step-num" style="font-size: 1.3rem; margin-bottom: 0;">02</span>
+              <div>
+                <div class="step-heading" style="margin-bottom: 2px;">ROUND 2 – ADVANCED CHALLENGE</div>
+                <div style="font-size: 0.8rem; color: #6C8295; font-weight: 600;">Sequential Relay Format</div>
+              </div>
+            </div>
+            <div style="background: rgba(212, 167, 44, 0.15); border: 1px solid var(--metallic-gold); padding: 5px 14px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; color: var(--primary-navy); display: flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>TOTAL: 30 MIN</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+            <!-- Step 1 -->
+            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 1</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
+              </div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Discussion &amp; Planning</div>
+              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Both members discuss, plan architecture, and design the solution.</div>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 2</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
+              </div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Member 1 Coding</div>
+              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Member 1 codes the core algorithmic logic and initial structure.</div>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 3</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
+              </div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Member 2 Relay Swap</div>
+              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Member 2 takes over to debug, continue, and complete the solution.</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -199,8 +310,8 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Iniya</div>
-            <a href="tel:+918807276094" class="phone">+91 88072 76094</a>
+            <div class="name">N. Keerthika</div>
+            <a href="tel:+916385843681" class="phone">+91 63858 43681</a>
           </div>
         </div>
         <div class="coordinator-card">
@@ -208,8 +319,17 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Ramesh Kumar</div>
-            <a href="tel:+919345266375" class="phone">+91 93452 66375</a>
+            <div class="name">M. Rohit</div>
+            <a href="tel:+919626997021" class="phone">+91 96269 97021</a>
+          </div>
+        </div>
+        <div class="coordinator-card">
+          <div class="coord-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div class="coord-info">
+            <div class="name">C. T. Thilagavathi</div>
+            <a href="tel:+919043442794" class="phone">+91 90434 42794</a>
           </div>
         </div>
       </div>
@@ -217,13 +337,13 @@
 
     <!-- Bottom Registration Callout -->
     <section class="bottom-registration-cta">
-      <div class="cta-tag">ALGORITHMIC RELAY</div>
+      <div class="cta-tag">CODE RELAY</div>
       <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
       <p class="cta-subtext">
-        Team up with your coding partner, master the relay baton, and conquer the algorithmic leaderboard at ErrONiX 2K26.
+        Team up with your coding partner, master the relay baton, and conquer the algorithmic challenges at ErrONiX 2K26.
       </p>
-      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
-        🔒 REGISTRATION OPENS ON 23-09-2026
+      <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'code-relay')" class="cta-btn-large" id="bottomRegisterBtn" title="Register for CODE RELAY">
+        REGISTER NOW
       </a>
     </section>
 
@@ -233,56 +353,6 @@
     </footer>
   </div>
 
-  <!-- Registration Frozen Information Modal -->
-  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
-    <div class="reg-modal-card">
-      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
-      <div class="reg-modal-icon-badge">
-        <span class="reg-modal-icon">⏳</span>
-      </div>
-      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
-      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
-      <p class="reg-modal-text">
-        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
-      </p>
-      <div class="reg-modal-date-box">
-        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
-        <div class="reg-modal-date-val">23rd September 2026</div>
-        <div class="reg-modal-date-sub">(23-09-2026)</div>
-      </div>
-      <p class="reg-modal-subnote">
-        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
-      </p>
-      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
-    </div>
-  </div>
-
-  <script>
-    function openRegFrozenModal(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    function closeRegFrozenModal() {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    }
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal && e.target === modal) closeRegFrozenModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('reg-frozen-modal');
-        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
-      }
-    });
-  </script>
+  <script src="../assets/registration-modal.js" defer></script>
 </body>
 </html>

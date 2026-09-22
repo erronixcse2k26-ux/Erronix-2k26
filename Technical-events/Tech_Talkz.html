@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TechTalkX | ErrONiX 2K26 - National Level Technical Symposium</title>
-  <meta name="description" content="TechTalkX - Technology presentation and thought leadership event at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
+  <title>TechTalkX – Paper Presentation | ErrONiX 2K26 - National Level Technical Symposium</title>
+  <meta name="description" content="TechTalkX – Paper Presentation at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/weblogofinal.png">
@@ -16,6 +16,16 @@
 
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
+  <link rel="stylesheet" href="../assets/registration-modal.css">
+  <!-- Instant Theme Loader (Zero Flash) -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -36,21 +46,21 @@
     <section class="event-hero" id="hero">
       <div class="hero-content">
         <div class="hero-badge-row">
-          <span class="category-badge">TECHNICAL EVENT</span>
+          <span class="category-badge">PAPER PRESENTATION</span>
           <span class="event-number-badge">EVENT 01</span>
         </div>
-        <h1 class="event-title">TechTalkX</h1>
+        <h1 class="event-title">TechTalkX – Paper Presentation</h1>
         <p class="event-tagline">
-          A premier technology-focused presentation platform where innovators present ideas, breakthroughs, and computing concepts before an expert panel.
+          Paper Presentation provides participants with a platform to present innovative ideas, research findings, and emerging technologies across various engineering domains.
         </p>
         <div class="hero-cta-group">
-          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
-            🔒 OPENS 23-09-2026
+          <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'paper-presentation')" class="btn-primary-register" id="heroRegisterBtn" title="Register for TechTalkX – Paper Presentation">
+            REGISTER NOW
           </a>
         </div>
       </div>
       <div class="hero-visual-frame">
-        <img src="../assets/Paper Presentation.webp" alt="TechTalkX Event Poster" width="800" height="800" loading="eager" decoding="async">
+        <img src="../assets/Paper Presentation.webp" alt="TechTalkX – Paper Presentation Event Poster" width="800" height="800" loading="eager" decoding="async">
         <div class="hero-visual-overlay-badge">ERRONIX 2K26</div>
       </div>
     </section>
@@ -72,7 +82,7 @@
         </div>
         <div class="info-details">
           <span class="info-label">Category</span>
-          <span class="info-val">Technical</span>
+          <span class="info-val">Paper Presentation</span>
         </div>
       </div>
       <div class="info-card">
@@ -81,7 +91,7 @@
         </div>
         <div class="info-details">
           <span class="info-label">Team Size</span>
-          <span class="info-val">Solo or up to 3</span>
+          <span class="info-val">Individual or max 3</span>
         </div>
       </div>
       <div class="info-card">
@@ -113,29 +123,11 @@
         </h2>
       </div>
       <div class="about-lead-box">
-        TechTalkX provides an esteemed stage for undergraduate and postgraduate technologists to articulate innovative concepts, research discoveries, and prototype demonstrations before a panel of academic and industry specialists.
+        Paper Presentation provides participants with a platform to present innovative ideas, research findings, and emerging technologies across various engineering domains.
       </div>
       <p class="about-body-text">
-        Participants present their projects and research insights covering next-generation computing trends. The event evaluates technical comprehension, originality of implementation, clarity of delivery, and the ability to defend technical decisions during the live question-and-answer session.
+        Participants will present their selected topic before a panel of judges, followed by a question-and-answer session.
       </p>
-
-      <!-- Suggested Topics -->
-      <div style="margin-top: 24px;">
-        <h3 style="font-size: 1.1rem; color: var(--secondary-blue); font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom: 8px;">
-          Suggested Domains &amp; Research Themes
-        </h3>
-        <div class="topics-cloud">
-          <span class="topic-tag">Artificial Intelligence &amp; ML</span>
-          <span class="topic-tag">Generative AI &amp; LLMs</span>
-          <span class="topic-tag">Data Science &amp; Analytics</span>
-          <span class="topic-tag">Cybersecurity &amp; Cryptography</span>
-          <span class="topic-tag">Cloud &amp; Distributed Systems</span>
-          <span class="topic-tag">Quantum Computing</span>
-          <span class="topic-tag">Human-Centric Computing</span>
-          <span class="topic-tag">Hardware &amp; IoT Architecture</span>
-          <span class="topic-tag">Open Emerging Technologies</span>
-        </div>
-      </div>
     </section>
 
     <!-- Rules & Regulations -->
@@ -148,44 +140,63 @@
       </div>
       <div class="rules-list">
         <div class="rule-item-card">
-          <div class="rule-number">01</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">01</div>
           <div class="rule-content">
-            <b>Advance Registration &amp; Submission:</b> Advance online registration is mandatory. Participants must submit their presentation abstract/slides for review prior to the event.
+            Participants can register individually or as a team of maximum 3 members.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">02</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">02</div>
           <div class="rule-content">
-            <b>Submission Email Format:</b> Send a single email to <a href="mailto:erronixcse@gmail.com">erronixcse@gmail.com</a> with subject <b>“TechTalkX – Presentation Submission and ID Verification”</b>, attaching scanned college ID card(s) and your presentation slides.
+            The paper must be original and relevant to the selected domain.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">03</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">03</div>
           <div class="rule-content">
-            <b>Originality:</b> Projects and papers must represent original work created by the participants. Plagiarism or deceptive claims result in disqualification.
+            Plagiarism is strictly prohibited and may lead to disqualification.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">04</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">04</div>
           <div class="rule-content">
-            <b>Working Prototype Required:</b> A working prototype or demonstrable software/hardware model must be prepared for demonstration. Participants must bring their own laptops and necessary peripherals.
+            Each team will get 7 minutes for presentation, followed by 3 minutes for Q&amp;A.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">05</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">05</div>
           <div class="rule-content">
-            <b>Time Limit Allocation (Strictly 15 Minutes per Team):</b>
-            <ul>
-              <li>7 Minutes – PPT Presentation</li>
-              <li>5 Minutes – Live Project Demonstration</li>
-              <li>3 Minutes – Interactive Q&amp;A with Judges</li>
-            </ul>
+            Participants must use PPT/PPTX for the presentation.
           </div>
         </div>
         <div class="rule-item-card">
-          <div class="rule-number">06</div>
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">06</div>
           <div class="rule-content">
-            <b>Code of Conduct:</b> Participants must arrive punctually at the venue with official college ID. The decision of the judging panel is final and binding.
+            The presentation should be limited to 8–12 slides.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">07</div>
+          <div class="rule-content">
+            Participants must report at the venue at least 15 minutes before their allotted time.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">08</div>
+          <div class="rule-content">
+            Participants should carry a backup copy of their presentation.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">09</div>
+          <div class="rule-content">
+            All team members are expected to participate in the presentation and Q&amp;A.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number" style="min-width: 34px; height: 34px; font-size: 0.88rem;">10</div>
+          <div class="rule-content">
+            The judges' decision will be final and binding.
           </div>
         </div>
       </div>
@@ -223,13 +234,13 @@
 
     <!-- Bottom Registration Callout -->
     <section class="bottom-registration-cta">
-      <div class="cta-tag">CALL FOR INNOVATORS</div>
+      <div class="cta-tag">PAPER PRESENTATION</div>
       <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
       <p class="cta-subtext">
-        Present your technical vision at TechTalkX and gain recognition at the national level. Reserve your team spot now.
+        Present your research findings and innovative ideas at TechTalkX – Paper Presentation at ErrONiX 2K26.
       </p>
-      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
-        🔒 REGISTRATION OPENS ON 23-09-2026
+      <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'paper-presentation')" class="cta-btn-large" id="bottomRegisterBtn" title="Register for TechTalkX – Paper Presentation">
+        REGISTER NOW
       </a>
     </section>
 
@@ -239,56 +250,6 @@
     </footer>
   </div>
 
-  <!-- Registration Frozen Information Modal -->
-  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
-    <div class="reg-modal-card">
-      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
-      <div class="reg-modal-icon-badge">
-        <span class="reg-modal-icon">⏳</span>
-      </div>
-      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
-      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
-      <p class="reg-modal-text">
-        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
-      </p>
-      <div class="reg-modal-date-box">
-        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
-        <div class="reg-modal-date-val">23rd September 2026</div>
-        <div class="reg-modal-date-sub">(23-09-2026)</div>
-      </div>
-      <p class="reg-modal-subnote">
-        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
-      </p>
-      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
-    </div>
-  </div>
-
-  <script>
-    function openRegFrozenModal(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    function closeRegFrozenModal() {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    }
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal && e.target === modal) closeRegFrozenModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('reg-frozen-modal');
-        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
-      }
-    });
-  </script>
+  <script src="../assets/registration-modal.js" defer></script>
 </body>
 </html>

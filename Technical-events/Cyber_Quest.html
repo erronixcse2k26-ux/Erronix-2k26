@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CyberQuest | ErrONiX 2K26 - National Level Technical Symposium</title>
-  <meta name="description" content="CyberQuest - Cybersecurity and CTF challenge at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
+  <meta name="description" content="CyberQuest - A team-based cybersecurity challenge testing technical knowledge, problem-solving, and composure at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/weblogofinal.png">
@@ -16,6 +16,16 @@
 
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
+  <link rel="stylesheet" href="../assets/registration-modal.css">
+  <!-- Instant Theme Loader (Zero Flash) -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -41,11 +51,18 @@
         </div>
         <h1 class="event-title">CyberQuest</h1>
         <p class="event-tagline">
-          An adrenaline-fueled cybersecurity challenge testing vulnerability analysis, cryptographic cipher breaking, and capture-the-flag (CTF) defense.
+          CyberQuest is a team-based cybersecurity challenge designed to test participants' technical knowledge, problem-solving skills, and ability to think under pressure.
         </p>
+        <div class="hero-level-pills" aria-label="Event Levels Progression">
+          <span class="hero-level-pill"><span class="pill-dot"></span>Level 1: Rapid Fire</span>
+          <span class="hero-level-arrow">➔</span>
+          <span class="hero-level-pill"><span class="pill-dot"></span>Level 2: Escape the Hacker</span>
+          <span class="hero-level-arrow">➔</span>
+          <span class="hero-level-pill"><span class="pill-dot"></span>Level 3: Mission Login</span>
+        </div>
         <div class="hero-cta-group">
-          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
-            🔒 OPENS 23-09-2026
+          <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'cyber-quest')" class="btn-primary-register" id="heroRegisterBtn" title="Register for CyberQuest">
+            REGISTER NOW
           </a>
         </div>
       </div>
@@ -81,7 +98,7 @@
         </div>
         <div class="info-details">
           <span class="info-label">Team Size</span>
-          <span class="info-val">Individual (Solo)</span>
+          <span class="info-val">2 Members</span>
         </div>
       </div>
       <div class="info-card">
@@ -102,6 +119,15 @@
           <span class="info-val">11:00 AM - 1:00 PM</span>
         </div>
       </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Format</span>
+          <span class="info-val">3 Battle Levels</span>
+        </div>
+      </div>
     </section>
 
     <!-- About The Event -->
@@ -113,11 +139,15 @@
         </h2>
       </div>
       <div class="about-lead-box">
-        CyberQuest places competitors in front of real-world cybersecurity challenges, requiring you to analyze network protocols, dissect cryptographic ciphers, and capture digital flags under timed pressure.
+        CyberQuest is an elite team-based cybersecurity competition designed to test participants' technical knowledge, problem-solving skills, and composure under pressure.
       </div>
-      <p class="about-body-text">
-        From decoding hidden messages to analyzing web vulnerabilities and investigating compromised systems, CyberQuest tests your technical acumen, analytical depth, and practical cybersecurity instincts.
-      </p>
+      <div class="cyber-progression-banner">
+        <div class="banner-badge">THREE-LEVEL PROGRESSION CHALLENGE</div>
+        <h3 class="banner-heading">The event consists of three levels: Rapid Fire, Escape the Hacker, and Mission Login</h3>
+        <p class="banner-text">
+          Teams progress through the challenge by answering fast-paced cybersecurity questions, decoding cryptic clues, and solving connected cybersecurity puzzles to ultimately breach and conquer the final system login.
+        </p>
+      </div>
     </section>
 
     <!-- Rules & Regulations -->
@@ -132,37 +162,37 @@
         <div class="rule-item-card">
           <div class="rule-number">01</div>
           <div class="rule-content">
-            <b>Reporting &amp; Verification:</b> Arrive at the cybersecurity lab before scheduled time. Advance online registration is mandatory. Carry official college ID cards.
+            Each team must consist of exactly 2 members.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">02</div>
           <div class="rule-content">
-            <b>Single Browser Window Protocol:</b> <span class="rule-badge-tag">STRICT</span> Participants must complete the challenge in a single browser window/tab. Any attempt to switch tabs or windows results in immediate automated disqualification.
+            Participants must follow all instructions given by event coordinators and invigilators.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">03</div>
           <div class="rule-content">
-            <b>Zero Gadget Policy:</b> Electronic devices (smartphones, smartwatches, earplugs, external storage devices) are strictly prohibited inside the lab.
+            The event features three progressive elimination levels: <b>Rapid Fire</b>, <b>Escape the Hacker</b>, and <b>Mission Login</b>. Teams must qualify each stage to advance.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">04</div>
           <div class="rule-content">
-            <b>Timer Expiry:</b> A live countdown timer is displayed. Participants must submit answers before it expires; upon 00:00, tests submit automatically.
+            All challenge rounds and puzzle stages must be completed within the allocated time windows.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">05</div>
           <div class="rule-content">
-            <b>Technical Disruption Protocol:</b> In the event of any technical anomaly or system disruption, notify student coordinators immediately for official assistance.
+            Participants must complete the challenges independently without unauthorized external assistance, unapproved AI tools, or personal internet searches.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">06</div>
           <div class="rule-content">
-            <b>Fair Play:</b> No discussion or sharing flags between participants. Respect decisions of the technical leads and coordinators; decisions are final and binding.
+            The organizers' and judges' decisions on scoring and level advancement will be final and binding.
           </div>
         </div>
       </div>
@@ -182,8 +212,9 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Subhasri</div>
-            <a href="tel:+916374003424" class="phone">+91 63740 03424</a>
+            <div class="name">Roshni Priya R</div>
+            <div class="phone" style="color: #6C8295; font-size: 0.82rem; font-weight: 600; margin-bottom: 2px;">Final Year Coordinator</div>
+            <a href="tel:+917200280483" class="phone">+91 72002 80483</a>
           </div>
         </div>
         <div class="coordinator-card">
@@ -191,8 +222,9 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Santhosh Kumar</div>
-            <a href="tel:+918072655413" class="phone">+91 80726 55413</a>
+            <div class="name">Kaviya N</div>
+            <div class="phone" style="color: #6C8295; font-size: 0.82rem; font-weight: 600; margin-bottom: 2px;">Final Year Coordinator</div>
+            <a href="tel:+918610982740" class="phone">+91 86109 82740</a>
           </div>
         </div>
       </div>
@@ -200,13 +232,13 @@
 
     <!-- Bottom Registration Callout -->
     <section class="bottom-registration-cta">
-      <div class="cta-tag">DEFEND THE INFRASTRUCTURE</div>
+      <div class="cta-tag">CYBERQUEST</div>
       <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
       <p class="cta-subtext">
-        Test your cybersecurity instinct against real-world flags and ciphers. Register your spot for CyberQuest today.
+        Put your cybersecurity skills and teamwork to the test across Rapid Fire, Escape the Hacker, and Mission Login at ErrONiX 2K26.
       </p>
-      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
-        🔒 REGISTRATION OPENS ON 23-09-2026
+      <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'cyber-quest')" class="cta-btn-large" id="bottomRegisterBtn" title="Register for CyberQuest">
+        REGISTER NOW
       </a>
     </section>
 
@@ -216,56 +248,6 @@
     </footer>
   </div>
 
-  <!-- Registration Frozen Information Modal -->
-  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
-    <div class="reg-modal-card">
-      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
-      <div class="reg-modal-icon-badge">
-        <span class="reg-modal-icon">⏳</span>
-      </div>
-      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
-      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
-      <p class="reg-modal-text">
-        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
-      </p>
-      <div class="reg-modal-date-box">
-        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
-        <div class="reg-modal-date-val">23rd September 2026</div>
-        <div class="reg-modal-date-sub">(23-09-2026)</div>
-      </div>
-      <p class="reg-modal-subnote">
-        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
-      </p>
-      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
-    </div>
-  </div>
-
-  <script>
-    function openRegFrozenModal(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    function closeRegFrozenModal() {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    }
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal && e.target === modal) closeRegFrozenModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('reg-frozen-modal');
-        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
-      }
-    });
-  </script>
+  <script src="../assets/registration-modal.js" defer></script>
 </body>
 </html>

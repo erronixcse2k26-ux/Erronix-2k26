@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prompt War | ErrONiX 2K26 - National Level Technical Symposium</title>
-  <meta name="description" content="Prompt War - Generative AI Prompt Engineering challenge at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
+  <title>AI PROMPT WAR | ErrONiX 2K26 - National Level Technical Symposium</title>
+  <meta name="description" content="AI PROMPT WAR - A prompt-based website creation challenge where participants use AI to build functional websites from given problem statements at ErrONiX 2K26.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/weblogofinal.png">
@@ -16,6 +16,16 @@
 
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
+  <link rel="stylesheet" href="../assets/registration-modal.css">
+  <!-- Instant Theme Loader (Zero Flash) -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -39,18 +49,18 @@
           <span class="category-badge">TECHNICAL EVENT</span>
           <span class="event-number-badge">EVENT 03</span>
         </div>
-        <h1 class="event-title">Prompt War</h1>
+        <h1 class="event-title">AI PROMPT WAR</h1>
         <p class="event-tagline">
-          An elite AI prompt engineering trial where participants master generative AI models to solve complex reasoning, coding, and creative challenges.
+          AI Prompt War is a prompt-based website creation challenge where participants use AI to build functional websites from given problem statements.
         </p>
         <div class="hero-cta-group">
-          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
-            🔒 OPENS 23-09-2026
+          <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'prompt-war')" class="btn-primary-register" id="heroRegisterBtn" title="Register for AI PROMPT WAR">
+            REGISTER NOW
           </a>
         </div>
       </div>
       <div class="hero-visual-frame">
-        <img src="../assets/Prompt War.webp" alt="Prompt War Event Poster" width="800" height="800" loading="eager" decoding="async">
+        <img src="../assets/Prompt War.webp" alt="AI PROMPT WAR Event Poster" width="800" height="800" loading="eager" decoding="async">
         <div class="hero-visual-overlay-badge">ERRONIX 2K26</div>
       </div>
     </section>
@@ -81,7 +91,7 @@
         </div>
         <div class="info-details">
           <span class="info-label">Team Size</span>
-          <span class="info-val">1 to 2 Members</span>
+          <span class="info-val">Individual Participant (Solo)</span>
         </div>
       </div>
       <div class="info-card">
@@ -113,10 +123,10 @@
         </h2>
       </div>
       <div class="about-lead-box">
-        Prompt War is designed to find the next generation of AI whisperers—engineers who can craft precision prompts, control LLM behavior, and generate exact algorithmic and multimodal results.
+        AI Prompt War is a prompt-based website creation challenge where participants use AI to build functional websites from given problem statements.
       </div>
       <p class="about-body-text">
-        Participants are presented with multi-tier tasks requiring creative storytelling, exact code generation, algorithmic bug elimination, and strict constraint adherence. With no pre-written code permitted, success hinges on structured few-shot prompting, persona steering, reasoning chains, and minimizing token waste.
+        Participants must create their own prompts during the event and complete the required website within the specified time and prompt limits.
       </p>
     </section>
 
@@ -132,42 +142,31 @@
         <div class="rule-item-card">
           <div class="rule-number">01</div>
           <div class="rule-content">
-            <b>Eligibility &amp; Verification:</b> Open to individuals or teams of up to 2 members. Participants must present a valid college ID card. Advance online registration is mandatory.
+            Each participant must create one complete and functional website using AI.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">02</div>
           <div class="rule-content">
-            <b>Platform Isolation:</b> All tasks must be performed and solved solely within the authorized AI platform provided at the lab. Use of unauthorized external APIs or web tabs is prohibited.
+            Each participant is allowed a maximum of 5 AI prompt attempts throughout the competition.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">03</div>
           <div class="rule-content">
-            <b>No Pre-written Scripts:</b> <span class="rule-badge-tag">PROHIBITED</span> Use of external pre-written scripts, automation bots, or pre-saved prompt collections is strictly forbidden.
+            Prompts must be created during the competition. Pre-written or copied prompts are not allowed.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">04</div>
           <div class="rule-content">
-            <b>Mandatory Prompt Logs:</b> Submissions must include both the final output and the sequence of prompts utilized. Omission of prompt logs results in score deduction.
+            The completed website must be submitted within the given time limit.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">05</div>
           <div class="rule-content">
-            <b>Evaluation &amp; Scoring:</b>
-            <ul>
-              <li>Output fidelity, accuracy, and test scenario coverage.</li>
-              <li>Precision in satisfying edge-case constraints and schemas.</li>
-              <li>Prompt elegance, token efficiency, and elapsed time.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="rule-item-card">
-          <div class="rule-number">06</div>
-          <div class="rule-content">
-            <b>Code of Conduct:</b> Participants must arrive on time with official college ID. Maintain quiet and professionalism in the HPC lab. The decisions of the judging panel are final.
+            Judges may test the functionality of the submitted website through a live demonstration.
           </div>
         </div>
       </div>
@@ -187,8 +186,9 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Ghousiya</div>
-            <div class="phone" style="color: #6C8295;">Student Coordinator</div>
+            <div class="name">Priyadharshini.C</div>
+            <div class="phone" style="color: #6C8295; font-size: 0.82rem; font-weight: 600; margin-bottom: 2px;">Final Year Coordinator</div>
+            <a href="tel:+916385177539" class="phone">+91 63851 77539</a>
           </div>
         </div>
         <div class="coordinator-card">
@@ -196,8 +196,9 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Baskar</div>
-            <a href="tel:+919042929481" class="phone">+91 90429 29481</a>
+            <div class="name">Sandhiya.S</div>
+            <div class="phone" style="color: #6C8295; font-size: 0.82rem; font-weight: 600; margin-bottom: 2px;">Final Year Coordinator</div>
+            <a href="tel:+919363106696" class="phone">+91 93631 06696</a>
           </div>
         </div>
       </div>
@@ -205,13 +206,13 @@
 
     <!-- Bottom Registration Callout -->
     <section class="bottom-registration-cta">
-      <div class="cta-tag">MASTER GENERATIVE AI</div>
+      <div class="cta-tag">AI PROMPT WAR</div>
       <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
       <p class="cta-subtext">
-        Put your prompt engineering strategies to the test, master complex foundation models, and claim top honors at ErrONiX 2K26.
+        Put your prompt engineering skills to the test and build functional websites with AI at ErrONiX 2K26.
       </p>
-      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
-        🔒 REGISTRATION OPENS ON 23-09-2026
+      <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'prompt-war')" class="cta-btn-large" id="bottomRegisterBtn" title="Register for AI PROMPT WAR">
+        REGISTER NOW
       </a>
     </section>
 
@@ -221,56 +222,6 @@
     </footer>
   </div>
 
-  <!-- Registration Frozen Information Modal -->
-  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
-    <div class="reg-modal-card">
-      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
-      <div class="reg-modal-icon-badge">
-        <span class="reg-modal-icon">⏳</span>
-      </div>
-      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
-      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
-      <p class="reg-modal-text">
-        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
-      </p>
-      <div class="reg-modal-date-box">
-        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
-        <div class="reg-modal-date-val">23rd September 2026</div>
-        <div class="reg-modal-date-sub">(23-09-2026)</div>
-      </div>
-      <p class="reg-modal-subnote">
-        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
-      </p>
-      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
-    </div>
-  </div>
-
-  <script>
-    function openRegFrozenModal(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    function closeRegFrozenModal() {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    }
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal && e.target === modal) closeRegFrozenModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('reg-frozen-modal');
-        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
-      }
-    });
-  </script>
+  <script src="../assets/registration-modal.js" defer></script>
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mystery Box | ErrONiX 2K26 - National Level Technical Symposium</title>
-  <meta name="description" content="Mystery Box - Tactile problem solving and puzzle trial at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
+  <title>Mystery Box Challenge | ErrONiX 2K26 - National Level Technical Symposium</title>
+  <meta name="description" content="Mystery Box Challenge - A fun 3-round guessing game where Player 1 picks an object from a closed box and helps Player 2 identify it at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/weblogofinal.png">
@@ -16,6 +16,16 @@
 
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
+  <link rel="stylesheet" href="../assets/registration-modal.css">
+  <!-- Instant Theme Loader (Zero Flash) -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -39,18 +49,25 @@
           <span class="category-badge non-technical">NON-TECHNICAL EVENT</span>
           <span class="event-number-badge">EVENT 04</span>
         </div>
-        <h1 class="event-title">Mystery Box</h1>
+        <h1 class="event-title">Mystery Box Challenge</h1>
         <p class="event-tagline">
-          A surprise-packed challenge of tactile deductions, hidden cipher locks, and spontaneous problem-solving sealed within mysterious boxes.
+          A fun 3-round guessing game where Player 1 picks an object from a closed box and helps Player 2 identify it using different methods. Each round becomes more challenging by limiting how the object can be described.
         </p>
+        <div class="hero-level-pills" aria-label="Event Progression">
+          <span class="hero-level-pill"><span class="pill-dot"></span>Round 1: Describe It</span>
+          <span class="hero-level-arrow">➔</span>
+          <span class="hero-level-pill"><span class="pill-dot"></span>Round 2: Act It Out</span>
+          <span class="hero-level-arrow">➔</span>
+          <span class="hero-level-pill"><span class="pill-dot"></span>Round 3: 3 Clues Challenge</span>
+        </div>
         <div class="hero-cta-group">
-          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
-            🔒 OPENS 23-09-2026
+          <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'mystery-box')" class="btn-primary-register" id="heroRegisterBtn" title="Register for Mystery Box Challenge">
+            REGISTER NOW
           </a>
         </div>
       </div>
       <div class="hero-visual-frame">
-        <img src="../assets/Mystery Box.webp" alt="Mystery Box Event Poster" width="800" height="800" loading="eager" decoding="async">
+        <img src="../assets/Mystery Box.webp" alt="Mystery Box Challenge Event Poster" width="800" height="800" loading="eager" decoding="async">
         <div class="hero-visual-overlay-badge">ERRONIX 2K26</div>
       </div>
     </section>
@@ -81,7 +98,7 @@
         </div>
         <div class="info-details">
           <span class="info-label">Team Size</span>
-          <span class="info-val">2 to 3 Members</span>
+          <span class="info-val">2 Members (Player 1 &amp; 2)</span>
         </div>
       </div>
       <div class="info-card">
@@ -102,6 +119,15 @@
           <span class="info-val">11:00 AM - 12:30 PM</span>
         </div>
       </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Format</span>
+          <span class="info-val">3 Guessing Rounds</span>
+        </div>
+      </div>
     </section>
 
     <!-- About The Event -->
@@ -113,57 +139,115 @@
         </h2>
       </div>
       <div class="about-lead-box">
-        Mystery Box presents an enigmatic sensory trial where logic, tactile exploration, and teamwork unlock secrets concealed within sealed puzzle containers.
+        A fun 3-round guessing game where Player 1 picks an object from a closed box and helps Player 2 identify it using different methods. Each round becomes more challenging by limiting how the object can be described.
       </div>
-      <p class="about-body-text">
-        Teams face progressive challenge tiers featuring blind tactile object identification, lock combination decryption, and rapid coordination tasks. Fast hands, keen deduction, and steady nerves determine which team unseals victory.
-      </p>
+      <div style="background: var(--ice-white); border: 1px solid rgba(212, 167, 44, 0.25); border-radius: var(--radius-md); padding: 16px 20px; display: flex; align-items: center; gap: 14px; margin-top: 14px;">
+        <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(40, 70, 158, 0.1); color: var(--secondary-blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <div>
+          <span style="font-size: 0.76rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.8px;">Team Composition</span>
+          <div style="font-size: 1.02rem; font-weight: 700; color: var(--primary-navy);">2 Members per team (Player 1 and Player 2)</div>
+        </div>
+      </div>
     </section>
 
-    <!-- Rules & Regulations -->
-    <section class="detail-section" id="rules-section">
+    <!-- Rules & Regulations (Identifiable Rounds) -->
+    <section class="detail-section" id="rounds-section">
       <div class="section-header">
         <h2 class="section-title">
           <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
           RULES &amp; REGULATIONS
         </h2>
       </div>
-      <div class="rules-list">
-        <div class="rule-item-card">
-          <div class="rule-number">01</div>
-          <div class="rule-content">
-            <b>Participation:</b> Teams must comprise <b>2 to 3 members</b>. Advance online registration is mandatory. Carry official college ID cards.
+
+      <div class="rounds-timeline-grid">
+        <!-- Round 1 -->
+        <div class="round-detail-card">
+          <div class="round-badge-header">
+            <span class="round-number-tag">ROUND 01</span>
           </div>
+          <h3 class="round-card-title">Round 1 – Describe It</h3>
+          <p class="round-card-desc">
+            Player 1 can describe the object, but cannot say its name.
+          </p>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">02</div>
-          <div class="rule-content">
-            <b>No Peeking Protocol:</b> <span class="rule-badge-tag">STRICT</span> In tactile rounds, participants must not peek, lift blinders, or shine mobile phone torches. Any attempt leads to immediate disqualification.
+
+        <!-- Round 2 -->
+        <div class="round-detail-card">
+          <div class="round-badge-header">
+            <span class="round-number-tag">ROUND 02</span>
           </div>
+          <h3 class="round-card-title">Round 2 – Act It Out</h3>
+          <p class="round-card-desc">
+            Player 1 cannot speak and can use only actions and gestures.
+          </p>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">03</div>
-          <div class="rule-content">
-            <b>Box Integrity:</b> Forcing locks, tearing seals, or damaging the mystery containers will result in immediate round forfeiture.
+
+        <!-- Round 3 -->
+        <div class="round-detail-card">
+          <div class="round-badge-header">
+            <span class="round-number-tag">ROUND 03</span>
           </div>
+          <h3 class="round-card-title">Round 3 – 3 Clues Challenge</h3>
+          <p class="round-card-desc">
+            Player 1 can give only 3 clues. They cannot:
+          </p>
+          <ul class="round-prohibitions-list">
+            <li>Say the object's name</li>
+            <li>Say its direct use</li>
+            <li>Say its first letter</li>
+          </ul>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">04</div>
-          <div class="rule-content">
-            <b>Strict Time Windows:</b> Each round features an aggressive timer of 1 to 2 minutes. Actions performed after the buzzer are void.
-          </div>
+      </div>
+    </section>
+
+    <!-- General Rules (Checklist Style Layout) -->
+    <section class="detail-section" id="general-rules">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          GENERAL RULES
+        </h2>
+      </div>
+
+      <div class="checklist-grid">
+        <div class="checklist-item">
+          <div class="checklist-icon">✓</div>
+          <div class="checklist-text">Each team consists of 2 members: Player 1 and Player 2.</div>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">05</div>
-          <div class="rule-content">
-            <b>Scoring System:</b> Points are credited based on object identification accuracy, puzzle completion, and speed.
-          </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">✓</div>
+          <div class="checklist-text">The object will be kept inside a closed box.</div>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">06</div>
-          <div class="rule-content">
-            <b>Judges' Decisions:</b> All decisions made by coordinators and judges are final, conclusive, and binding.
-          </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">✓</div>
+          <div class="checklist-text">Player 1 will pick an object and follow the rules of the particular round.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">✓</div>
+          <div class="checklist-text">Player 2 must guess the object within the given time.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">✓</div>
+          <div class="checklist-text">No mobile phones, internet, or outside assistance are allowed.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">✓</div>
+          <div class="checklist-text">Correct guesses earn points.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">✓</div>
+          <div class="checklist-text">The team with the highest score wins.</div>
+        </div>
+      </div>
+
+      <!-- Final Rule Highlighted Card -->
+      <div class="notice-highlight-card">
+        <div class="notice-icon-box">⚖️</div>
+        <div class="notice-body">
+          <div class="notice-title">FINAL RULE</div>
+          <div class="notice-text">The organizer's decision will be final in case of any dispute.</div>
         </div>
       </div>
     </section>
@@ -182,8 +266,8 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Devi P</div>
-            <div class="phone" style="color: #6C8295;">Student Coordinator</div>
+            <div class="name">Satheesh</div>
+            <a href="tel:9655263922" class="phone">9655263922</a>
           </div>
         </div>
         <div class="coordinator-card">
@@ -191,8 +275,8 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Balaji K</div>
-            <a href="tel:+919655259112" class="phone">+91 96552 59112</a>
+            <div class="name">Durga</div>
+            <a href="tel:8825772853" class="phone">8825772853</a>
           </div>
         </div>
       </div>
@@ -200,13 +284,13 @@
 
     <!-- Bottom Registration Callout -->
     <section class="bottom-registration-cta">
-      <div class="cta-tag">OPEN THE UNKNOWN</div>
+      <div class="cta-tag">MYSTERY BOX CHALLENGE</div>
       <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
       <p class="cta-subtext">
-        Face the mystery boxes, outsmart the countdown timers, and prove your team's instinctive coordination at ErrONiX 2K26.
+        Team up as Player 1 and Player 2, crack the mystery box, and conquer all three guessing rounds at ErrONiX 2K26.
       </p>
-      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
-        🔒 REGISTRATION OPENS ON 23-09-2026
+      <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'mystery-box')" class="cta-btn-large" id="bottomRegisterBtn" title="Register for Mystery Box Challenge">
+        REGISTER NOW
       </a>
     </section>
 
@@ -216,56 +300,6 @@
     </footer>
   </div>
 
-  <!-- Registration Frozen Information Modal -->
-  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
-    <div class="reg-modal-card">
-      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
-      <div class="reg-modal-icon-badge">
-        <span class="reg-modal-icon">⏳</span>
-      </div>
-      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
-      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
-      <p class="reg-modal-text">
-        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
-      </p>
-      <div class="reg-modal-date-box">
-        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
-        <div class="reg-modal-date-val">23rd September 2026</div>
-        <div class="reg-modal-date-sub">(23-09-2026)</div>
-      </div>
-      <p class="reg-modal-subnote">
-        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
-      </p>
-      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
-    </div>
-  </div>
-
-  <script>
-    function openRegFrozenModal(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    function closeRegFrozenModal() {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    }
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal && e.target === modal) closeRegFrozenModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('reg-frozen-modal');
-        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
-      }
-    });
-  </script>
+  <script src="../assets/registration-modal.js" defer></script>
 </body>
 </html>

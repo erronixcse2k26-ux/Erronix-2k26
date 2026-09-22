@@ -115,7 +115,6 @@
 /* ==========================================================================
    2. Soft Radial Light Behind Important Sections
    ========================================================================== */
-.hero,
 .about-section,
 .events-section-2k26,
 #countdownSection,
@@ -128,7 +127,6 @@
 }
 
 /* Elegant radial backdrop highlight on sections */
-.hero::before,
 .events-section-2k26::before,
 #registrationProtocol::before {
   content: '';
@@ -174,7 +172,6 @@
 /* ==========================================================================
    4. Interactive Component Border Glow & Subtle Glass Depth
    ========================================================================== */
-.hero-frame,
 .calendar-card-2k26,
 .time-card,
 .contact-info-card,
@@ -187,20 +184,6 @@
               box-shadow var(--motion-duration-normal) var(--motion-ease-out),
               border-color var(--motion-duration-normal) var(--motion-ease-out) !important;
   will-change: transform, box-shadow;
-}
-
-/* Resting subtle border refinement */
-.hero-frame {
-  box-shadow: 0 12px 36px rgba(12, 30, 41, 0.09),
-              0 0 0 1px rgba(212, 167, 44, 0.25),
-              inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-}
-
-.hero-frame:hover {
-  box-shadow: 0 16px 44px rgba(12, 30, 41, 0.12),
-              0 0 20px rgba(56, 189, 248, 0.15),
-              0 0 0 1.5px rgba(56, 189, 248, 0.4),
-              inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
 }
 
 /* Interactive Card Mouse Glow Follow */
@@ -239,8 +222,6 @@
 /* ==========================================================================
    5. Button Smooth Transitions & Luminous Sheen
    ========================================================================== */
-.hero-btn-register,
-.hero-btn-explore,
 .nav-register-btn,
 .btn-event-register,
 .poster-btn-primary,
@@ -255,8 +236,6 @@
 }
 
 /* Subtle Luminous Light Reflection on Hover */
-.hero-btn-register::before,
-.hero-btn-explore::before,
 .nav-register-btn::before,
 .btn-event-register::before,
 .poster-btn-primary::before {
@@ -273,15 +252,12 @@
   z-index: 2;
 }
 
-.hero-btn-register:hover::before,
-.hero-btn-explore:hover::before,
 .nav-register-btn:hover::before,
 .btn-event-register:hover::before,
 .poster-btn-primary:hover::before {
   left: 140%;
 }
 
-.hero-btn-register:hover,
 .nav-register-btn:hover,
 .poster-btn-primary:hover {
   transform: translateY(-2.5px) !important;
@@ -289,15 +265,12 @@
               0 0 14px rgba(244, 196, 48, 0.3) !important;
 }
 
-.hero-btn-explore:hover,
 .poster-btn-secondary:hover {
   transform: translateY(-2.5px) !important;
   box-shadow: 0 8px 24px rgba(40, 70, 158, 0.25),
               0 0 14px rgba(56, 189, 248, 0.25) !important;
 }
 
-.hero-btn-register:active,
-.hero-btn-explore:active,
 .nav-register-btn:active {
   transform: translateY(0px) scale(0.98) !important;
 }
@@ -373,31 +346,7 @@ nav .nav-link:hover::after {
   transform: translateY(0);
 }
 
-/* Hero Section Elements Initial Entrance */
-.hero-main-title {
-  animation: heroTitleGlow 4s ease-in-out infinite alternate;
-}
 
-@keyframes heroTitleGlow {
-  0% {
-    text-shadow: 0 4px 14px rgba(12, 30, 41, 0.15),
-                 0 0 25px rgba(56, 189, 248, 0.15);
-  }
-  100% {
-    text-shadow: 0 4px 18px rgba(12, 30, 41, 0.2),
-                 0 0 35px rgba(56, 189, 248, 0.3),
-                 0 0 15px rgba(244, 196, 48, 0.2);
-  }
-}
-
-.hero-symposium-badge {
-  animation: badgeBreathe 3s ease-in-out infinite alternate;
-}
-
-@keyframes badgeBreathe {
-  0% { transform: scale(1); box-shadow: 0 2px 10px rgba(12, 30, 41, 0.08); }
-  100% { transform: scale(1.02); box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25); }
-}
 
 /* ==========================================================================
    7. Accessibility: prefers-reduced-motion

@@ -16,6 +16,16 @@
 
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
+  <link rel="stylesheet" href="../assets/registration-modal.css">
+  <!-- Instant Theme Loader (Zero Flash) -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -44,8 +54,8 @@
           An adrenaline-charged campus adventure where teams decipher hidden riddles, race between checkpoints, and hunt down the final mystery vault.
         </p>
         <div class="hero-cta-group">
-          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
-            🔒 OPENS 23-09-2026
+          <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'treasure-hunt')" class="btn-primary-register" id="heroRegisterBtn" title="Register for Treasure Hunt">
+            REGISTER NOW
           </a>
         </div>
       </div>
@@ -104,23 +114,124 @@
       </div>
     </section>
 
-    <!-- About The Event -->
-    <section class="detail-section" id="about">
+    <!-- Event Overview -->
+    <section class="detail-section" id="overview">
       <div class="section-header">
         <h2 class="section-title">
           <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-          ABOUT THE EVENT
+          EVENT OVERVIEW
         </h2>
       </div>
       <div class="about-lead-box">
-        Treasure Hunt transforms the college campus into a massive live-action puzzle map, testing deductive reasoning, agility, and teamwork under time pressure.
+        Treasure Hunt is an exciting team-based challenge that combines riddles, puzzles, reasoning, aptitude, and clue-solving skills. Participants must work together to solve challenges, follow hidden clues, and navigate through different locations to ultimately discover the treasure.
       </div>
       <p class="about-body-text">
-        Teams receive enigmatic clue cards and cryptic riddles that unlock subsequent checkpoints scattered across the campus grounds. Speed, analytical precision, and collective coordination are paramount to unlocking the final mystery vault before rival teams.
+        All teams will begin from the same starting location, but each team will be assigned a different route through a set of QR codes, making the hunt challenging and engaging.
       </p>
     </section>
 
-    <!-- Rules & Regulations -->
+    <!-- Team Size Section -->
+    <section class="detail-section" id="team-size">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          TEAM SIZE
+        </h2>
+      </div>
+      <div class="highlights-bullet-list">
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">Each team must consist of <b>3 to 4 members</b>.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">All team members must participate together throughout the event.</div>
+        </div>
+        <div class="highlight-bullet-item" style="grid-column: 1 / -1; background: rgba(212, 167, 44, 0.08); border-color: rgba(212, 167, 44, 0.4);">
+          <span class="highlight-bullet-dot" style="background: var(--metallic-gold); box-shadow: 0 0 6px rgba(212, 167, 44, 0.6);"></span>
+          <div class="highlight-bullet-text"><b>One Device Only:</b> Each team must designate and use only one mobile phone for the entire game.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How The Game Works Section -->
+    <section class="detail-section" id="how-the-game-works">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          HOW THE GAME WORKS
+        </h2>
+      </div>
+
+      <div class="rules-list">
+        <div class="rule-item-card">
+          <div class="rule-number">01</div>
+          <div class="rule-content">
+            All teams will assemble at the designated starting location.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">02</div>
+          <div class="rule-content">
+            Each team will be provided with or directed to a starting QR code.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">03</div>
+          <div class="rule-content">
+            There will be five different QR-code paths, with each team following its assigned route.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">04</div>
+          <div class="rule-content">
+            When a team scans a QR code, it will receive two questions/clues:
+            <ul style="margin: 8px 0 0 20px; padding: 0; color: #4A6072; font-size: 0.94rem; line-height: 1.6;">
+              <li>A challenge question</li>
+              <li>A location clue</li>
+            </ul>
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">05</div>
+          <div class="rule-content">
+            The challenge may be a riddle, puzzle, reasoning question, aptitude problem, or similar task that the team must solve.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">06</div>
+          <div class="rule-content">
+            The location clue will indicate where the next QR code is hidden.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">07</div>
+          <div class="rule-content">
+            The team must physically move to the indicated location and scan the next QR code.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">08</div>
+          <div class="rule-content">
+            This process continues through five levels of the treasure hunt.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">09</div>
+          <div class="rule-content">
+            At the sixth level, the team will receive the final clue leading to the hidden treasure.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">10</div>
+          <div class="rule-content">
+            The team that successfully completes the required challenges and reaches the treasure according to the event rules will complete the hunt.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rules & Regulations Section -->
     <section class="detail-section" id="rules-section">
       <div class="section-header">
         <h2 class="section-title">
@@ -128,45 +239,151 @@
           RULES &amp; REGULATIONS
         </h2>
       </div>
+
       <div class="rules-list">
         <div class="rule-item-card">
           <div class="rule-number">01</div>
           <div class="rule-content">
-            <b>Team Composition:</b> Teams must consist of <b>3 to 4 members</b>. Advance online registration is mandatory. Carry official college ID cards.
+            Each team must have 3 to 4 members.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">02</div>
           <div class="rule-content">
-            <b>Unity Rule:</b> <span class="rule-badge-tag">MANDATORY</span> Teams must move and travel together at all times. Splitting up members across different campus zones results in immediate disqualification.
+            <b>One-Mobile-Phone Rule:</b> <span class="rule-badge-tag">STRICT</span> Each team is permitted to use only one mobile phone throughout the event.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">03</div>
           <div class="rule-content">
-            <b>Fair Play &amp; Marker Protection:</b> Tampering with clues, removing station markers, hiding clue cards, or misleading rival teams leads to immediate expulsion.
+            The same phone must be used for scanning all QR codes and accessing the clues.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">04</div>
           <div class="rule-content">
-            <b>Campus Safety &amp; Decorum:</b> Running inside classrooms, entering restricted faculty zones, or damaging college property is strictly forbidden.
+            <b>Team Members Staying Together:</b> <span class="rule-badge-tag">MANDATORY</span> Team members must stay together while participating in the hunt.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">05</div>
           <div class="rule-content">
-            <b>Victory Condition:</b> The winning team is determined strictly by the first verified arrival at the final vault with a 100% stamped and intact clue passport.
+            Teams must solve the challenge questions using their own knowledge and teamwork.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">06</div>
           <div class="rule-content">
-            <b>Judges' &amp; Marshals' Authority:</b> The rulings of station marshals and event coordinators are final, binding, and non-negotiable.
+            <b>Authorized Device Use Only:</b> Unnecessary use of mobile phones is strictly prohibited. The designated phone may be used only for scanning QR codes and accessing the clues required for the game.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">07</div>
+          <div class="rule-content">
+            <b>No External Sources:</b> <span class="rule-badge-tag">PROHIBITED</span> Participants must not use search engines, AI tools, social media, messaging apps, or other external sources to obtain answers.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">08</div>
+          <div class="rule-content">
+            Teams must follow the clues in the order provided and must not intentionally skip any level.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">09</div>
+          <div class="rule-content">
+            Participants must not disturb, move, damage, hide, or tamper with QR codes or clues belonging to other teams.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">10</div>
+          <div class="rule-content">
+            <b>Restricted &amp; Unsafe Areas:</b> <span class="rule-badge-tag">SAFETY FIRST</span> Participants must not enter restricted or unsafe areas while searching for QR codes.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">11</div>
+          <div class="rule-content">
+            Participants must follow the instructions given by the event coordinators and volunteers at all times.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">12</div>
+          <div class="rule-content">
+            Any form of cheating, intentional rule violation, or interference with another team may result in disqualification.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">13</div>
+          <div class="rule-content">
+            Teams must complete the hunt within the specified time limit.
+          </div>
+        </div>
+        <div class="rule-item-card">
+          <div class="rule-number">14</div>
+          <div class="rule-content">
+            The decision of the event coordinators regarding rule violations, disputes, and completion of the hunt will be final.
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Important Note Section -->
+    <section class="detail-section" id="important-note">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          IMPORTANT NOTE
+        </h2>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(12, 30, 41, 0.03) 0%, rgba(40, 70, 158, 0.06) 100%); border: 1.5px solid rgba(40, 70, 158, 0.2); border-radius: var(--radius-lg); padding: 24px 26px;">
+        <div style="font-family: 'Roboto Slab', serif; font-size: 1.15rem; font-weight: 700; color: var(--primary-navy); margin-bottom: 14px;">
+          The Treasure Hunt is designed to test:
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px;">
+          <div class="highlight-bullet-item" style="background: #FFFFFF;">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text"><b>Teamwork</b></div>
+          </div>
+          <div class="highlight-bullet-item" style="background: #FFFFFF;">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text"><b>Logical thinking</b></div>
+          </div>
+          <div class="highlight-bullet-item" style="background: #FFFFFF;">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text"><b>Problem-solving ability</b></div>
+          </div>
+          <div class="highlight-bullet-item" style="background: #FFFFFF;">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text"><b>Observation</b></div>
+          </div>
+          <div class="highlight-bullet-item" style="background: #FFFFFF;">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text"><b>Speed</b></div>
+          </div>
+          <div class="highlight-bullet-item" style="background: #FFFFFF;">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text"><b>Coordination</b></div>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; border-left: 4px solid var(--metallic-gold); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 18px; font-size: 0.98rem; font-weight: 600; color: var(--primary-navy); box-shadow: 0 2px 8px rgba(12, 30, 41, 0.04);">
+          Participants are expected to cooperate with their teammates and maintain fair play throughout the event.
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Message Callout Card -->
+    <div class="winner-highlight-card" style="text-align: center; margin-bottom: 32px;">
+      <div class="winner-badge-pill">
+        🗺️ ADVENTURE AWAITS
+      </div>
+      <h3 class="winner-heading" style="font-size: 1.4rem; letter-spacing: 0.5px; color: var(--bright-gold); margin-bottom: 0;">
+        Get ready to solve. Follow the clues. Find the treasure!
+      </h3>
+    </div>
 
     <!-- Student Coordinators -->
     <section class="detail-section" id="coordinators">
@@ -200,13 +417,13 @@
 
     <!-- Bottom Registration Callout -->
     <section class="bottom-registration-cta">
-      <div class="cta-tag">UNCOVER THE SECRETS</div>
+      <div class="cta-tag">GET READY TO SOLVE • FOLLOW THE CLUES • FIND THE TREASURE</div>
       <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
       <p class="cta-subtext">
-        Assemble your team of explorers, solve cryptic clues across the campus, and claim the ErrONiX 2K26 treasure.
+        Get ready to solve. Follow the clues. Find the treasure! Assemble your team of explorers, solve cryptic clues across the campus, and claim the ErrONiX 2K26 treasure.
       </p>
-      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
-        🔒 REGISTRATION OPENS ON 23-09-2026
+      <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'treasure-hunt')" class="cta-btn-large" id="bottomRegisterBtn" title="Register for Treasure Hunt">
+        REGISTER NOW
       </a>
     </section>
 
@@ -216,56 +433,6 @@
     </footer>
   </div>
 
-  <!-- Registration Frozen Information Modal -->
-  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
-    <div class="reg-modal-card">
-      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
-      <div class="reg-modal-icon-badge">
-        <span class="reg-modal-icon">⏳</span>
-      </div>
-      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
-      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
-      <p class="reg-modal-text">
-        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
-      </p>
-      <div class="reg-modal-date-box">
-        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
-        <div class="reg-modal-date-val">23rd September 2026</div>
-        <div class="reg-modal-date-sub">(23-09-2026)</div>
-      </div>
-      <p class="reg-modal-subnote">
-        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
-      </p>
-      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
-    </div>
-  </div>
-
-  <script>
-    function openRegFrozenModal(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    function closeRegFrozenModal() {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    }
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal && e.target === modal) closeRegFrozenModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('reg-frozen-modal');
-        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
-      }
-    });
-  </script>
+  <script src="../assets/registration-modal.js" defer></script>
 </body>
 </html>

@@ -6,15 +6,46 @@
   <title>Past Season - Erronix 2K25</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
  <link rel="icon" type="image/x-icon" href="assets/weblogofinal.png">
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
-    :root {
-      --primary-navy: #0C1E29;
-      --secondary-navy: #13283A;
-      --ice-white: #F8FBFF;
-      --soft-sky-blue: #EAF6FF;
-      --metallic-gold: #D4A72C;
-      --bright-gold: #F4C430;
-      --secondary-blue: #28469E;
+    :root, [data-theme="light"] {
+      --primary-navy: #0F172A;
+      --secondary-navy: #475569;
+      --ice-white: #F8FAFC;
+      --soft-sky-blue: #F1F5F9;
+      --crimson-primary: #E11D48;
+      --crimson-hover: #FB365D;
+      --silver-base: #94A3B8;
+      --silver-light: #0F172A;
+      --metallic-gold: #E11D48;
+      --bright-gold: #FB365D;
+      --gold-glow: #9F1239;
+      --secondary-blue: #64748B;
+      --accent-violet: #E11D48;
+    }
+
+    [data-theme="dark"] {
+      --primary-navy: #FFFFFF;
+      --secondary-navy: #CBD5E1;
+      --ice-white: #080808;
+      --soft-sky-blue: #0E1321;
+      --crimson-primary: #E11D48;
+      --crimson-hover: #FB365D;
+      --silver-base: #C0C0C0;
+      --silver-light: #F1F5F9;
+      --metallic-gold: #E11D48;
+      --bright-gold: #FB365D;
+      --gold-glow: #FDA4AF;
+      --secondary-blue: #C0C0C0;
+      --accent-violet: #E11D48;
     }
 
     * {

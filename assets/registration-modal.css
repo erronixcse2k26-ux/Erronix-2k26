@@ -1,0 +1,461 @@
+/* ==========================================================================
+   ERRONIX 2K26 - CLEAN PROFESSIONAL REGISTRATION MODAL
+   Palette: Crimson & Silver Theme (Dark & Light Mode Support)
+   ========================================================================== */
+
+:root, [data-theme="light"] {
+  --reg-backdrop-bg: rgba(15, 23, 42, 0.65);
+  --reg-card-surface: #FFFFFF;
+  --reg-select-bg: #F8FAFC;
+  --reg-select-hover: #F1F5F9;
+  --reg-text-primary: #0F172A;
+  --reg-text-muted: #64748B;
+
+  /* Primary CTA (Crimson) */
+  --reg-crimson-primary: #E11D48;
+  --reg-crimson-hover: #FB365D;
+  --reg-crimson-glow: 0 0 18px rgba(225, 29, 72, 0.35);
+  --reg-crimson-glow-strong: 0 0 28px rgba(251, 54, 93, 0.65);
+
+  /* Danger / Closed */
+  --reg-crimson-dark: #FFE4E6;
+  --reg-crimson-light: #9F1239;
+
+  /* Silver / Slate Accents */
+  --reg-silver-base: #94A3B8;
+  --reg-silver-text: #1E293B;
+  --reg-silver-border: #CBD5E1;
+  --reg-silver-glow: 0 0 14px rgba(148, 163, 184, 0.35);
+  --reg-box-shadow: 0 25px 65px -15px rgba(15, 23, 42, 0.2), 0 10px 30px rgba(15, 23, 42, 0.1);
+}
+
+[data-theme="dark"] {
+  --reg-backdrop-bg: rgba(8, 8, 8, 0.85);
+  --reg-card-surface: #0E121D;
+  --reg-select-bg: #111726;
+  --reg-select-hover: #151D30;
+  --reg-text-primary: #FFFFFF;
+  --reg-text-muted: #94A3B8;
+
+  /* Primary CTA (Crimson) */
+  --reg-crimson-primary: #E11D48;
+  --reg-crimson-hover: #FB365D;
+  --reg-crimson-glow: 0 0 18px rgba(225, 29, 72, 0.45);
+  --reg-crimson-glow-strong: 0 0 28px rgba(251, 54, 93, 0.7);
+
+  /* Danger / Closed */
+  --reg-crimson-dark: #450A16;
+  --reg-crimson-light: #FDA4AF;
+
+  /* Silver Accents */
+  --reg-silver-base: #C0C0C0;
+  --reg-silver-text: #F1F5F9;
+  --reg-silver-border: rgba(192, 192, 192, 0.35);
+  --reg-silver-glow: 0 0 16px rgba(192, 192, 192, 0.45);
+  --reg-box-shadow: 0 25px 65px -15px rgba(0, 0, 0, 0.95), 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Modal Backdrop */
+.erronix-reg-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--reg-backdrop-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.erronix-reg-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal Card - Clean Surface with Silver Border */
+.erronix-reg-modal {
+  position: relative;
+  width: 100%;
+  max-width: 470px;
+  max-height: 90vh;
+  background: var(--reg-card-surface);
+  border: 1.5px solid var(--reg-silver-border);
+  border-radius: 20px;
+  box-shadow: var(--reg-box-shadow);
+  padding: 30px 28px 24px;
+  color: var(--reg-text-primary);
+  transform: scale(0.94) translateY(12px);
+  opacity: 0;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease, box-shadow 0.3s ease, background 0.3s ease;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.erronix-reg-backdrop.active .erronix-reg-modal {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Custom Scrollbar */
+.erronix-reg-modal::-webkit-scrollbar {
+  width: 5px;
+}
+.erronix-reg-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.erronix-reg-modal::-webkit-scrollbar-thumb {
+  background: rgba(192, 192, 192, 0.25);
+  border-radius: 10px;
+}
+.erronix-reg-modal::-webkit-scrollbar-thumb:hover {
+  background: var(--reg-silver-base);
+}
+
+/* Close Button */
+.erronix-reg-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--reg-silver-border);
+  background: rgba(128, 128, 128, 0.08);
+  color: var(--reg-silver-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  z-index: 2;
+  outline: none;
+}
+
+.erronix-reg-close:hover,
+.erronix-reg-close:focus-visible {
+  color: #FFFFFF;
+  border-color: var(--reg-crimson-hover);
+  background: var(--reg-crimson-primary);
+  box-shadow: var(--reg-crimson-glow);
+  transform: scale(1.08);
+}
+
+/* Header */
+.erronix-reg-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+/* Premium / Featured Badge: Silver Background, Silver Glow */
+.erronix-reg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #080808;
+  text-transform: uppercase;
+  background: var(--reg-silver-base);
+  border: 1px solid #FFFFFF;
+  box-shadow: var(--reg-silver-glow);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.erronix-reg-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #080808;
+}
+
+.erronix-reg-title {
+  font-family: 'Roboto Slab', 'Segoe UI', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--reg-text-primary);
+  margin: 0 0 6px;
+  letter-spacing: 0.2px;
+  line-height: 1.25;
+}
+
+.erronix-reg-subtitle {
+  font-size: 0.86rem;
+  color: var(--reg-text-muted);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Section Label */
+.erronix-reg-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--reg-silver-base);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* Category Segmented Tabs */
+.erronix-cat-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: rgba(128, 128, 128, 0.08);
+  padding: 5px;
+  border-radius: 12px;
+  border: 1px solid var(--reg-silver-border);
+  margin-bottom: 22px;
+}
+
+.erronix-cat-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--reg-silver-text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.erronix-cat-tab-btn:hover {
+  color: var(--reg-text-primary);
+  background: rgba(128, 128, 128, 0.12);
+  border-color: var(--reg-silver-border);
+}
+
+/* Selected Category Tab: Active State with Crimson Glow */
+.erronix-cat-tab-btn.selected {
+  background: var(--reg-crimson-primary);
+  color: #FFFFFF;
+  font-weight: 700;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: var(--reg-crimson-glow);
+}
+
+.erronix-cat-tab-btn small {
+  opacity: 0.85;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+/* Event Dropdown Section */
+.erronix-select-group {
+  margin-bottom: 20px;
+}
+
+.erronix-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.erronix-reg-select {
+  width: 100%;
+  padding: 13px 40px 13px 14px;
+  border-radius: 11px;
+  background: var(--reg-select-bg);
+  border: 1.5px solid var(--reg-silver-border);
+  color: var(--reg-silver-text);
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 500;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.erronix-reg-select:hover:not(:disabled) {
+  border-color: var(--reg-silver-base);
+  background: var(--reg-select-hover);
+}
+
+.erronix-reg-select:focus {
+  border-color: var(--reg-crimson-primary);
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.25);
+  background: var(--reg-select-hover);
+}
+
+.erronix-reg-select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  border-color: var(--reg-silver-border);
+  background: rgba(128, 128, 128, 0.05);
+  color: var(--reg-text-muted);
+}
+
+.erronix-reg-select option {
+  background: var(--reg-card-surface);
+  color: var(--reg-text-primary);
+  padding: 12px;
+  font-size: 0.94rem;
+}
+
+.erronix-select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--reg-silver-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Event Context Helper Badge */
+.erronix-event-preview {
+  margin-top: 10px;
+  font-size: 0.83rem;
+  color: var(--reg-silver-text);
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  background: rgba(225, 29, 72, 0.08);
+  border-radius: 8px;
+  border-left: 3px solid var(--reg-crimson-primary);
+}
+
+.erronix-event-preview.show {
+  display: flex;
+}
+
+.erronix-event-preview strong {
+  color: var(--reg-text-primary);
+}
+
+/* Inline Validation Message Box */
+.erronix-reg-alert {
+  padding: 10px 13px;
+  border-radius: 9px;
+  font-size: 0.84rem;
+  margin-bottom: 18px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.erronix-reg-alert.warn {
+  display: flex;
+  background: rgba(225, 29, 72, 0.12);
+  border: 1px solid rgba(225, 29, 72, 0.4);
+  color: var(--reg-crimson-light);
+}
+
+.erronix-reg-alert.error {
+  display: flex;
+  background: var(--reg-crimson-dark);
+  border: 1px solid var(--reg-crimson-light);
+  color: var(--reg-crimson-light);
+}
+
+/* ==========================================================================
+   BUTTON SYSTEM AS SPECIFIED:
+   Primary CTA: #E11D48 Crimson, #FFFFFF Text, Crimson glow
+   Primary Hover: #FB365D, #FFFFFF Text, Strong crimson glow
+   Danger / Closed: #450A16 Dark Crimson, #FDA4AF Text, None
+   ========================================================================== */
+
+.erronix-reg-submit {
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: var(--reg-crimson-primary);
+  color: #FFFFFF;
+  font-size: 0.96rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  box-shadow: var(--reg-crimson-glow);
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Primary Hover State */
+.erronix-reg-submit:hover:not(:disabled) {
+  background: var(--reg-crimson-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: var(--reg-crimson-glow-strong);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.erronix-reg-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Danger / Closed State (Disabled Submit) */
+.erronix-reg-submit:disabled {
+  background: var(--reg-crimson-dark);
+  color: var(--reg-crimson-light);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  border: 1px solid rgba(253, 164, 175, 0.18);
+  opacity: 0.9;
+}
+
+.erronix-reg-submit-icon {
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.erronix-reg-submit:hover:not(:disabled) .erronix-reg-submit-icon {
+  transform: translateX(4px);
+}
+
+/* Footnote */
+.erronix-reg-footnote {
+  margin-top: 14px;
+  font-size: 0.77rem;
+  color: var(--reg-text-muted);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  line-height: 1.4;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .erronix-reg-modal {
+    padding: 24px 18px 20px;
+    border-radius: 16px;
+  }
+  .erronix-reg-title {
+    font-size: 1.35rem;
+  }
+}

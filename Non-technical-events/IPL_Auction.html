@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>IPL Auction | ErrONiX 2K26 - National Level Technical Symposium</title>
-  <meta name="description" content="IPL Auction - Strategic cricket bidding experience at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
+  <title>IPL AUCTION GAME | ErrONiX 2K26 - National Level Technical Symposium</title>
+  <meta name="description" content="IPL AUCTION GAME - Strategic cricket bidding experience at ErrONiX 2K26, Department of CSE, University College of Engineering Arni.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/weblogofinal.png">
@@ -16,6 +16,16 @@
 
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
+  <link rel="stylesheet" href="../assets/registration-modal.css">
+  <!-- Instant Theme Loader (Zero Flash) -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -39,18 +49,25 @@
           <span class="category-badge non-technical">NON-TECHNICAL EVENT</span>
           <span class="event-number-badge">EVENT 01</span>
         </div>
-        <h1 class="event-title">IPL Auction</h1>
+        <h1 class="event-title">IPL AUCTION GAME</h1>
         <p class="event-tagline">
           The ultimate cricket strategy arena: manage virtual millions, outbid rival franchises, and engineer a championship-caliber squad under live gavel pressure.
         </p>
+        <div class="hero-level-pills" aria-label="Participant Overview">
+          <span class="hero-level-pill"><span class="pill-dot"></span>Participants: 3</span>
+          <span class="hero-level-arrow">•</span>
+          <span class="hero-level-pill"><span class="pill-dot"></span>Starting Purse: 100 Crore</span>
+          <span class="hero-level-arrow">•</span>
+          <span class="hero-level-pill"><span class="pill-dot"></span>Squad: 3 Players</span>
+        </div>
         <div class="hero-cta-group">
-          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
-            🔒 OPENS 23-09-2026
+          <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'ipl-auction')" class="btn-primary-register" id="heroRegisterBtn" title="Register for IPL AUCTION GAME">
+            REGISTER NOW
           </a>
         </div>
       </div>
       <div class="hero-visual-frame">
-        <img src="../assets/IPL Auction.webp" alt="IPL Auction Event Poster" width="800" height="800" loading="eager" decoding="async">
+        <img src="../assets/IPL Auction.webp" alt="IPL AUCTION GAME Event Poster" width="800" height="800" loading="eager" decoding="async">
         <div class="hero-visual-overlay-badge">ERRONIX 2K26</div>
       </div>
     </section>
@@ -80,8 +97,17 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
         </div>
         <div class="info-details">
-          <span class="info-label">Team Size</span>
-          <span class="info-val">2 to 3 Members</span>
+          <span class="info-label">Participant Details</span>
+          <span class="info-val">Participants: 3</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <div class="info-details">
+          <span class="info-label">Starting Purse</span>
+          <span class="info-val">100 Crore</span>
         </div>
       </div>
       <div class="info-card">
@@ -104,86 +130,110 @@
       </div>
     </section>
 
-    <!-- About The Event -->
-    <section class="detail-section" id="about">
+    <!-- Highlights Section -->
+    <section class="detail-section" id="highlights">
       <div class="section-header">
         <h2 class="section-title">
-          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-          ABOUT THE EVENT
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          HIGHLIGHTS
         </h2>
       </div>
-      <div class="about-lead-box">
-        IPL Auction puts your cricketing acumen, financial discipline, and bidding tactics on the line as you navigate live auction rounds to build the strongest possible franchise roster.
-      </div>
-      <p class="about-body-text">
-        Every registered franchise begins with an identical virtual wallet balance. With real-time paddle raises, gavel drops, and bidding wars, teams must balance star power against budgetary limits while satisfying strict squad quotas. Winners are decided through a composite evaluation of squad balance, ratings, and remaining purse efficiency.
-      </p>
 
-      <div style="margin-top: 20px;">
-        <h3 style="font-size: 1.1rem; color: var(--secondary-blue); font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom: 8px;">
-          Mandatory Squad Composition Quotas
-        </h3>
-        <div class="topics-cloud">
-          <span class="topic-tag">Minimum 3 Batsmen</span>
-          <span class="topic-tag">Minimum 3 Bowlers</span>
-          <span class="topic-tag">Minimum 2 All-Rounders</span>
-          <span class="topic-tag">Minimum 1 Wicketkeeper</span>
-          <span class="topic-tag">Overseas Player Cap Enforced</span>
+      <div class="highlights-bullet-list">
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">8–10 teams; each team represents an IPL franchise.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">Starting purse: 100 crore per team.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">Each team must select 3 players.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">Minimum 3 players must be added compulsorily.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">Maximum 4 overseas players per team.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">Teams cannot bid above their remaining budget.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">Purchased players cannot be transferred.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">No-bid players are declared unsold.</div>
         </div>
       </div>
     </section>
 
-    <!-- Rules & Regulations -->
-    <section class="detail-section" id="rules-section">
+    <!-- Auction Rules Section -->
+    <section class="detail-section" id="auction-rules">
       <div class="section-header">
         <h2 class="section-title">
           <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-          RULES &amp; REGULATIONS
+          AUCTION RULES
         </h2>
       </div>
+
       <div class="rules-list">
         <div class="rule-item-card">
           <div class="rule-number">01</div>
           <div class="rule-content">
-            <b>Franchise Team Size:</b> Teams consist of <b>2 to 3 members</b>. Advance online registration is mandatory. Carry official college ID cards.
+            The auctioneer announces a player and base price.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">02</div>
           <div class="rule-content">
-            <b>Gavel Rule:</b> <span class="rule-badge-tag">BINDING</span> Once the auctioneer's hammer falls, the bid is final, committed, and cannot be revoked under any circumstances.
+            Teams place bids.
           </div>
         </div>
         <div class="rule-item-card">
           <div class="rule-number">03</div>
           <div class="rule-content">
-            <b>Mandatory Squad Composition:</b> Teams must fulfill minimum squad quotas:
-            <ul>
-              <li>At least 3 Batsmen</li>
-              <li>At least 3 Bowlers</li>
-              <li>At least 2 All-rounders</li>
-              <li>At least 1 Wicketkeeper</li>
-              <li>Overseas player limits strictly enforced</li>
-            </ul>
+            The highest valid bid wins the player.
           </div>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">04</div>
-          <div class="rule-content">
-            <b>Purse Limit Discipline:</b> Any bid exceeding the team's remaining purse balance will trigger immediate penalties or disqualification.
-          </div>
+      </div>
+    </section>
+
+    <!-- Winner Section -->
+    <section class="detail-section" id="winner-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+          WINNER
+        </h2>
+      </div>
+
+      <div class="winner-highlight-card">
+        <div class="winner-badge-pill">
+          🏆 SQUAD EVALUATION &amp; VICTORY CRITERIA
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">05</div>
-          <div class="rule-content">
-            <b>Accelerated Bidding:</b> Unsold player lists will be submitted by teams for the accelerated round at discounted base prices to fill roster gaps.
-          </div>
-        </div>
-        <div class="rule-item-card">
-          <div class="rule-number">06</div>
-          <div class="rule-content">
-            <b>Auctioneer Authority:</b> The auctioneer's judgment regarding paddle raises, tie-breakers, and incremental bids is final and indisputable.
-          </div>
+        <h3 class="winner-heading">Deciding the Champion Franchise</h3>
+        <p class="winner-body-text" style="margin-bottom: 12px;">
+          The winning team is decided based on the overall strength and balance of its 3-player squad, along with effective budget management.
+        </p>
+        <p class="winner-body-text" style="font-weight: 700; color: var(--bright-gold);">
+          The team that builds the strongest and most balanced squad within the available purse will be declared the winner.
+        </p>
+      </div>
+
+      <!-- Final Section (Separate Concluding Rule / Notice) -->
+      <div class="notice-highlight-card">
+        <div class="notice-icon-box">⚖️</div>
+        <div class="notice-body">
+          <div class="notice-title">FINAL</div>
+          <div class="notice-text">The auctioneer's decision is final in case of any dispute.</div>
         </div>
       </div>
     </section>
@@ -202,8 +252,8 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Akash</div>
-            <a href="tel:+917604984594" class="phone">+91 76049 84594</a>
+            <div class="name">Rahul Krishna P</div>
+            <a href="tel:7010540044" class="phone">7010540044</a>
           </div>
         </div>
         <div class="coordinator-card">
@@ -211,8 +261,8 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
           <div class="coord-info">
-            <div class="name">Harini</div>
-            <a href="tel:+918015648675" class="phone">+91 80156 48675</a>
+            <div class="name">Srikanth E</div>
+            <a href="tel:9384325210" class="phone">93843 25210</a>
           </div>
         </div>
       </div>
@@ -220,13 +270,13 @@
 
     <!-- Bottom Registration Callout -->
     <section class="bottom-registration-cta">
-      <div class="cta-tag">AUCTION FLOOR CALLING</div>
+      <div class="cta-tag">IPL AUCTION GAME</div>
       <h2 class="cta-heading">READY TO TAKE THE CHALLENGE?</h2>
       <p class="cta-subtext">
         Take your seat at the franchise table, manage your budget, and build the ultimate dream team at ErrONiX 2K26.
       </p>
-      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
-        🔒 REGISTRATION OPENS ON 23-09-2026
+      <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'ipl-auction')" class="cta-btn-large" id="bottomRegisterBtn" title="Register for IPL AUCTION GAME">
+        REGISTER NOW
       </a>
     </section>
 
@@ -236,56 +286,6 @@
     </footer>
   </div>
 
-  <!-- Registration Frozen Information Modal -->
-  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
-    <div class="reg-modal-card">
-      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
-      <div class="reg-modal-icon-badge">
-        <span class="reg-modal-icon">⏳</span>
-      </div>
-      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
-      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
-      <p class="reg-modal-text">
-        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
-      </p>
-      <div class="reg-modal-date-box">
-        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
-        <div class="reg-modal-date-val">23rd September 2026</div>
-        <div class="reg-modal-date-sub">(23-09-2026)</div>
-      </div>
-      <p class="reg-modal-subnote">
-        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
-      </p>
-      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
-    </div>
-  </div>
-
-  <script>
-    function openRegFrozenModal(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    function closeRegFrozenModal() {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    }
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal && e.target === modal) closeRegFrozenModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('reg-frozen-modal');
-        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
-      }
-    });
-  </script>
+  <script src="../assets/registration-modal.js" defer></script>
 </body>
 </html>

@@ -155,7 +155,6 @@
 
     // Automatically select section headings, cards, and structured blocks
     const revealTargets = [
-      '.hero-frame',
       '.about-content-left',
       '.about-content-right',
       '.about-feature-card',
@@ -214,7 +213,6 @@
     if (prefersReducedMotion || window.innerWidth < 768) return;
 
     const cardSelectors = [
-      '.hero-frame',
       '.calendar-card-2k26',
       '.time-card',
       '.contact-info-card',
@@ -246,8 +244,6 @@
     if (prefersReducedMotion || window.innerWidth < 768) return;
 
     let ticking = false;
-    const heroTitle = document.querySelector('.hero-main-title');
-    const heroBadge = document.querySelector('.hero-symposium-badge');
     const ambientOrb1 = document.querySelector('.ambient-orb-1');
     const ambientOrb2 = document.querySelector('.ambient-orb-2');
 
@@ -258,12 +254,6 @@
 
           // Only compute for top portion of page to preserve performance
           if (scrollY < 900) {
-            if (heroTitle) {
-              heroTitle.style.transform = `translateY(${scrollY * 0.08}px)`;
-            }
-            if (heroBadge) {
-              heroBadge.style.transform = `translateY(${scrollY * 0.04}px)`;
-            }
             if (ambientOrb1) {
               ambientOrb1.style.transform = `translateY(${scrollY * 0.12}px)`;
             }

@@ -16,6 +16,16 @@
 
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
+  <link rel="stylesheet" href="../assets/registration-modal.css">
+  <!-- Instant Theme Loader (Zero Flash) -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('erronix-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -44,8 +54,8 @@
           An electrifying team charades challenge combining non-verbal expression, rapid deduction, and sharp observation to crack words and phrases against the clock.
         </p>
         <div class="hero-cta-group">
-          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
-            🔒 OPENS 23-09-2026
+          <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'act-and-guess')" class="btn-primary-register" id="heroRegisterBtn" title="Register for Act & Guess">
+            REGISTER NOW
           </a>
         </div>
       </div>
@@ -81,7 +91,7 @@
         </div>
         <div class="info-details">
           <span class="info-label">Team Size</span>
-          <span class="info-val">2 to 3 Members</span>
+          <span class="info-val">Up to 3 Members</span>
         </div>
       </div>
       <div class="info-card">
@@ -120,50 +130,202 @@
       </p>
     </section>
 
-    <!-- Rules & Regulations -->
-    <section class="detail-section" id="rules-section">
+    <!-- Quick Rules Section -->
+    <section class="detail-section" id="quick-rules">
       <div class="section-header">
         <h2 class="section-title">
           <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-          RULES &amp; REGULATIONS
+          QUICK RULES
         </h2>
       </div>
-      <div class="rules-list">
-        <div class="rule-item-card">
-          <div class="rule-number">01</div>
-          <div class="rule-content">
-            <b>Team Size:</b> Each team must consist of <b>2 to 3 members</b>. Advance online registration is mandatory. Carry official college ID cards.
+
+      <!-- Team Size -->
+      <div style="background: var(--ice-white); border: 1.5px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-md); padding: 18px 22px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 42px; height: 42px; border-radius: 50%; background: var(--soft-sky-blue); color: var(--secondary-blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div>
+            <span style="font-family: 'Audiowide', sans-serif; font-size: 0.78rem; letter-spacing: 1px; color: var(--secondary-blue); text-transform: uppercase;">TEAM SIZE</span>
+            <div style="font-size: 1.05rem; font-weight: 700; color: var(--primary-navy); margin-top: 3px;">
+              Each team can have up to 3 members.
+            </div>
           </div>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">02</div>
-          <div class="rule-content">
-            <b>Zero Verbal Clues:</b> <span class="rule-badge-tag">STRICT</span> No talking, whispering, vocal humming, or sound effects are permitted during enactment.
+        <div style="font-family: 'Audiowide', sans-serif; font-size: 0.82rem; color: var(--metallic-gold); background: rgba(212, 167, 44, 0.12); border: 1px solid rgba(212, 167, 44, 0.35); padding: 5px 14px; border-radius: 20px; font-weight: 700;">
+          MAX 3 MEMBERS
+        </div>
+      </div>
+
+      <!-- 3 Rounds Overview -->
+      <div style="background: linear-gradient(135deg, rgba(12, 30, 41, 0.03) 0%, rgba(40, 70, 158, 0.05) 100%); border: 1.5px solid rgba(40, 70, 158, 0.18); border-radius: var(--radius-lg); padding: 22px 24px; margin-bottom: 28px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="round-number-tag">STRUCTURE</span>
+            <h3 style="font-family: 'Roboto Slab', serif; font-size: 1.25rem; font-weight: 700; color: var(--primary-navy); margin: 0;">3 ROUNDS</h3>
           </div>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">03</div>
-          <div class="rule-content">
-            <b>No Lip-Syncing:</b> Mouthing words, lip movements, or spelling out letters in the air is strictly prohibited.
+
+        <!-- Visually Prominent Metrics Bar -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 18px;">
+          <div style="background: #FFFFFF; border: 1.5px solid var(--metallic-gold); border-radius: var(--radius-md); padding: 14px 16px; text-align: center; box-shadow: 0 4px 12px rgba(212, 167, 44, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+            <div style="font-size: 1.3rem;">🎵</div>
+            <div style="font-family: 'Audiowide', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--primary-navy);">7 SONGS</div>
+            <div style="font-size: 0.76rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Per Round</div>
+          </div>
+          <div style="background: #FFFFFF; border: 1.5px solid var(--metallic-gold); border-radius: var(--radius-md); padding: 14px 16px; text-align: center; box-shadow: 0 4px 12px rgba(212, 167, 44, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+            <div style="font-size: 1.3rem;">⏱️</div>
+            <div style="font-family: 'Audiowide', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--primary-navy);">15 MINUTES</div>
+            <div style="font-size: 0.76rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Per Round</div>
+          </div>
+          <div style="background: #FFFFFF; border: 1.5px solid var(--metallic-gold); border-radius: var(--radius-md); padding: 14px 16px; text-align: center; box-shadow: 0 4px 12px rgba(212, 167, 44, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+            <div style="font-size: 1.3rem;">⏳</div>
+            <div style="font-family: 'Audiowide', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--primary-navy);">1 MINUTE</div>
+            <div style="font-size: 0.76rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Per Question</div>
           </div>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">04</div>
-          <div class="rule-content">
-            <b>No Physical Pointing:</b> Pointing directly to actual objects, clothes, or people present in the hall is forbidden.
+
+        <div class="highlights-bullet-list">
+          <div class="highlight-bullet-item">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text">There are 3 rounds.</div>
+          </div>
+          <div class="highlight-bullet-item">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text">Each round contains 7 songs.</div>
+          </div>
+          <div class="highlight-bullet-item">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text">Each round lasts 15 minutes.</div>
+          </div>
+          <div class="highlight-bullet-item">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text">Each question has a 1-minute time limit.</div>
           </div>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">05</div>
-          <div class="rule-content">
-            <b>Time Enforcement:</b> Guesses must be registered before the buzzer rings. Any sound or illegal clue results in immediate round forfeiture.
+      </div>
+
+      <!-- Separate Clearly Labeled Round Sections -->
+      <div style="margin-bottom: 12px;">
+        <h3 style="font-family: 'Roboto Slab', serif; font-size: 1.25rem; font-weight: 700; color: var(--primary-navy); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          ROUND DETAILS
+        </h3>
+      </div>
+
+      <div class="rounds-timeline-grid">
+        <!-- Round 1 -->
+        <div class="round-detail-card">
+          <div class="round-badge-header">
+            <span class="round-number-tag">ROUND 01</span>
+            <span style="font-size: 0.76rem; font-weight: 700; color: #6C8295; letter-spacing: 0.5px;">7 SONGS • 15 MIN</span>
+          </div>
+          <h4 class="round-card-title">ROUND 1 – BIOSCOPE</h4>
+          <div style="margin-top: 10px;">
+            <div class="highlight-bullet-item" style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.12); padding: 12px 14px;">
+              <span class="highlight-bullet-dot"></span>
+              <div class="highlight-bullet-text">Participants must guess the song using the images provided.</div>
+            </div>
           </div>
         </div>
-        <div class="rule-item-card">
-          <div class="rule-number">06</div>
-          <div class="rule-content">
-            <b>Judges' Decisions:</b> Decisions rendered by the judging panel regarding clue validity, timing, and score calculations are final and binding.
+
+        <!-- Round 2 -->
+        <div class="round-detail-card">
+          <div class="round-badge-header">
+            <span class="round-number-tag">ROUND 02</span>
+            <span style="font-size: 0.76rem; font-weight: 700; color: #6C8295; letter-spacing: 0.5px;">7 SONGS • 15 MIN</span>
           </div>
+          <h4 class="round-card-title">ROUND 2 – MISSING WORDS</h4>
+          <div style="margin-top: 10px;">
+            <div class="highlight-bullet-item" style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.12); padding: 12px 14px;">
+              <span class="highlight-bullet-dot"></span>
+              <div class="highlight-bullet-text">Participants must identify the song by filling in the missing words from the given lyrics/song.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Round 3 -->
+        <div class="round-detail-card">
+          <div class="round-badge-header">
+            <span class="round-number-tag">ROUND 03</span>
+            <span style="font-size: 0.76rem; font-weight: 700; color: #6C8295; letter-spacing: 0.5px;">7 SONGS • 15 MIN</span>
+          </div>
+          <h4 class="round-card-title">ROUND 3 – ACT &amp; GUESS</h4>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+            <div class="highlight-bullet-item" style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.12); padding: 10px 14px;">
+              <span class="highlight-bullet-dot"></span>
+              <div class="highlight-bullet-text">One team member acts out the song.</div>
+            </div>
+            <div class="highlight-bullet-item" style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.12); padding: 10px 14px;">
+              <span class="highlight-bullet-dot"></span>
+              <div class="highlight-bullet-text">The person acting cannot talk or sing.</div>
+            </div>
+            <div class="highlight-bullet-item" style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.12); padding: 10px 14px;">
+              <span class="highlight-bullet-dot"></span>
+              <div class="highlight-bullet-text">The other teammate must guess the song.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buzzer Rule Section -->
+    <section class="detail-section" id="buzzer-rule-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          BUZZER RULE
+        </h2>
+      </div>
+
+      <div class="highlights-bullet-list">
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">The team that buzzes first gets the opportunity to answer.</div>
+        </div>
+        <div class="highlight-bullet-item">
+          <span class="highlight-bullet-dot"></span>
+          <div class="highlight-bullet-text">If the answer is wrong, the opportunity passes to the other teams.</div>
+        </div>
+        <div class="highlight-bullet-item" style="grid-column: 1 / -1;">
+          <span class="highlight-bullet-dot" style="background: #E74C3C; box-shadow: 0 0 6px rgba(231, 76, 60, 0.4);"></span>
+          <div class="highlight-bullet-text">There is no retry for the team that gave the wrong answer.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Winners & Final Rule Section -->
+    <section class="detail-section" id="winners-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+          WINNERS
+        </h2>
+      </div>
+
+      <div class="winner-highlight-card" style="margin-bottom: 24px;">
+        <div class="winner-badge-pill">
+          🏆 PRIZES &amp; TIE-BREAKER
+        </div>
+        <h3 class="winner-heading">Points-Based Ranking</h3>
+        <div class="highlights-bullet-list" style="margin-top: 14px;">
+          <div class="highlight-bullet-item" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(212, 167, 44, 0.4);">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text" style="color: #FFFFFF;">The top 3 teams based on their points will win prizes.</div>
+          </div>
+          <div class="highlight-bullet-item" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(212, 167, 44, 0.4);">
+            <span class="highlight-bullet-dot"></span>
+            <div class="highlight-bullet-text" style="color: #FFFFFF;">If there is a tie, the tie will be settled through a tie-breaker.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Rule Notice Highlight Card -->
+      <div class="notice-highlight-card">
+        <div class="notice-icon-box">⚖️</div>
+        <div class="notice-body">
+          <div class="notice-title">FINAL RULE</div>
+          <div class="notice-text">The judges' decision is final.</div>
         </div>
       </div>
     </section>
@@ -205,8 +367,8 @@
       <p class="cta-subtext">
         Step onto the charades stage, entertain the crowd, and bring home the trophy at ErrONiX 2K26.
       </p>
-      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
-        🔒 REGISTRATION OPENS ON 23-09-2026
+      <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'act-and-guess')" class="cta-btn-large" id="bottomRegisterBtn" title="Register for Act & Guess">
+        REGISTER NOW
       </a>
     </section>
 
@@ -216,56 +378,6 @@
     </footer>
   </div>
 
-  <!-- Registration Frozen Information Modal -->
-  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
-    <div class="reg-modal-card">
-      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
-      <div class="reg-modal-icon-badge">
-        <span class="reg-modal-icon">⏳</span>
-      </div>
-      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
-      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
-      <p class="reg-modal-text">
-        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
-      </p>
-      <div class="reg-modal-date-box">
-        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
-        <div class="reg-modal-date-val">23rd September 2026</div>
-        <div class="reg-modal-date-sub">(23-09-2026)</div>
-      </div>
-      <p class="reg-modal-subnote">
-        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
-      </p>
-      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
-    </div>
-  </div>
-
-  <script>
-    function openRegFrozenModal(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-    function closeRegFrozenModal() {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    }
-    window.addEventListener('click', (e) => {
-      const modal = document.getElementById('reg-frozen-modal');
-      if (modal && e.target === modal) closeRegFrozenModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('reg-frozen-modal');
-        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
-      }
-    });
-  </script>
+  <script src="../assets/registration-modal.js" defer></script>
 </body>
 </html>
