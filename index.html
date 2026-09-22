@@ -10,6 +10,11 @@
 <link rel="icon" type="image/x-icon" href="assets/weblogofinal.png">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/loader.css">
+<link rel="stylesheet" href="assets/motion-system.css">
+<link rel="stylesheet" href="assets/hero-cinematic.css">
+<link rel="stylesheet" href="assets/scroll-reveal.css">
+<link rel="stylesheet" href="assets/digital-circuits.css">
+<link rel="stylesheet" href="assets/logo-micro-animation.css">
 
 <style>
 
@@ -1769,6 +1774,349 @@ nav ul li a:hover::after { width: 100%; }
   letter-spacing: 1.5px;
 }
 
+/* ========= REGISTRATION FROZEN STATE & MODAL (ERRONIX 2K26) ========= */
+.nav-register-btn-frozen {
+  background: rgba(19, 40, 58, 0.95) !important;
+  color: var(--bright-gold) !important;
+  border: 1.5px solid var(--metallic-gold) !important;
+  cursor: pointer !important;
+}
+
+.nav-register-btn-frozen:hover {
+  background: var(--metallic-gold) !important;
+  color: var(--primary-navy) !important;
+  box-shadow: 0 4px 14px rgba(212, 167, 44, 0.4) !important;
+}
+
+.hero-btn-register-frozen {
+  background: rgba(19, 40, 58, 0.9) !important;
+  color: var(--bright-gold) !important;
+  border: 2px solid var(--metallic-gold) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.hero-btn-register-frozen:hover {
+  background: var(--metallic-gold) !important;
+  color: var(--primary-navy) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(212, 167, 44, 0.45) !important;
+}
+
+.btn-event-register-frozen {
+  background: rgba(19, 40, 58, 0.85) !important;
+  color: var(--bright-gold) !important;
+  border: 1.5px solid var(--metallic-gold) !important;
+  cursor: pointer !important;
+  font-size: 0.82rem !important;
+}
+
+.btn-event-register-frozen:hover {
+  background: var(--metallic-gold) !important;
+  color: var(--primary-navy) !important;
+  border-color: var(--bright-gold) !important;
+}
+
+.reg-frozen-status-banner {
+  background: linear-gradient(135deg, rgba(212, 167, 44, 0.16) 0%, rgba(19, 40, 58, 0.92) 100%);
+  border: 2px solid var(--metallic-gold);
+  border-radius: 12px;
+  padding: 16px 22px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.reg-frozen-status-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--bright-gold);
+}
+
+.reg-frozen-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.freeze-pulse-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 10px #f59e0b;
+  animation: freezePulse 1.8s infinite;
+}
+
+@keyframes freezePulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+.reg-frozen-tag {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  color: var(--bright-gold);
+  text-transform: uppercase;
+}
+
+.reg-frozen-title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ice-white);
+  margin: 0;
+}
+
+.reg-frozen-desc {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.92rem;
+  color: rgba(248, 251, 255, 0.92);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.reg-pill-freeze {
+  background: rgba(245, 158, 11, 0.25) !important;
+  color: #fef08a !important;
+  border: 1.5px solid var(--bright-gold) !important;
+  font-weight: 700 !important;
+}
+
+.reg-rule-freeze-highlight {
+  background: rgba(212, 167, 44, 0.12);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--bright-gold);
+}
+
+.btn-register-here-frozen {
+  background: rgba(19, 40, 58, 0.95) !important;
+  color: var(--bright-gold) !important;
+  border: 2px solid var(--metallic-gold) !important;
+  cursor: pointer !important;
+}
+
+.btn-register-here-frozen:hover {
+  background: var(--metallic-gold) !important;
+  color: var(--primary-navy) !important;
+  box-shadow: 0 8px 24px rgba(212, 167, 44, 0.5) !important;
+}
+
+.qr-code-card-frozen {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+.qr-code-card-frozen:hover {
+  transform: translateY(-3px);
+}
+
+.qr-code-wrapper {
+  position: relative;
+}
+
+.qr-frozen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: rgba(12, 30, 41, 0.82);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--bright-gold);
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.qr-code-card-frozen:hover .qr-frozen-overlay {
+  background: rgba(12, 30, 41, 0.7);
+}
+
+.qr-frozen-lock {
+  font-size: 2.2rem;
+}
+
+.qr-frozen-txt {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  line-height: 1.35;
+  color: #fef08a;
+}
+
+.qr-scan-label-frozen {
+  color: var(--bright-gold) !important;
+}
+
+/* Frozen Information Modal */
+.reg-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(6, 17, 24, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.reg-modal-card {
+  background: #0f2231;
+  border: 2px solid var(--metallic-gold);
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  padding: 32px 28px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(212, 167, 44, 0.2);
+  text-align: center;
+  position: relative;
+  animation: modalScaleUp 0.3s ease-out forwards;
+}
+
+@keyframes modalScaleUp {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.reg-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: rgba(248, 251, 255, 0.6);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.reg-modal-close:hover {
+  color: var(--bright-gold);
+}
+
+.reg-modal-icon-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(212, 167, 44, 0.15);
+  border: 2px solid var(--metallic-gold);
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.reg-modal-pill {
+  display: inline-block;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  color: var(--bright-gold);
+  background: rgba(244, 196, 48, 0.12);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.reg-modal-title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.45rem;
+  color: var(--ice-white);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.reg-modal-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(248, 251, 255, 0.88);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.reg-modal-date-box {
+  background: rgba(19, 40, 58, 0.9);
+  border: 1.5px dashed var(--metallic-gold);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+
+.reg-modal-date-label {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(248, 251, 255, 0.75);
+  letter-spacing: 1px;
+}
+
+.reg-modal-date-val {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--bright-gold);
+  margin: 4px 0;
+}
+
+.reg-modal-date-sub {
+  font-size: 0.85rem;
+  color: var(--ice-white);
+  font-weight: 600;
+}
+
+.reg-modal-subnote {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(248, 251, 255, 0.7);
+  margin-bottom: 22px;
+}
+
+.reg-modal-btn {
+  background: var(--metallic-gold);
+  color: var(--primary-navy);
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 36px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+}
+
+.reg-modal-btn:hover {
+  background: var(--bright-gold);
+  box-shadow: 0 4px 16px rgba(244, 196, 48, 0.4);
+}
+
 @media (max-width: 868px) {
   .registration-content-grid {
     grid-template-columns: 1fr;
@@ -3327,6 +3675,69 @@ input:checked + label .description {
   <script src="assets/loader.js"></script>
 
 <div id="mainPage">
+
+  <!-- Erronix 2K26 Module 08: Animated Digital Circuits Background -->
+  <div class="digital-circuits-bg" aria-hidden="true">
+    <svg class="circuit-viewport-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="circuitGradCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0" />
+          <stop offset="50%" stop-color="#00d2ff" stop-opacity="0.9" />
+          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="circuitGradGold" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#f4c430" stop-opacity="0" />
+          <stop offset="50%" stop-color="#ffa751" stop-opacity="0.9" />
+          <stop offset="100%" stop-color="#ffe259" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+
+      <!-- Group 1: Top-Left Circuit Flow (Cyan) -->
+      <path class="circuit-trace-base circuit-trace-cyan" d="M 0,160 L 180,160 L 260,240 L 420,240 L 460,280 L 580,280" />
+      <path class="circuit-pulse-line circuit-pulse-1" d="M 0,160 L 180,160 L 260,240 L 420,240 L 460,280 L 580,280" />
+      <circle class="circuit-node-base circuit-node-cyan" cx="180" cy="160" r="3.5" />
+      <circle class="circuit-node-core" cx="180" cy="160" r="1.5" />
+      <circle class="circuit-node-base circuit-node-cyan" cx="260" cy="240" r="3.5" />
+      <circle class="circuit-node-core" cx="260" cy="240" r="1.5" />
+      <circle class="circuit-node-base circuit-node-cyan circuit-node-pulse-cyan" cx="580" cy="280" r="4.5" />
+      <circle class="circuit-node-core" cx="580" cy="280" r="2" />
+
+      <!-- Group 2: Top-Right Circuit Flow (Gold) -->
+      <path class="circuit-trace-base circuit-trace-gold" d="M 1920,180 L 1740,180 L 1660,260 L 1500,260 L 1440,320 L 1340,320" />
+      <path class="circuit-pulse-line circuit-pulse-2" d="M 1920,180 L 1740,180 L 1660,260 L 1500,260 L 1440,320 L 1340,320" />
+      <circle class="circuit-node-base circuit-node-gold" cx="1740" cy="180" r="3.5" />
+      <circle class="circuit-node-core-gold" cx="1740" cy="180" r="1.5" />
+      <circle class="circuit-node-base circuit-node-gold" cx="1660" cy="260" r="3.5" />
+      <circle class="circuit-node-core-gold" cx="1660" cy="260" r="1.5" />
+      <circle class="circuit-node-base circuit-node-gold circuit-node-pulse-gold" cx="1340" cy="320" r="4.5" />
+      <circle class="circuit-node-core-gold" cx="1340" cy="320" r="2" />
+
+      <!-- Group 3: Mid-Left Orthogonal Flow (Cyan) -->
+      <path class="circuit-trace-base circuit-trace-cyan" d="M 0,540 L 140,540 L 220,620 L 380,620 L 440,680" />
+      <path class="circuit-pulse-line circuit-pulse-3" d="M 0,540 L 140,540 L 220,620 L 380,620 L 440,680" />
+      <circle class="circuit-node-base circuit-node-cyan" cx="140" cy="540" r="3" />
+      <circle class="circuit-node-core" cx="140" cy="540" r="1.5" />
+      <circle class="circuit-node-base circuit-node-cyan circuit-node-pulse-cyan" cx="440" cy="680" r="4" />
+      <circle class="circuit-node-core" cx="440" cy="680" r="1.8" />
+
+      <!-- Group 4: Mid-Right to Lower-Right Flow (Gold) -->
+      <path class="circuit-trace-base circuit-trace-gold" d="M 1920,580 L 1780,580 L 1700,660 L 1560,660 L 1500,720 L 1380,720" />
+      <path class="circuit-pulse-line circuit-pulse-4" d="M 1920,580 L 1780,580 L 1700,660 L 1560,660 L 1500,720 L 1380,720" />
+      <circle class="circuit-node-base circuit-node-gold" cx="1780" cy="580" r="3" />
+      <circle class="circuit-node-core-gold" cx="1780" cy="580" r="1.5" />
+      <circle class="circuit-node-base circuit-node-gold circuit-node-pulse-gold" cx="1380" cy="720" r="4.5" />
+      <circle class="circuit-node-core-gold" cx="1380" cy="720" r="2" />
+
+      <!-- Group 5: Bottom-Left Upward Accent (Cyan) -->
+      <path class="circuit-trace-base circuit-trace-cyan" d="M 120,1080 L 120,940 L 200,860 L 340,860" />
+      <path class="circuit-pulse-line circuit-pulse-5" d="M 120,1080 L 120,940 L 200,860 L 340,860" />
+      <circle class="circuit-node-base circuit-node-cyan" cx="120" cy="940" r="3" />
+      <circle class="circuit-node-core" cx="120" cy="940" r="1.5" />
+      <circle class="circuit-node-base circuit-node-cyan circuit-node-pulse-cyan" cx="340" cy="860" r="4" />
+      <circle class="circuit-node-core" cx="340" cy="860" r="1.8" />
+    </svg>
+  </div>
+
   <nav>
     <div class="nav-brand-container">
       <div class="logo">
@@ -3353,11 +3764,11 @@ input:checked + label .description {
       <li><a href="#contact" class="nav-link">CONTACT</a></li>
       <li><a href="#" class="nav-link" id="brochure-btn">PAMPHLET</a></li>
       <li>
-        <a href="https://forms.gle/iFJdQPicxXFvCiKM6" 
-           class="nav-register-btn" 
-           target="_blank" 
-           rel="noopener noreferrer">
-           REGISTER NOW
+        <a href="javascript:void(0)" 
+           class="nav-register-btn nav-register-btn-frozen" 
+           onclick="openRegFrozenModal(event)"
+           title="Registration opens on 23-09-2026">
+           🔒 OPENS 23-09-2026
         </a>
       </li>
     </ul>
@@ -3366,6 +3777,38 @@ input:checked + label .description {
 
 <!-- Hero Section (ErrONiX 2K26 Academic Poster Style) -->
 <section id="home" class="hero">
+  <!-- Subtle Technology Circuit Paths Background -->
+  <div class="hero-circuits-bg" aria-hidden="true">
+    <svg class="hero-circuit-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="heroCircuitGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0" />
+          <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.9" />
+          <stop offset="100%" stop-color="#f4c430" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <!-- Left Circuit Flow -->
+      <path class="hero-circuit-path" d="M 0,250 L 220,250 L 320,350 L 450,350" />
+      <path class="hero-circuit-pulse" d="M 0,250 L 220,250 L 320,350 L 450,350" />
+      <circle class="hero-circuit-node" cx="220" cy="250" r="3.5" />
+      <circle class="hero-circuit-node" cx="320" cy="350" r="4.5" />
+      <circle class="hero-circuit-node" cx="450" cy="350" r="3.5" />
+      
+      <!-- Right Circuit Flow -->
+      <path class="hero-circuit-path" d="M 1440,280 L 1220,280 L 1120,380 L 990,380" />
+      <path class="hero-circuit-pulse" d="M 1440,280 L 1220,280 L 1120,380 L 990,380" />
+      <circle class="hero-circuit-node" cx="1220" cy="280" r="3.5" />
+      <circle class="hero-circuit-node" cx="1120" cy="380" r="4.5" />
+      <circle class="hero-circuit-node" cx="990" cy="380" r="3.5" />
+      
+      <!-- Subtle Center Top Node -->
+      <path class="hero-circuit-path" d="M 520,0 L 520,120 L 590,190" />
+      <circle class="hero-circuit-node" cx="590" cy="190" r="3" />
+      <path class="hero-circuit-path" d="M 920,0 L 920,120 L 850,190" />
+      <circle class="hero-circuit-node" cx="850" cy="190" r="3" />
+    </svg>
+  </div>
+
   <div class="hero-frame">
     <!-- College Header -->
     <div class="hero-college-name">University College of Engineering Arni</div>
@@ -3376,8 +3819,54 @@ input:checked + label .description {
     <div class="hero-presents">Proudly Presents</div>
     <div class="hero-symposium-badge">A National Level Technical Symposium</div>
 
-    <!-- Largest Visual Element: Main Title -->
-    <h1 class="hero-main-title">ErrONiX 2K26</h1>
+    <!-- Erronix Phoenix Logo with Dual-Sided Light Travel, Node Accents & Sheen -->
+    <div class="hero-logo-container">
+      <div class="hero-logo-glow"></div>
+
+      <!-- Dual-Sided Light Travel SVG (Blue Left, Gold Right) -->
+      <svg class="logo-orbit-svg" viewBox="0 0 160 140" aria-hidden="true">
+        <defs>
+          <linearGradient id="orbitGradBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#00d2ff" stop-opacity="0" />
+            <stop offset="50%" stop-color="#00f2fe" stop-opacity="1" />
+            <stop offset="100%" stop-color="#0066ff" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="orbitGradGold" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffe259" stop-opacity="0" />
+            <stop offset="50%" stop-color="#f4c430" stop-opacity="1" />
+            <stop offset="100%" stop-color="#ff8008" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Left Blue Circuit Arc & Traveling Pulse -->
+        <path class="orbit-arc-base orbit-arc-blue" d="M 80,10 C 35,12 10,45 14,85 C 17,105 35,125 78,135" />
+        <path class="orbit-pulse-blue" d="M 80,10 C 35,12 10,45 14,85 C 17,105 35,125 78,135" />
+        <circle class="orbit-node orbit-node-blue" cx="14" cy="85" r="3.2" />
+        <circle class="orbit-node-dot" cx="14" cy="85" r="1.5" />
+        <circle class="orbit-node orbit-node-blue" cx="35" cy="125" r="2.8" />
+        <circle class="orbit-node-dot" cx="35" cy="125" r="1.2" />
+
+        <!-- Right Gold Circuit Arc & Traveling Pulse -->
+        <path class="orbit-arc-base orbit-arc-gold" d="M 80,10 C 125,12 150,45 146,85 C 143,105 125,125 82,135" />
+        <path class="orbit-pulse-gold" d="M 80,10 C 125,12 150,45 146,85 C 143,105 125,125 82,135" />
+        <circle class="orbit-node orbit-node-gold" cx="146" cy="85" r="3.2" />
+        <circle class="orbit-node-dot-gold" cx="146" cy="85" r="1.5" />
+        <circle class="orbit-node orbit-node-gold" cx="125" cy="125" r="2.8" />
+        <circle class="orbit-node-dot-gold" cx="125" cy="125" r="1.2" />
+      </svg>
+
+      <!-- Erronix Phoenix Logo -->
+      <img src="assets/erronix-phoenix.png" alt="ErrONiX 2K26 Emblem" class="hero-logo-img">
+
+      <!-- Diagonal Hover Light Sweep Sheen -->
+      <div class="logo-sweep-sheen"></div>
+    </div>
+
+    <!-- Largest Visual Element: Main Title with Gold Streak -->
+    <div class="hero-title-container">
+      <div class="hero-gold-streak"></div>
+      <h1 class="hero-main-title">ErrONiX 2K26</h1>
+    </div>
 
     <!-- Theme Tagline & Pillars -->
     <div class="hero-tagline">ERROR TO EXCELLENCE</div>
@@ -3396,11 +3885,11 @@ input:checked + label .description {
 
     <!-- Action CTA Buttons -->
     <div class="hero-buttons">
-      <a href="https://forms.gle/iFJdQPicxXFvCiKM6" 
-         class="hero-btn-register" 
-         target="_blank" 
-         rel="noopener noreferrer">
-         REGISTER NOW
+      <a href="javascript:void(0)" 
+         class="hero-btn-register hero-btn-register-frozen" 
+         onclick="openRegFrozenModal(event)"
+         title="Registration Opens on 23-09-2026">
+         🔒 REGISTRATION OPENS 23-09-2026
       </a>
       <a href="#events" class="hero-btn-explore">
          EXPLORE EVENTS
@@ -3549,9 +4038,8 @@ input:checked + label .description {
               View Details
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-event-register">
-              Register
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-event-register btn-event-register-frozen" title="Registration Opens on 23-09-2026">
+              🔒 Opens 23-09-2026
             </a>
           </div>
         </div>
@@ -3574,9 +4062,8 @@ input:checked + label .description {
               View Details
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-event-register">
-              Register
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-event-register btn-event-register-frozen" title="Registration Opens on 23-09-2026">
+              🔒 Opens 23-09-2026
             </a>
           </div>
         </div>
@@ -3599,9 +4086,8 @@ input:checked + label .description {
               View Details
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-event-register">
-              Register
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-event-register btn-event-register-frozen" title="Registration Opens on 23-09-2026">
+              🔒 Opens 23-09-2026
             </a>
           </div>
         </div>
@@ -3624,9 +4110,8 @@ input:checked + label .description {
               View Details
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-event-register">
-              Register
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-event-register btn-event-register-frozen" title="Registration Opens on 23-09-2026">
+              🔒 Opens 23-09-2026
             </a>
           </div>
         </div>
@@ -3654,9 +4139,8 @@ input:checked + label .description {
               View Details
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-event-register">
-              Register
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-event-register btn-event-register-frozen" title="Registration Opens on 23-09-2026">
+              🔒 Opens 23-09-2026
             </a>
           </div>
         </div>
@@ -3679,9 +4163,8 @@ input:checked + label .description {
               View Details
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-event-register">
-              Register
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-event-register btn-event-register-frozen" title="Registration Opens on 23-09-2026">
+              🔒 Opens 23-09-2026
             </a>
           </div>
         </div>
@@ -3704,9 +4187,8 @@ input:checked + label .description {
               View Details
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-event-register">
-              Register
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-event-register btn-event-register-frozen" title="Registration Opens on 23-09-2026">
+              🔒 Opens 23-09-2026
             </a>
           </div>
         </div>
@@ -3729,9 +4211,8 @@ input:checked + label .description {
               View Details
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-event-register">
-              Register
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-event-register btn-event-register-frozen" title="Registration Opens on 23-09-2026">
+              🔒 Opens 23-09-2026
             </a>
           </div>
         </div>
@@ -3747,8 +4228,21 @@ input:checked + label .description {
   <div class="registration-container">
     <div class="registration-card-2k26">
       
+      <!-- Registration Frozen Status Notice Banner -->
+      <div class="reg-frozen-status-banner">
+        <div class="reg-frozen-badge-wrap">
+          <span class="freeze-pulse-indicator"></span>
+          <span class="reg-frozen-tag">REGISTRATION PORTAL TEMPORARILY FROZEN</span>
+        </div>
+        <h3 class="reg-frozen-title">Registration Form Updates In Progress • Opens on 23-09-2026</h3>
+        <p class="reg-frozen-desc">
+          We are currently updating and finalizing the official registration forms. All event registration links are temporarily frozen and will officially go live on <strong>September 23, 2026 (23-09-2026)</strong>.
+        </p>
+      </div>
+
       <!-- Top Badges / Highlight Pillars -->
       <div class="registration-badge-bar">
+        <span class="reg-pill reg-pill-freeze">🔒 OPENS ON 23-09-2026</span>
         <span class="reg-pill reg-pill-gold">LIMITED REGISTRATION</span>
         <span class="reg-pill reg-pill-blue">FIRST COME FIRST SERVE</span>
         <span class="reg-pill reg-pill-gold">FREE REGISTRATION</span>
@@ -3761,11 +4255,15 @@ input:checked + label .description {
           <span class="reg-tag">OFFICIAL REGISTRATION PORTAL</span>
           <h2 class="reg-main-heading">ErrONiX 2K26 Registration</h2>
           <p class="reg-subtext">
-            Department of Computer Science & Engineering | University College of Engineering Arni. Secure your spot now to participate in 4 Technical & 4 Non-Technical national level events.
+            Department of Computer Science & Engineering | University College of Engineering Arni. Secure your spot to participate in 4 Technical & 4 Non-Technical national level events once registration opens.
           </p>
 
           <!-- Key Feature Points -->
           <div class="reg-rules-list">
+            <div class="reg-rule-item reg-rule-freeze-highlight">
+              <div class="reg-rule-icon">⏳</div>
+              <span><strong>Opening Date:</strong> Official registration form opens on <strong>23-09-2026</strong></span>
+            </div>
             <div class="reg-rule-item">
               <div class="reg-rule-icon">✓</div>
               <span>100% Free Registration — No Entry Fee</span>
@@ -3786,11 +4284,11 @@ input:checked + label .description {
 
           <!-- Primary CTA Button & Website URL -->
           <div class="reg-action-block">
-            <a href="https://forms.gle/iFJdQPicxXFvCiKM6" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn-register-here">
-              REGISTER HERE
+            <a href="javascript:void(0)" 
+               onclick="openRegFrozenModal(event)"
+               class="btn-register-here btn-register-here-frozen"
+               title="Registration Opens on 23-09-2026">
+              🔒 OPENS ON 23-09-2026
             </a>
             <div class="reg-website-link">
               <span>Official Website:</span>
@@ -3801,12 +4299,16 @@ input:checked + label .description {
 
         <!-- Right Column: QR Code Container with Generous Whitespace for Scanning -->
         <div class="reg-qr-right">
-          <div class="qr-code-card">
+          <div class="qr-code-card qr-code-card-frozen" onclick="openRegFrozenModal(event)" title="Registration Opens on 23-09-2026">
             <div class="qr-code-wrapper">
               <img src="assets/IMG-20250919-WA0006.jpg" alt="ErrONiX 2K26 Registration QR Code">
+              <div class="qr-frozen-overlay">
+                <div class="qr-frozen-lock">🔒</div>
+                <div class="qr-frozen-txt">REGISTRATION OPENS<br><strong>23-09-2026</strong></div>
+              </div>
             </div>
-            <div class="qr-scan-label">
-              <span>SCAN TO REGISTER</span>
+            <div class="qr-scan-label qr-scan-label-frozen">
+              <span>🔒 OPENS ON 23-09-2026</span>
             </div>
           </div>
         </div>
@@ -4165,18 +4667,18 @@ input:checked + label .description {
         </a>
 
         <!-- Instagram -->
-        <a href="https://www.instagram.com/erronix2k25/?igsh=enI0MHBwbmNhcGJt#" target="_blank" rel="noopener noreferrer" class="social-card-link">
+        <a href="https://www.instagram.com/erronix2k26?stkn=MTFybXdzbGNlcWRjZA==" target="_blank" rel="noopener noreferrer" class="social-card-link">
           <div class="navy-circle-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
           </div>
           <div class="social-text-info">
             <span class="social-platform">Instagram</span>
-            <span class="social-handle">erronix2k25</span>
+            <span class="social-handle">erronix2k26</span>
           </div>
         </a>
 
         <!-- WhatsApp Group Link -->
-        <a href="https://chat.whatsapp.com/LSUspDIvQQA6I42eCB8CNB" target="_blank" rel="noopener noreferrer" class="social-card-link">
+        <a href="https://chat.whatsapp.com/IvqL16ESLYi43Va05DjhaE" target="_blank" rel="noopener noreferrer" class="social-card-link">
           <div class="navy-circle-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
           </div>
@@ -4469,6 +4971,72 @@ updateCountdown();
     });
   }
 </script>
+
+<!-- Registration Frozen Information Modal -->
+<div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
+  <div class="reg-modal-card">
+    <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
+    <div class="reg-modal-icon-badge">
+      <span class="reg-modal-icon">⏳</span>
+    </div>
+    <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
+    <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
+    <p class="reg-modal-text">
+      We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and QR forms are temporarily frozen.
+    </p>
+    <div class="reg-modal-date-box">
+      <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
+      <div class="reg-modal-date-val">23rd September 2026</div>
+      <div class="reg-modal-date-sub">(23-09-2026)</div>
+    </div>
+    <p class="reg-modal-subnote">
+      Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
+    </p>
+    <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
+  </div>
+</div>
+
+<script>
+  function openRegFrozenModal(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const modal = document.getElementById('reg-frozen-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeRegFrozenModal() {
+    const modal = document.getElementById('reg-frozen-modal');
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Close modal when clicking backdrop or pressing Escape
+  window.addEventListener('click', (e) => {
+    const modal = document.getElementById('reg-frozen-modal');
+    if (modal && e.target === modal) {
+      closeRegFrozenModal();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('reg-frozen-modal');
+      if (modal && modal.style.display === 'flex') {
+        closeRegFrozenModal();
+      }
+    }
+  });
+</script>
+<script src="assets/motion-system.js" defer></script>
+<script src="assets/hero-cinematic.js" defer></script>
+<script src="assets/scroll-reveal.js" defer></script>
 </body>
 </html>
 

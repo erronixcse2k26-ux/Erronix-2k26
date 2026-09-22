@@ -44,9 +44,8 @@
           A premier technology-focused presentation platform where innovators present ideas, breakthroughs, and computing concepts before an expert panel.
         </p>
         <div class="hero-cta-group">
-          <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="btn-primary-register" id="heroRegisterBtn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-            REGISTER NOW
+          <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="btn-primary-register btn-reg-frozen" id="heroRegisterBtn" title="Registration Opens on 23-09-2026">
+            🔒 OPENS 23-09-2026
           </a>
         </div>
       </div>
@@ -229,8 +228,8 @@
       <p class="cta-subtext">
         Present your technical vision at TechTalkX and gain recognition at the national level. Reserve your team spot now.
       </p>
-      <a href="https://forms.gle/iFJdQPicxXFvCiKM6" target="_blank" rel="noopener noreferrer" class="cta-btn-large" id="bottomRegisterBtn">
-        REGISTER FOR TECHTALKX NOW
+      <a href="javascript:void(0)" onclick="openRegFrozenModal(event)" class="cta-btn-large cta-btn-frozen" id="bottomRegisterBtn" title="Registration Opens on 23-09-2026">
+        🔒 REGISTRATION OPENS ON 23-09-2026
       </a>
     </section>
 
@@ -240,5 +239,56 @@
     </footer>
   </div>
 
+  <!-- Registration Frozen Information Modal -->
+  <div id="reg-frozen-modal" class="reg-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
+    <div class="reg-modal-card">
+      <button class="reg-modal-close" onclick="closeRegFrozenModal()" aria-label="Close modal">&times;</button>
+      <div class="reg-modal-icon-badge">
+        <span class="reg-modal-icon">⏳</span>
+      </div>
+      <span class="reg-modal-pill">REGISTRATION UNDER UPDATE</span>
+      <h3 id="regModalTitle" class="reg-modal-title">Registration Opens on 23-09-2026</h3>
+      <p class="reg-modal-text">
+        We are actively updating and configuring the official registration form for ErrONiX 2K26. All registration links and forms are temporarily frozen.
+      </p>
+      <div class="reg-modal-date-box">
+        <div class="reg-modal-date-label">OFFICIAL OPENING DATE</div>
+        <div class="reg-modal-date-val">23rd September 2026</div>
+        <div class="reg-modal-date-sub">(23-09-2026)</div>
+      </div>
+      <p class="reg-modal-subnote">
+        Please check back on 23-09-2026 to register for all 4 Technical and 4 Non-Technical events.
+      </p>
+      <button class="reg-modal-btn" onclick="closeRegFrozenModal()">Understood</button>
+    </div>
+  </div>
+
+  <script>
+    function openRegFrozenModal(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      const modal = document.getElementById('reg-frozen-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closeRegFrozenModal() {
+      const modal = document.getElementById('reg-frozen-modal');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('reg-frozen-modal');
+      if (modal && e.target === modal) closeRegFrozenModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('reg-frozen-modal');
+        if (modal && modal.style.display === 'flex') closeRegFrozenModal();
+      }
+    });
+  </script>
 </body>
 </html>
