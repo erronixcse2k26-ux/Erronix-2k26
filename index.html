@@ -16,6 +16,49 @@
 <link rel="stylesheet" href="assets/registration-modal.css">
 <link rel="stylesheet" href="assets/loader.css">
 
+<!-- Instant Loader Gatekeeper (Zero Flash - Animation Only on Fresh Session or Reload, Never on Back Navigation) -->
+<script>
+  (function() {
+    try {
+      var navEntries = (window.performance && typeof performance.getEntriesByType === 'function')
+        ? performance.getEntriesByType('navigation')
+        : [];
+      var navType = navEntries.length > 0 ? navEntries[0].type : '';
+      if (!navType && window.performance && window.performance.navigation) {
+        var legacy = window.performance.navigation.type;
+        if (legacy === 1) navType = 'reload';
+        else if (legacy === 2) navType = 'back_forward';
+        else if (legacy === 0) navType = 'navigate';
+      }
+
+      var isBack = navType === 'back_forward';
+      var isReload = navType === 'reload';
+      var hasSeen = sessionStorage.getItem('erronix_loader_seen');
+
+      // Loader shows ONLY on refresh or first-time opening.
+      // If navigating back, or if already seen in this session and not a refresh -> skip immediately with ZERO flash.
+      if (isBack || (hasSeen && !isReload)) {
+        document.documentElement.classList.add('no-loader');
+      } else {
+        sessionStorage.setItem('erronix_loader_seen', 'true');
+      }
+
+      // Handle Back-Forward Cache (bfcache) restore
+      window.addEventListener('pageshow', function(e) {
+        if (e.persisted || isBack || (sessionStorage.getItem('erronix_loader_seen') && !isReload)) {
+          document.documentElement.classList.add('no-loader');
+          var loader = document.getElementById('erronix-loader');
+          if (loader) {
+            loader.style.display = 'none';
+          }
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+        }
+      });
+    } catch (e) {}
+  })();
+</script>
+
 <!-- Instant Theme Loader (Zero Flash - Default: Light Theme) -->
 <script>
   (function() {
@@ -27,6 +70,14 @@
 </script>
 
 <style>
+
+/* Zero-flash bypass for erronix loader */
+html.no-loader #erronix-loader {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
 
 /* ========= ROOT & LIGHT MODE (Default: Crisp Academic Frost with Crimson Accents) ========= */
 :root, [data-theme="light"] {
@@ -233,7 +284,8 @@ nav .logo img {
   color: var(--text-heading);
   letter-spacing: 1.5px;
   line-height: 1.1;
-  transition: color 0.3s ease;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 16px rgba(255, 255, 255, 0.3);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .brand-title span {
@@ -4204,7 +4256,7 @@ input:checked + label .description {
     <!-- Right Column: University College of Engineering Arni Campus Image -->
     <div class="about-image-right">
       <div class="campus-image-frame">
-        <img src="assets/clg1.jpg" alt="University College of Engineering Arni Campus">
+        <img src="assets/c1.jpg" alt="University College of Engineering Arni Campus">
         <div class="campus-caption">
           University College of Engineering Arni Campus
         </div>
@@ -4800,7 +4852,7 @@ input:checked + label .description {
     <!-- Brand Header -->
     <div class="footer-brand">
       <div class="footer-brand-header">
-        <img src="assets/erronix-phoenix.png" alt="ErrONiX Logo" class="footer-logo">
+        <img src="assets/weblogofinal.png" alt="ErrONiX Logo" class="footer-logo">
         <div class="footer-title">ErrONiX <span>2K26</span></div>
       </div>
       <div class="footer-tagline">Department of Computer Science &amp; Engineering</div>

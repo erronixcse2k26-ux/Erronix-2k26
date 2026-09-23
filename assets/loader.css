@@ -54,6 +54,16 @@
 /* ==========================================================================
    FULLSCREEN LOADER OVERLAY
    ========================================================================== */
+/* Zero-flash bypass when returning via back navigation or subsequent visits */
+html.no-loader #erronix-loader,
+body.no-loader #erronix-loader,
+#erronix-loader.loader-hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 #erronix-loader {
   position: fixed;
   inset: 0;

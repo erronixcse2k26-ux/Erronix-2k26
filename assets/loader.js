@@ -47,7 +47,83 @@
   let particles = [];
   let isConverging = false;
 
+  function getNavType() {
+    try {
+      const navEntries = (window.performance && typeof performance.getEntriesByType === 'function')
+        ? performance.getEntriesByType('navigation')
+        : [];
+      if (navEntries && navEntries.length > 0) {
+        return navEntries[0].type;
+      }
+      if (window.performance && window.performance.navigation) {
+        const legacy = window.performance.navigation.type;
+        if (legacy === 1) return 'reload';
+        if (legacy === 2) return 'back_forward';
+        if (legacy === 0) return 'navigate';
+      }
+    } catch (e) {}
+    return '';
+  }
+
+  function shouldShowLoader() {
+    try {
+      if (document.documentElement.classList.contains('no-loader')) {
+        return false;
+      }
+
+      const navType = getNavType();
+
+      // If user navigated back/forward in browser history, NEVER show loader
+      if (navType === 'back_forward') {
+        return false;
+      }
+
+      // If user refreshed the page, ALWAYS show loader
+      if (navType === 'reload') {
+        return true;
+      }
+
+      // First-time visit vs repeated navigation in the same session
+      const hasSeen = sessionStorage.getItem('erronix_loader_seen');
+      if (!hasSeen) {
+        return true;
+      }
+
+      // If already seen in this session and not a reload -> do not show again
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function dismissLoaderInstantly() {
+    isExiting = true;
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+    document.documentElement.classList.add('no-loader');
+    loaderEl = document.getElementById('erronix-loader');
+    if (loaderEl) {
+      loaderEl.classList.add('loader-exit');
+      loaderEl.style.display = 'none';
+      if (typeof loaderEl.remove === 'function') {
+        loaderEl.remove();
+      }
+    }
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
   function init() {
+    if (!shouldShowLoader()) {
+      dismissLoaderInstantly();
+      return;
+    }
+
+    try {
+      sessionStorage.setItem('erronix_loader_seen', 'true');
+    } catch (e) {}
+
     loaderEl = document.getElementById('erronix-loader');
     if (!loaderEl) return;
 
@@ -369,6 +445,10 @@
     if (isExiting) return;
     isExiting = true;
 
+    try {
+      sessionStorage.setItem('erronix_loader_seen', 'true');
+    } catch (e) {}
+
     if (animationFrameId) {
       cancelAnimationFrame(animationFrameId);
     }
@@ -397,10 +477,21 @@
       .replace(/"/g, '&quot;');
   }
 
-  // Run on DOM Ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  // Handle Back-Forward Cache (bfcache) restore
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted || !shouldShowLoader()) {
+      dismissLoaderInstantly();
+    }
+  });
+
+  // Run on DOM Ready or dismiss immediately
+  if (!shouldShowLoader()) {
+    dismissLoaderInstantly();
   } else {
-    init();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   }
 })();
