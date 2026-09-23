@@ -73,13 +73,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--primary-navy);
+      background: #080808;
     }
 
     #introVideo {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      background: #080808;
     }
 
     #introOverlay {
@@ -166,7 +167,7 @@
     }
 
     .counter-box {
-      background: var(--secondary-navy);
+      background: #0F172A;
       padding: 40px 60px;
       border-radius: 20px;
       text-align: center;
@@ -174,8 +175,14 @@
       border: 2px solid var(--metallic-gold);
     }
 
+    [data-theme="dark"] .counter-box {
+      background: #0E1321;
+      border-color: var(--crimson-primary);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(225, 29, 72, 0.2);
+    }
+
     .counter-box h2 {
-      color: var(--ice-white);
+      color: #FFFFFF;
       font-size: 2rem;
       margin-bottom: 20px;
       font-family: 'Roboto Slab', serif;
@@ -199,7 +206,7 @@
     @media (max-width: 768px) {
       #introVideo {
         object-fit: contain;
-        background: var(--primary-navy);
+        background: #080808;
       }
 
       #introOverlay {
@@ -253,11 +260,19 @@
       Your browser does not support HTML5 video.
     </video>
     <div id="introOverlay">Past Season</div>
+    <button id="skipIntroBtn" onclick="showMainPage()" style="position: absolute; bottom: 30px; right: 30px; background: rgba(15, 23, 42, 0.85); color: #FFFFFF; border: 1.5px solid var(--metallic-gold); padding: 10px 20px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; cursor: pointer; backdrop-filter: blur(6px); transition: all 0.25s ease; z-index: 20;">SKIP INTRO &rarr;</button>
   </div>
-
 
   <!-- Main Page -->
   <div id="mainPage">
+    <div style="max-width: 900px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
+      <a href="index.html" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; color: var(--primary-navy); padding: 8px 16px; border: 1.5px solid var(--metallic-gold); border-radius: 8px; background: var(--soft-sky-blue); transition: all 0.2s;">
+        &larr; BACK TO HOME
+      </a>
+      <button type="button" id="pastThemeToggle" style="width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--metallic-gold); background: var(--soft-sky-blue); color: var(--primary-navy); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;" title="Toggle theme">
+        🌓
+      </button>
+    </div>
 
     <!-- Past Season Info -->
     <section>
@@ -333,6 +348,16 @@
     });
 
     observer.observe(document.getElementById("counterSection"));
+
+    const pastThemeToggle = document.getElementById('pastThemeToggle');
+    if (pastThemeToggle) {
+      pastThemeToggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('erronix-theme', next); } catch(e){}
+      });
+    }
   </script>
 </body>
 </html>

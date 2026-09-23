@@ -464,6 +464,17 @@
 
     // Delegate click on any button with data-register-event or register classes
     document.addEventListener('click', (e) => {
+      const toggle = e.target.closest('#eventThemeToggle, .event-theme-toggle-btn');
+      if (toggle) {
+        const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", nextTheme);
+        try {
+          localStorage.setItem("erronix-theme", nextTheme);
+        } catch (err) {}
+        return;
+      }
+
       const regTrigger = e.target.closest('[data-open-reg-modal], .nav-register-btn, .hero-btn-register, .btn-event-register, .btn-primary-register, .cta-btn-large, .btn-reg-trigger');
       if (regTrigger && !regTrigger.hasAttribute('onclick')) {
         const preselect = regTrigger.dataset.registerEvent || null;

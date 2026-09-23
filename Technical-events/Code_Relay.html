@@ -36,9 +36,15 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         BACK TO EVENTS
       </a>
-      <div class="symposium-pill">
-        <span></span>
-        ErrONiX 2K26 • CSE SYMPOSIUM
+      <div class="top-bar-right">
+        <div class="symposium-pill">
+          <span></span>
+          ErrONiX 2K26 • CSE SYMPOSIUM
+        </div>
+        <button type="button" class="event-theme-toggle-btn" id="eventThemeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
       </div>
     </header>
 
@@ -100,7 +106,7 @@
         </div>
         <div class="info-details">
           <span class="info-label">Venue</span>
-          <span class="info-val">CS Laboratory</span>
+          <span class="info-val">TBA</span>
         </div>
       </div>
       <div class="info-card">
@@ -109,7 +115,7 @@
         </div>
         <div class="info-details">
           <span class="info-label">Time</span>
-          <span class="info-val">11:00 AM - 1:00 PM</span>
+          <span class="info-val">TBA</span>
         </div>
       </div>
     </section>
@@ -197,15 +203,15 @@
 
         <!-- Round 1: Easy Challenge -->
         <div class="flow-step-card" style="padding: 22px 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(212, 167, 44, 0.25);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--card-border);">
             <div style="display: flex; align-items: center; gap: 12px;">
               <span class="step-num" style="font-size: 1.3rem; margin-bottom: 0;">01</span>
               <div>
                 <div class="step-heading" style="margin-bottom: 2px;">ROUND 1 – EASY CHALLENGE</div>
-                <div style="font-size: 0.8rem; color: #6C8295; font-weight: 600;">Sequential Relay Format</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Sequential Relay Format</div>
               </div>
             </div>
-            <div style="background: rgba(212, 167, 44, 0.15); border: 1px solid var(--metallic-gold); padding: 5px 14px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; color: var(--primary-navy); display: flex; align-items: center; gap: 6px;">
+            <div style="background: rgba(225, 29, 72, 0.12); border: 1px solid var(--crimson-border); padding: 5px 14px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; color: var(--crimson-light); display: flex; align-items: center; gap: 6px;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               <span>TOTAL: 12 MIN</span>
             </div>
@@ -213,48 +219,48 @@
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
             <!-- Step 1 -->
-            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 1</span>
-                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">2 MIN</span>
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 1</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--crimson-primary); background: rgba(225, 29, 72, 0.1); border: 1px solid var(--crimson-border); padding: 2px 8px; border-radius: 8px;">2 MIN</span>
               </div>
-              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Discussion</div>
-              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Both members discuss problem understanding and approach together.</div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">Discussion</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">Both members discuss problem understanding and approach together.</div>
             </div>
 
             <!-- Step 2 -->
-            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 2</span>
-                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">5 MIN</span>
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 2</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--crimson-primary); background: rgba(225, 29, 72, 0.1); border: 1px solid var(--crimson-border); padding: 2px 8px; border-radius: 8px;">5 MIN</span>
               </div>
-              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Member 1 Coding</div>
-              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Member 1 starts coding the initial solution on the system.</div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">Member 1 Coding</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">Member 1 starts coding the initial solution on the system.</div>
             </div>
 
             <!-- Step 3 -->
-            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 3</span>
-                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">5 MIN</span>
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 3</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--crimson-primary); background: rgba(225, 29, 72, 0.1); border: 1px solid var(--crimson-border); padding: 2px 8px; border-radius: 8px;">5 MIN</span>
               </div>
-              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Member 2 Relay Swap</div>
-              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Member 2 takes over to continue coding and complete the solution.</div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">Member 2 Relay Swap</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">Member 2 takes over to continue coding and complete the solution.</div>
             </div>
           </div>
         </div>
 
         <!-- Round 2: Advanced Challenge -->
         <div class="flow-step-card" style="padding: 22px 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(212, 167, 44, 0.25);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--card-border);">
             <div style="display: flex; align-items: center; gap: 12px;">
               <span class="step-num" style="font-size: 1.3rem; margin-bottom: 0;">02</span>
               <div>
                 <div class="step-heading" style="margin-bottom: 2px;">ROUND 2 – ADVANCED CHALLENGE</div>
-                <div style="font-size: 0.8rem; color: #6C8295; font-weight: 600;">Sequential Relay Format</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Sequential Relay Format</div>
               </div>
             </div>
-            <div style="background: rgba(212, 167, 44, 0.15); border: 1px solid var(--metallic-gold); padding: 5px 14px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; color: var(--primary-navy); display: flex; align-items: center; gap: 6px;">
+            <div style="background: rgba(225, 29, 72, 0.12); border: 1px solid var(--crimson-border); padding: 5px 14px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; color: var(--crimson-light); display: flex; align-items: center; gap: 6px;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               <span>TOTAL: 30 MIN</span>
             </div>
@@ -262,33 +268,33 @@
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
             <!-- Step 1 -->
-            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 1</span>
-                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 1</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--crimson-primary); background: rgba(225, 29, 72, 0.1); border: 1px solid var(--crimson-border); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
               </div>
-              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Discussion &amp; Planning</div>
-              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Both members discuss, plan architecture, and design the solution.</div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">Discussion &amp; Planning</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">Both members discuss, plan architecture, and design the solution.</div>
             </div>
 
             <!-- Step 2 -->
-            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 2</span>
-                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 2</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--crimson-primary); background: rgba(225, 29, 72, 0.1); border: 1px solid var(--crimson-border); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
               </div>
-              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Member 1 Coding</div>
-              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Member 1 codes the core algorithmic logic and initial structure.</div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">Member 1 Coding</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">Member 1 codes the core algorithmic logic and initial structure.</div>
             </div>
 
             <!-- Step 3 -->
-            <div style="background: #FFFFFF; border: 1px solid rgba(40, 70, 158, 0.15); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 700; color: #6C8295; text-transform: uppercase; letter-spacing: 0.5px;">Step 3</span>
-                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--secondary-blue); background: var(--soft-sky-blue); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 3</span>
+                <span style="font-family: 'Audiowide', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--crimson-primary); background: rgba(225, 29, 72, 0.1); border: 1px solid var(--crimson-border); padding: 2px 8px; border-radius: 8px;">10 MIN</span>
               </div>
-              <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-navy);">Member 2 Relay Swap</div>
-              <div style="font-size: 0.85rem; color: #556B7D; line-height: 1.4;">Member 2 takes over to debug, continue, and complete the solution.</div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">Member 2 Relay Swap</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">Member 2 takes over to debug, continue, and complete the solution.</div>
             </div>
           </div>
         </div>
