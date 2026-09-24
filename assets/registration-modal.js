@@ -127,6 +127,29 @@
               <p id="erronixRegSubtitle" class="erronix-reg-subtitle">Select your category and event to continue to the official registration form.</p>
             </div>
 
+            <!-- Participation & Rewards Highlight -->
+            <div class="erronix-reg-rewards" aria-label="Participation and Rewards">
+              <div class="erronix-reg-rewards-title">
+                <span class="reg-rewards-trophy" aria-hidden="true">🏆</span> PARTICIPATION &amp; REWARDS
+              </div>
+              <div class="erronix-reg-rewards-list">
+                <div class="erronix-reg-reward-row">
+                  <div class="reg-reward-left">
+                    <span class="reg-reward-icon" aria-hidden="true">📜</span>
+                    <span class="reg-reward-name">Participation Certificate</span>
+                  </div>
+                  <span class="reg-reward-badge reg-reward-badge-all">For All Participants</span>
+                </div>
+                <div class="erronix-reg-reward-row">
+                  <div class="reg-reward-left">
+                    <span class="reg-reward-icon" aria-hidden="true">🏆</span>
+                    <span class="reg-reward-name">Winner Shield</span>
+                  </div>
+                  <span class="reg-reward-badge reg-reward-badge-winner">For Winners</span>
+                </div>
+              </div>
+            </div>
+
             <!-- Category Selector Tabs -->
             <div class="erronix-reg-label">Select Category</div>
             <div class="erronix-cat-tabs" role="tablist" aria-label="Event Categories">
@@ -468,10 +491,14 @@
       if (toggle) {
         const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
         const nextTheme = currentTheme === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", nextTheme);
-        try {
-          localStorage.setItem("erronix-theme", nextTheme);
-        } catch (err) {}
+        if (window.ErronixLoader && typeof window.ErronixLoader.switchTheme === 'function') {
+          window.ErronixLoader.switchTheme(nextTheme);
+        } else {
+          document.documentElement.setAttribute("data-theme", nextTheme);
+          try {
+            localStorage.setItem("erronix-theme", nextTheme);
+          } catch (err) {}
+        }
         return;
       }
 

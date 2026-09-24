@@ -17,6 +17,7 @@
   <!-- Shared Event Detail Stylesheet -->
   <link rel="stylesheet" href="../assets/event-detail.css">
   <link rel="stylesheet" href="../assets/registration-modal.css">
+  <link rel="stylesheet" href="../assets/loader.css">
   <!-- Instant Theme Loader (Zero Flash) -->
   <script>
     (function() {
@@ -32,7 +33,7 @@
   <div class="event-page-wrapper">
     <!-- Top Bar Navigation -->
     <header class="event-top-bar">
-      <a href="../index.html#events" class="back-to-events-btn" id="backToEventsTop">
+      <a href="../index.html#events" class="back-to-events-btn" id="backToEventsTop" data-back-to-home>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         BACK TO EVENTS
       </a>
@@ -132,6 +133,37 @@
         <div class="info-details">
           <span class="info-label">Format</span>
           <span class="info-val">3 Battle Levels</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Rewards Section -->
+    <section class="event-rewards-block" id="rewards" aria-label="Event Rewards">
+      <div class="rewards-block-header">
+        <h2 class="rewards-section-title">
+          <span class="rewards-title-icon" aria-hidden="true">🏆</span>
+          REWARDS
+        </h2>
+      </div>
+      <div class="rewards-grid">
+        <div class="reward-card reward-card-participation">
+          <div class="reward-icon-box">
+            <span class="reward-emoji" aria-hidden="true">📜</span>
+          </div>
+          <div class="reward-content">
+            <h3 class="reward-title">Participation Certificate</h3>
+            <span class="reward-badge-pill pill-all">For All Participants</span>
+          </div>
+        </div>
+
+        <div class="reward-card reward-card-winner">
+          <div class="reward-icon-box reward-icon-winner">
+            <span class="reward-emoji" aria-hidden="true">🏆</span>
+          </div>
+          <div class="reward-content">
+            <h3 class="reward-title">Winner Shield</h3>
+            <span class="reward-badge-pill pill-winner">For Winners</span>
+          </div>
         </div>
       </div>
     </section>
@@ -255,5 +287,6 @@
   </div>
 
   <script src="../assets/registration-modal.js" defer></script>
+  <script src="../assets/loader.js"></script>
 </body>
 </html>

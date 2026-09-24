@@ -55,8 +55,8 @@
    FULLSCREEN LOADER OVERLAY
    ========================================================================== */
 /* Zero-flash bypass when returning via back navigation or subsequent visits */
-html.no-loader #erronix-loader,
-body.no-loader #erronix-loader,
+html.no-loader #erronix-loader:not(.loader-active),
+body.no-loader #erronix-loader:not(.loader-active),
 #erronix-loader.loader-hidden {
   display: none !important;
   opacity: 0 !important;
@@ -89,6 +89,84 @@ body.no-loader #erronix-loader,
   will-change: opacity, filter, transform;
 }
 
+/* Explicit Active State */
+#erronix-loader.loader-active {
+  display: flex !important;
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+  transform: scale(1) !important;
+  visibility: visible !important;
+  pointer-events: all !important;
+}
+
+/* Theme Switch Animation Mode (Rapid calibration overlay) */
+#erronix-loader.loader-theme-switch {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: all !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: themeSwitchIn 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes themeSwitchIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#erronix-loader.loader-theme-switch .loader-logo-pod {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+#erronix-loader.loader-theme-switch .loader-logo-aura {
+  opacity: 1 !important;
+  animation: auraPulse 1s infinite alternate ease-in-out !important;
+}
+
+#erronix-loader.loader-theme-switch .loader-status-container {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+#erronix-loader.loader-theme-switch .loader-code-layer,
+#erronix-loader.loader-theme-switch #loader-converge-canvas {
+  display: none !important;
+}
+
+#erronix-loader.loader-theme-switch .loader-skip-hint {
+  display: none !important;
+}
+
+/* Link Navigation Mode (Smooth page exit to link) */
+#erronix-loader.loader-navigating {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: all !important;
+  animation: loaderNavIn 0.22s ease-out forwards;
+}
+
+@keyframes loaderNavIn {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(0.99);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
 /* Finished Exit Transition */
 #erronix-loader.loader-exit {
   opacity: 0;
@@ -96,6 +174,18 @@ body.no-loader #erronix-loader,
   transform: scale(1.025);
   pointer-events: none;
   visibility: hidden;
+}
+
+/* Fast Exit for Theme Switch & Link Navigation */
+#erronix-loader.loader-exit-fast {
+  opacity: 0 !important;
+  filter: blur(12px) !important;
+  transform: scale(1.035) !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Ambient Cyber Grid Overlay */

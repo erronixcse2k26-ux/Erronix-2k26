@@ -16,8 +16,10 @@
 <link rel="stylesheet" href="assets/registration-modal.css">
 <link rel="stylesheet" href="assets/loader.css">
 <link rel="stylesheet" href="assets/schedule.css">
+<link rel="stylesheet" href="assets/hero-cinematic.css">
+<link rel="stylesheet" href="assets/ambient-glow.css">
 
-<!-- Instant Loader Gatekeeper (Zero Flash - Animation Only on Fresh Session or Reload, Never on Back Navigation) -->
+<!-- Instant Loader Gatekeeper (Zero Flash - Shows on first visit or reload, skips on back navigation or returning from event) -->
 <script>
   (function() {
     try {
@@ -32,28 +34,57 @@
         else if (legacy === 0) navType = 'navigate';
       }
 
-      var isBack = navType === 'back_forward';
       var isReload = navType === 'reload';
-      var hasSeen = sessionStorage.getItem('erronix_loader_seen');
+      var isBack = navType === 'back_forward';
+      var hasLoadedBefore = !!(window.history && history.state && history.state.erronix_home_loaded);
+      var isNavToHome = sessionStorage.getItem('erronix_nav_to_home') === 'true' ||
+                        sessionStorage.getItem('erronix_back_from_event') === 'true';
+      var hasSeenHome = sessionStorage.getItem('erronix_home_seen') === 'true';
 
-      // Loader shows ONLY on refresh or first-time opening.
-      // If navigating back, or if already seen in this session and not a refresh -> skip immediately with ZERO flash.
-      if (isBack || (hasSeen && !isReload)) {
+      var referrer = (document.referrer || '').toLowerCase();
+      var isInternalRef = referrer.indexOf('technical-events') !== -1 ||
+                          referrer.indexOf('non-technical-events') !== -1 ||
+                          referrer.indexOf('past season') !== -1 ||
+                          referrer.indexOf('past%20season') !== -1;
+
+      // Clean temporary transition flags so they don't persist into later reloads
+      if (isNavToHome) {
+        try {
+          sessionStorage.removeItem('erronix_nav_to_home');
+          sessionStorage.removeItem('erronix_back_from_event');
+        } catch (e) {}
+      }
+
+      // DECISION:
+      // Show loader ONLY on:
+      // 1) Explicit page reload (F5 / browser refresh)
+      // 2) Genuinely NEW homepage visit (not from an internal page, not back/forward, not already seen in session)
+      var shouldSkipLoader = !isReload && (isBack || hasLoadedBefore || isNavToHome || isInternalRef || hasSeenHome);
+
+      if (shouldSkipLoader) {
         document.documentElement.classList.add('no-loader');
+        try {
+          sessionStorage.setItem('erronix_home_seen', 'true');
+          if (window.history && history.replaceState) {
+            var state = history.state || {};
+            state.erronix_home_loaded = true;
+            history.replaceState(state, '');
+          }
+        } catch (e) {}
       } else {
-        sessionStorage.setItem('erronix_loader_seen', 'true');
+        document.documentElement.classList.remove('no-loader');
       }
 
       // Handle Back-Forward Cache (bfcache) restore
       window.addEventListener('pageshow', function(e) {
-        if (e.persisted || isBack || (sessionStorage.getItem('erronix_loader_seen') && !isReload)) {
+        if (e.persisted || shouldSkipLoader) {
           document.documentElement.classList.add('no-loader');
           var loader = document.getElementById('erronix-loader');
           if (loader) {
             loader.style.display = 'none';
           }
           document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
+          if (document.body) document.body.style.overflow = '';
         }
       });
     } catch (e) {}
@@ -73,7 +104,7 @@
 <style>
 
 /* Zero-flash bypass for erronix loader */
-html.no-loader #erronix-loader {
+html.no-loader #erronix-loader:not(.loader-active) {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
@@ -548,20 +579,22 @@ nav ul li a:hover::after { width: 100%; }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(600px, 85vw);
-  height: min(380px, 55vw);
-  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.18) 0%, rgba(245, 158, 11, 0.08) 45%, transparent 72%);
-  filter: blur(42px);
+  width: min(620px, 88vw);
+  height: min(400px, 58vw);
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.45) 0%, rgba(249, 115, 22, 0.22) 42%, rgba(225, 29, 72, 0.08) 65%, transparent 74%);
+  filter: blur(38px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.75;
+  opacity: 0.85;
+  mix-blend-mode: screen;
   animation: heroAuraPulse 4.5s ease-in-out infinite alternate;
 }
 
 [data-theme="light"] .hero-logo-container::before {
-  opacity: 0.35;
-  filter: blur(48px);
-  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.14) 0%, rgba(245, 158, 11, 0.05) 45%, transparent 72%);
+  opacity: 0.65;
+  filter: blur(40px);
+  mix-blend-mode: normal;
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.32) 0%, rgba(249, 115, 22, 0.16) 42%, transparent 72%);
 }
 
 .hero-logo-img {
@@ -2588,8 +2621,215 @@ nav ul li a:hover::after { width: 100%; }
 }
 
 .student-grid {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: none;
 }
+
+/* Student Coordinators Scrolling Marquee Showcase */
+.student-coordinator-section {
+  position: relative;
+  width: 100%;
+}
+
+.coord-marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 14px 0 24px 0;
+  margin: 10px auto 0 auto;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+}
+
+.coord-marquee-track {
+  display: flex;
+  width: max-content;
+  user-select: none;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: stretch;
+  gap: 22px;
+  flex-shrink: 0;
+  padding-right: 22px;
+  animation: scrollStudentMarquee 34s linear infinite;
+  will-change: transform;
+}
+
+.coord-marquee-container:hover .marquee-group,
+.coord-marquee-container:focus-within .marquee-group,
+.coord-marquee-container.is-paused .marquee-group {
+  animation-play-state: paused;
+}
+
+@keyframes scrollStudentMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Marquee Card Styles */
+.coord-marquee-card {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  flex: 0 0 260px;
+  flex-shrink: 0;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--surface-card);
+  border: 1.5px solid var(--silver-border);
+  border-radius: 16px;
+  box-shadow: var(--card-box-shadow);
+  transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1),
+              box-shadow 0.28s ease,
+              border-color 0.28s ease;
+  position: relative;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.coord-marquee-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: var(--crimson-primary);
+  box-shadow: var(--card-box-shadow), 0 10px 26px rgba(225, 29, 72, 0.16);
+  z-index: 5;
+}
+
+.coord-marquee-card .coord-img-wrapper {
+  width: 96px;
+  height: 96px;
+  min-width: 96px;
+  border-radius: 50%;
+  border: 2.5px solid var(--silver-border);
+  overflow: hidden;
+  margin-bottom: 14px;
+  background: var(--surface-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coord-marquee-card:hover .coord-img-wrapper {
+  transform: scale(1.06);
+  border-color: var(--crimson-primary);
+  box-shadow: 0 0 16px rgba(225, 29, 72, 0.4);
+}
+
+.coord-marquee-card .coord-role-badge {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--crimson-primary);
+  background: rgba(225, 29, 72, 0.1);
+  border: 1px solid var(--crimson-primary);
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coord-marquee-card .coord-name {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coord-marquee-card .coord-contact-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--crimson-primary);
+  text-decoration: none;
+  margin-top: auto;
+  padding-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.coord-marquee-card .coord-contact-link:hover {
+  color: var(--crimson-hover);
+  text-decoration: underline;
+  transform: scale(1.04);
+}
+
+.marquee-hint-note {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .marquee-group {
+    animation-duration: 24s;
+    gap: 16px;
+    padding-right: 16px;
+  }
+  .coord-marquee-card {
+    width: 228px;
+    min-width: 228px;
+    max-width: 228px;
+    flex: 0 0 228px;
+    padding: 20px 12px;
+  }
+  .coord-marquee-card .coord-img-wrapper {
+    width: 84px;
+    height: 84px;
+    min-width: 84px;
+  }
+  .coord-marquee-card .coord-role-badge {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+  .coord-marquee-card .coord-name {
+    font-size: 0.96rem;
+    min-height: 2.5rem;
+  }
+  .coord-marquee-card .coord-contact-link {
+    font-size: 0.82rem;
+  }
+}
+
 
 .single-staff-grid {
   display: flex;
@@ -3177,7 +3417,7 @@ html, body {
 @media (max-width: 992px) {
   nav { padding: 10px 16px; }
   nav .logo img { height: 42px; }
-  .brand-title { font-size: 1.15rem; }
+  .brand-title { font-size: 0.9rem; }
   nav .college-name { font-size: 0.65rem; }
   .menu-toggle {
     display: flex;
@@ -3308,7 +3548,14 @@ footer.erronix-footer {
 }
 
 .footer-glow-backdrop {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .footer-container {
@@ -4123,12 +4370,8 @@ input:checked + label .description {
 
     <ul id="menu">
       <li><a href="#home" class="nav-link">HOME</a></li>
-      <li><a href="#about" class="nav-link">ABOUT</a></li>
-      <li><a href="#events" class="nav-link">EVENTS</a></li>
       <li><a href="#schedule" class="nav-link">SCHEDULE</a></li>
-      <li><a href="#registrationProtocol" class="nav-link">REGISTRATION</a></li>
-      <li><a href="#coordinators" class="nav-link">COORDINATORS</a></li>
-      <li><a href="#gallery" class="nav-link">GALLERY</a></li>
+      <li><a href="#events" class="nav-link">EVENTS</a></li>
       <li><a href="#contact" class="nav-link">CONTACT</a></li>
       <li><a href="#" class="nav-link" id="brochure-btn">PAMPHLET</a></li>
       <li>
@@ -4170,7 +4413,17 @@ input:checked + label .description {
 
 <!-- Hero Section (ErrONiX 2K26 Academic Poster Style) -->
 <section id="home" class="hero">
+  <!-- Ambient Atmospheric Glow Behind Hero -->
+  <div class="ambient-glow-bg" aria-hidden="true">
+    <div class="ambient-orb hero-orb-gold"></div>
+    <div class="ambient-orb hero-orb-crimson"></div>
+  </div>
   <div class="hero-frame">
+    <!-- Subtle Animated Perimeter Glow (ErrONiX 2K26 Logo Palette) -->
+    <div class="hero-perimeter-glow" aria-hidden="true">
+      <div class="hero-glow-beam-bloom"></div>
+      <div class="hero-glow-beam-line"></div>
+    </div>
     <!-- College Header -->
     <div class="hero-college-name">University College of Engineering Arni</div>
     <div class="hero-constituent">(A Constituent College of Anna University Chennai)</div>
@@ -4223,6 +4476,11 @@ input:checked + label .description {
 
 <!-- About / Introduction Section (ErrONiX 2K26) -->
 <section id="about" class="about-section">
+  <!-- Ambient Atmospheric Glow Behind About -->
+  <div class="ambient-glow-bg" aria-hidden="true">
+    <div class="ambient-orb about-orb-purple"></div>
+    <div class="ambient-orb about-orb-amber"></div>
+  </div>
   <div class="about-container">
     <!-- Left Column: ErrONiX 2K26 Introduction -->
     <div class="about-content-left">
@@ -4268,6 +4526,11 @@ input:checked + label .description {
 
 <!-- Date & Countdown Section (ErrONiX 2K26 Poster Style) -->
 <section id="countdownSection" class="date-countdown-section">
+  <!-- Ambient Atmospheric Glow Behind Date & Countdown / Registration -->
+  <div class="ambient-glow-bg" aria-hidden="true">
+    <div class="ambient-orb countdown-orb-crimson"></div>
+    <div class="ambient-orb countdown-orb-gold"></div>
+  </div>
   <div class="countdown-container">
     <span class="countdown-badge">OFFICIAL SYMPOSIUM DATE</span>
     <h2 class="countdown-section-title">Save The Date</h2>
@@ -4310,244 +4573,13 @@ input:checked + label .description {
   </div>
 </section>
 
-<!-- Events Section (ErrONiX 2K26 Event Explorer) -->
-<section id="events" class="events-section-2k26">
-  <div class="events-container-2k26">
-    
-    <div class="events-header-2k26">
-      <span class="events-badge-2k26">COMPETE &amp; INNOVATE</span>
-      <h2 class="events-title-2k26">OUR EVENTS</h2>
-      <p class="events-subtitle-2k26">Explore our official technical and non-technical competitions for ErrONiX 2K26.</p>
-    </div>
-
-    <!-- Category Navigation Switcher -->
-    <div class="events-tab-nav" role="tablist" aria-label="Events Category Navigation">
-      <button type="button" class="events-tab-btn active" data-target="panel-technical" id="tab-technical" role="tab" aria-selected="true" aria-controls="panel-technical">
-        <span class="tab-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
-        </span>
-        TECHNICAL EVENTS
-      </button>
-      <button type="button" class="events-tab-btn" data-target="panel-non-technical" id="tab-non-technical" role="tab" aria-selected="false" aria-controls="panel-non-technical">
-        <span class="tab-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-        </span>
-        NON-TECHNICAL EVENTS
-      </button>
-    </div>
-
-    <!-- 1. TECHNICAL EVENTS PANEL -->
-    <div id="panel-technical" class="events-panel active" role="tabpanel" aria-labelledby="tab-technical">
-      
-      <!-- Tech Event 01: TechTalkX – Paper Presentation -->
-      <div class="event-explorer-card">
-        <div class="event-card-media">
-          <img src="assets/Paper Presentation.webp" alt="TechTalkX – Paper Presentation" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
-          <div class="event-media-badges">
-            <span class="event-num-pill">01</span>
-            <span class="event-cat-pill">PAPER PRESENTATION</span>
-          </div>
-        </div>
-        <div class="event-card-body">
-          <h3 class="event-card-title">TechTalkX – Paper Presentation</h3>
-          <p class="event-card-desc">Paper Presentation provides participants with a platform to present innovative ideas, research findings, and emerging technologies across engineering domains.</p>
-          <div class="event-card-actions">
-            <a href="Technical-events/Tech_Talkz.html" class="btn-event-details">
-              View Details
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'paper-presentation')" class="btn-event-register" title="Register for TechTalkX – Paper Presentation">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tech Event 02: CODE RELAY -->
-      <div class="event-explorer-card">
-        <div class="event-card-media">
-          <img src="assets/Code Relay.webp" alt="CODE RELAY Programming Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
-          <div class="event-media-badges">
-            <span class="event-num-pill">02</span>
-            <span class="event-cat-pill">TECHNICAL EVENT</span>
-          </div>
-        </div>
-        <div class="event-card-body">
-          <h3 class="event-card-title">CODE RELAY</h3>
-          <p class="event-card-desc">A team-based coding relay where two members collaborate during discussion time and take turns coding to solve progressively challenging problems.</p>
-          <div class="event-card-actions">
-            <a href="Technical-events/Code_Relay.html" class="btn-event-details">
-              View Details
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'code-relay')" class="btn-event-register" title="Register for CODE RELAY">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tech Event 03: AI Prompt War -->
-      <div class="event-explorer-card">
-        <div class="event-card-media">
-          <img src="assets/Prompt War.webp" alt="AI Prompt War Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
-          <div class="event-media-badges">
-            <span class="event-num-pill">03</span>
-            <span class="event-cat-pill">TECHNICAL EVENT</span>
-          </div>
-        </div>
-        <div class="event-card-body">
-          <h3 class="event-card-title">AI Prompt War</h3>
-          <p class="event-card-desc">A prompt-based website creation challenge where participants use AI to build functional websites from given problem statements.</p>
-          <div class="event-card-actions">
-            <a href="Technical-events/Prompt_War.html" class="btn-event-details">
-              View Details
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'prompt-war')" class="btn-event-register" title="Register for AI Prompt War">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tech Event 04: CyberQuest -->
-      <div class="event-explorer-card">
-        <div class="event-card-media">
-          <img src="assets/Cyber Quest.webp" alt="CyberQuest Cybersecurity Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
-          <div class="event-media-badges">
-            <span class="event-num-pill">04</span>
-            <span class="event-cat-pill">TECHNICAL EVENT</span>
-          </div>
-        </div>
-        <div class="event-card-body">
-          <h3 class="event-card-title">CyberQuest</h3>
-          <p class="event-card-desc">A 3-level team challenge—Rapid Fire, Escape the Hacker, and Mission Login—where squads advance by answering security questions, decoding clues, and cracking connected puzzles.</p>
-          <div class="event-card-actions">
-            <a href="Technical-events/Cyber_Quest.html" class="btn-event-details">
-              View Details
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'cyber-quest')" class="btn-event-register" title="Register for CyberQuest">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- 2. NON-TECHNICAL EVENTS PANEL -->
-    <div id="panel-non-technical" class="events-panel" role="tabpanel" aria-labelledby="tab-non-technical">
-      
-      <!-- Non-Tech Event 01: Act & Guess -->
-      <div class="event-explorer-card">
-        <div class="event-card-media">
-          <img src="assets/Act & Guess.webp" alt="Act & Guess Team Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
-          <div class="event-media-badges">
-            <span class="event-num-pill">01</span>
-            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
-          </div>
-        </div>
-        <div class="event-card-body">
-          <h3 class="event-card-title">Act &amp; Guess</h3>
-          <p class="event-card-desc">An entertaining team challenge that combines acting, observation and quick thinking to identify words, phrases and concepts.</p>
-          <div class="event-card-actions">
-            <a href="Non-technical-events/Act_Guess.html" class="btn-event-details">
-              View Details
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'act-and-guess')" class="btn-event-register" title="Register for Act & Guess">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Non-Tech Event 02: Treasure Hunt -->
-      <div class="event-explorer-card">
-        <div class="event-card-media">
-          <img src="assets/Treasure Hunt.webp" alt="Treasure Hunt Campus Adventure" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
-          <div class="event-media-badges">
-            <span class="event-num-pill">02</span>
-            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
-          </div>
-        </div>
-        <div class="event-card-body">
-          <h3 class="event-card-title">Treasure Hunt</h3>
-          <p class="event-card-desc">An exciting clue-based adventure where teams solve puzzles, follow hidden clues and race to discover the final treasure.</p>
-          <div class="event-card-actions">
-            <a href="Non-technical-events/Tresure_Hunt.html" class="btn-event-details">
-              View Details
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'treasure-hunt')" class="btn-event-register" title="Register for Treasure Hunt">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Non-Tech Event 03: Mystery Box Challenge -->
-      <div class="event-explorer-card">
-        <div class="event-card-media">
-          <img src="assets/Mystery Box.webp" alt="Mystery Box Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
-          <div class="event-media-badges">
-            <span class="event-num-pill">03</span>
-            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
-          </div>
-        </div>
-        <div class="event-card-body">
-          <h3 class="event-card-title">Mystery Box Challenge</h3>
-          <p class="event-card-desc">A fun 3-round guessing game where Player 1 picks an object from a closed box and helps Player 2 identify it using different methods.</p>
-          <div class="event-card-actions">
-            <a href="Non-technical-events/Mystrey_Box.html" class="btn-event-details">
-              View Details
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'mystery-box')" class="btn-event-register" title="Register for Mystery Box Challenge">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Non-Tech Event 04: IPL AUCTION GAME -->
-      <div class="event-explorer-card">
-        <div class="event-card-media">
-          <img src="assets/IPL Auction.webp" alt="IPL AUCTION GAME" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
-          <div class="event-media-badges">
-            <span class="event-num-pill">04</span>
-            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
-          </div>
-        </div>
-        <div class="event-card-body">
-          <h3 class="event-card-title">IPL AUCTION GAME</h3>
-          <p class="event-card-desc">A strategic franchise auction experience where participants build their dream 3-player squad within a 100 crore purse under live gavel pressure.</p>
-          <div class="event-card-actions">
-            <a href="Non-technical-events/IPL_Auction.html" class="btn-event-details">
-              View Details
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'ipl-auction')" class="btn-event-register" title="Register for IPL AUCTION GAME">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
 <!-- Event Schedule Section (ErrONiX 2K26) -->
 <section id="schedule" class="schedule-section-2k26" aria-labelledby="schedule-heading">
+  <!-- Ambient Atmospheric Glow Behind Schedule -->
+  <div class="ambient-glow-bg" aria-hidden="true">
+    <div class="ambient-orb schedule-orb-violet"></div>
+    <div class="ambient-orb schedule-orb-gold"></div>
+  </div>
   <div class="schedule-container-2k26">
     
     <!-- Section Header -->
@@ -4901,6 +4933,247 @@ input:checked + label .description {
   </div>
 </section>
 
+<!-- Events Section (ErrONiX 2K26 Event Explorer) -->
+<section id="events" class="events-section-2k26">
+  <!-- Ambient Atmospheric Glow Behind Event Cards -->
+  <div class="ambient-glow-bg" aria-hidden="true">
+    <div class="ambient-orb events-orb-indigo"></div>
+    <div class="ambient-orb events-orb-amber"></div>
+  </div>
+  <div class="events-container-2k26">
+    
+    <div class="events-header-2k26">
+      <span class="events-badge-2k26">COMPETE &amp; INNOVATE</span>
+      <h2 class="events-title-2k26">OUR EVENTS</h2>
+      <p class="events-subtitle-2k26">Explore our official technical and non-technical competitions for ErrONiX 2K26.</p>
+    </div>
+
+    <!-- Category Navigation Switcher -->
+    <div class="events-tab-nav" role="tablist" aria-label="Events Category Navigation">
+      <button type="button" class="events-tab-btn active" data-target="panel-technical" id="tab-technical" role="tab" aria-selected="true" aria-controls="panel-technical">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </span>
+        TECHNICAL EVENTS
+      </button>
+      <button type="button" class="events-tab-btn" data-target="panel-non-technical" id="tab-non-technical" role="tab" aria-selected="false" aria-controls="panel-non-technical">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </span>
+        NON-TECHNICAL EVENTS
+      </button>
+    </div>
+
+    <!-- 1. TECHNICAL EVENTS PANEL -->
+    <div id="panel-technical" class="events-panel active" role="tabpanel" aria-labelledby="tab-technical">
+      
+      <!-- Tech Event 01: TechTalkX – Paper Presentation -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Paper Presentation.webp" alt="TechTalkX – Paper Presentation" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
+          <div class="event-media-badges">
+            <span class="event-num-pill">01</span>
+            <span class="event-cat-pill">PAPER PRESENTATION</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">TechTalkX – Paper Presentation</h3>
+          <p class="event-card-desc">Paper Presentation provides participants with a platform to present innovative ideas, research findings, and emerging technologies across engineering domains.</p>
+          <div class="event-card-actions">
+            <a href="Technical-events/Tech_Talkz.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'paper-presentation')" class="btn-event-register" title="Register for TechTalkX – Paper Presentation">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Event 02: CODE RELAY -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Code Relay.webp" alt="CODE RELAY Programming Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
+          <div class="event-media-badges">
+            <span class="event-num-pill">02</span>
+            <span class="event-cat-pill">TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">CODE RELAY</h3>
+          <p class="event-card-desc">A team-based coding relay where two members collaborate during discussion time and take turns coding to solve progressively challenging problems.</p>
+          <div class="event-card-actions">
+            <a href="Technical-events/Code_Relay.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'code-relay')" class="btn-event-register" title="Register for CODE RELAY">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Event 03: AI Prompt War -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Prompt War.webp" alt="AI Prompt War Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
+          <div class="event-media-badges">
+            <span class="event-num-pill">03</span>
+            <span class="event-cat-pill">TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">AI Prompt War</h3>
+          <p class="event-card-desc">A prompt-based website creation challenge where participants use AI to build functional websites from given problem statements.</p>
+          <div class="event-card-actions">
+            <a href="Technical-events/Prompt_War.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'prompt-war')" class="btn-event-register" title="Register for AI Prompt War">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Event 04: CyberQuest -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Cyber Quest.webp" alt="CyberQuest Cybersecurity Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
+          <div class="event-media-badges">
+            <span class="event-num-pill">04</span>
+            <span class="event-cat-pill">TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">CyberQuest</h3>
+          <p class="event-card-desc">A 3-level team challenge—Rapid Fire, Escape the Hacker, and Mission Login—where squads advance by answering security questions, decoding clues, and cracking connected puzzles.</p>
+          <div class="event-card-actions">
+            <a href="Technical-events/Cyber_Quest.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'cyber-quest')" class="btn-event-register" title="Register for CyberQuest">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 2. NON-TECHNICAL EVENTS PANEL -->
+    <div id="panel-non-technical" class="events-panel" role="tabpanel" aria-labelledby="tab-non-technical">
+      
+      <!-- Non-Tech Event 01: Act & Guess -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Act & Guess.webp" alt="Act & Guess Team Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
+          <div class="event-media-badges">
+            <span class="event-num-pill">01</span>
+            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">Act &amp; Guess</h3>
+          <p class="event-card-desc">An entertaining team challenge that combines acting, observation and quick thinking to identify words, phrases and concepts.</p>
+          <div class="event-card-actions">
+            <a href="Non-technical-events/Act_Guess.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'act-and-guess')" class="btn-event-register" title="Register for Act & Guess">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Tech Event 02: Treasure Hunt -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Treasure Hunt.webp" alt="Treasure Hunt Campus Adventure" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
+          <div class="event-media-badges">
+            <span class="event-num-pill">02</span>
+            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">Treasure Hunt</h3>
+          <p class="event-card-desc">An exciting clue-based adventure where teams solve puzzles, follow hidden clues and race to discover the final treasure.</p>
+          <div class="event-card-actions">
+            <a href="Non-technical-events/Tresure_Hunt.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'treasure-hunt')" class="btn-event-register" title="Register for Treasure Hunt">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Tech Event 03: Mystery Box Challenge -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/Mystery Box.webp" alt="Mystery Box Challenge" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
+          <div class="event-media-badges">
+            <span class="event-num-pill">03</span>
+            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">Mystery Box Challenge</h3>
+          <p class="event-card-desc">A fun 3-round guessing game where Player 1 picks an object from a closed box and helps Player 2 identify it using different methods.</p>
+          <div class="event-card-actions">
+            <a href="Non-technical-events/Mystrey_Box.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'mystery-box')" class="btn-event-register" title="Register for Mystery Box Challenge">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Tech Event 04: IPL AUCTION GAME -->
+      <div class="event-explorer-card">
+        <div class="event-card-media">
+          <img src="assets/IPL Auction.webp" alt="IPL AUCTION GAME" class="event-card-img" width="800" height="800" loading="lazy" decoding="async">
+          <div class="event-media-badges">
+            <span class="event-num-pill">04</span>
+            <span class="event-cat-pill">NON-TECHNICAL EVENT</span>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <h3 class="event-card-title">IPL AUCTION GAME</h3>
+          <p class="event-card-desc">A strategic franchise auction experience where participants build their dream 3-player squad within a 100 crore purse under live gavel pressure.</p>
+          <div class="event-card-actions">
+            <a href="Non-technical-events/IPL_Auction.html" class="btn-event-details">
+              View Details
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openRegistrationModal(event, 'ipl-auction')" class="btn-event-register" title="Register for IPL AUCTION GAME">
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- Gallery Section (ErrONiX 2K26) -->
 <section id="gallery" class="gallery-section">
   <div class="gallery-container">
@@ -4927,6 +5200,11 @@ input:checked + label .description {
 </section>
 <!-- Coordinators Section (ErrONiX 2K26) -->
 <section id="coordinators" class="coordinators-section">
+  <!-- Ambient Atmospheric Glow Behind Coordinators -->
+  <div class="ambient-glow-bg" aria-hidden="true">
+    <div class="ambient-orb coordinators-orb-gold"></div>
+    <div class="ambient-orb coordinators-orb-crimson"></div>
+  </div>
   <div class="coordinators-container">
     
     <!-- Section Title & Subtitle -->
@@ -5040,41 +5318,207 @@ input:checked + label .description {
     <div class="coord-divider"></div>
 
     <!-- Group 3: Student Coordinators -->
-    <div class="coordinator-group">
+    <div class="coordinator-group student-coordinator-section">
       <h3 class="group-heading">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
         Student Coordinators
       </h3>
-      <div class="coordinators-grid student-grid">
-        <!-- Student 1 -->
-        <div class="coord-card-2k26">
-          <div class="coord-img-wrapper">
-            <img src="assets/president.jpg" alt="Kaviyazhini M - President" class="coord-photo" loading="lazy" style="object-position: center 20%;">
-          </div>
-          <div class="coord-role-badge gold-role">PRESIDENT</div>
-          <h4 class="coord-name">Kaviyazhini M (IV/CSE)</h4>
-          <a href="tel:+918438958088" class="coord-contact-link">+91 84389 58088</a>
-        </div>
 
-        <!-- Student 2 -->
-        <div class="coord-card-2k26">
-          <div class="coord-img-wrapper">
-            <img src="assets/Divyashripriya.jpeg" alt="Divya Shripriya - Secretary" class="coord-photo" loading="lazy" style="object-position: center 20%;">
-          </div>
-          <div class="coord-role-badge gold-role">SECRETARY</div>
-          <h4 class="coord-name">Divya Shripriya(IV/CSE)</h4>
-          <a href="tel:+917812884714" class="coord-contact-link">+91 78128 84714</a>
-        </div>
+      <!-- Scrolling Marquee Style Container -->
+      <div class="coord-marquee-container" id="student-marquee" aria-label="Student Coordinators Marquee">
+        <div class="coord-marquee-track">
+          <!-- Marquee Group 1 -->
+          <div class="marquee-group">
+            <!-- Student 1: President -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/president.jpg" alt="Kaviyazhini M - President" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">PRESIDENT</div>
+              <h4 class="coord-name">Kaviyazhini M (IV/CSE)</h4>
+              <a href="tel:+918438958088" class="coord-contact-link">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 84389 58088
+              </a>
+            </div>
 
-        <!-- Student 3 -->
-        <div class="coord-card-2k26">
-          <div class="coord-img-wrapper">
-            <img src="assets/saravanan.jpeg" alt="Saravanan S - Treasurer" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+            <!-- Student 2: Secretary -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/Divyashripriya.jpeg" alt="Divya Shripriya - Secretary" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">SECRETARY</div>
+              <h4 class="coord-name">Divya Shripriya (IV/CSE)</h4>
+              <a href="tel:+917812884714" class="coord-contact-link">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 78128 84714
+              </a>
+            </div>
+
+            <!-- Student 3: Treasurer -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/saravanan.jpeg" alt="Saravanan S - Treasurer" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">TREASURER</div>
+              <h4 class="coord-name">Saravanan S (IV/CSE)</h4>
+              <a href="tel:+919003106768" class="coord-contact-link">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 90031 06768
+              </a>
+            </div>
+
+            <!-- Student 4: Technical Coordinator - Deepak S -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/Deepak1.jpeg" alt="Deepak S - Technical Coordinator" class="coord-photo" loading="lazy" style="object-position: center 15%;">
+              </div>
+              <div class="coord-role-badge gold-role">TECHNICAL COORDINATOR</div>
+              <h4 class="coord-name">Deepak S (IV/CSE)</h4>
+              <a href="tel:+919360691673" class="coord-contact-link">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 93606 91673
+              </a>
+            </div>
+
+            <!-- Student 5: Technical Coordinator - Vidhya Sri P -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/vidyasri.jpeg" alt="Vidhya Sri P - Technical Coordinator" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">TECHNICAL COORDINATOR</div>
+              <h4 class="coord-name">Vidhya Sri P (IV/CSE)</h4>
+              <a href="tel:+919566510791" class="coord-contact-link">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 95665 10791
+              </a>
+            </div>
+
+            <!-- Student 6: Non-Technical Coordinator - RAHUL KRISHNA P -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/RaHul.jpeg" alt="RAHUL KRISHNA P - Non-Technical Coordinator" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">NON TECHNICAL COORDINATOR</div>
+              <h4 class="coord-name">RAHUL KRISHNA P (IV/CSE)</h4>
+              <a href="tel:+917010540044" class="coord-contact-link">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 70105 40044
+              </a>
+            </div>
+
+            <!-- Student 7: Non-Technical Coordinator - DURGA S -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/Durga.jpeg" alt="DURGA S - Non-Technical Coordinator" class="coord-photo" loading="lazy" style="object-position: center 18%;">
+              </div>
+              <div class="coord-role-badge gold-role">NON TECHNICAL COORDINATOR</div>
+              <h4 class="coord-name">DURGA S (IV/CSE)</h4>
+              <a href="tel:+918825772853" class="coord-contact-link">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 88257 72853
+              </a>
+            </div>
           </div>
-          <div class="coord-role-badge gold-role">TREASURER</div>
-          <h4 class="coord-name">Saravanan S (IV/CSE)</h4>
-          <a href="tel:+919003106768" class="coord-contact-link">+91 90031 06768</a>
+
+          <!-- Marquee Group 2 (Duplicate for Seamless Infinite Loop) -->
+          <div class="marquee-group" aria-hidden="true">
+            <!-- Student 1: President -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/president.jpg" alt="Kaviyazhini M - President" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">PRESIDENT</div>
+              <h4 class="coord-name">Kaviyazhini M (IV/CSE)</h4>
+              <a href="tel:+918438958088" class="coord-contact-link" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 84389 58088
+              </a>
+            </div>
+
+            <!-- Student 2: Secretary -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/Divyashripriya.jpeg" alt="Divya Shripriya - Secretary" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">SECRETARY</div>
+              <h4 class="coord-name">Divya Shripriya (IV/CSE)</h4>
+              <a href="tel:+917812884714" class="coord-contact-link" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 78128 84714
+              </a>
+            </div>
+
+            <!-- Student 3: Treasurer -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/saravanan.jpeg" alt="Saravanan S - Treasurer" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">TREASURER</div>
+              <h4 class="coord-name">Saravanan S (IV/CSE)</h4>
+              <a href="tel:+919003106768" class="coord-contact-link" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 90031 06768
+              </a>
+            </div>
+
+            <!-- Student 4: Technical Coordinator - Deepak S -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/Deepak1.jpeg" alt="Deepak S - Technical Coordinator" class="coord-photo" loading="lazy" style="object-position: center 15%;">
+              </div>
+              <div class="coord-role-badge gold-role">TECHNICAL COORDINATOR</div>
+              <h4 class="coord-name">Deepak S (IV/CSE)</h4>
+              <a href="tel:+919360691673" class="coord-contact-link" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 93606 91673
+              </a>
+            </div>
+
+            <!-- Student 5: Technical Coordinator - Vidhya Sri P -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/vidyasri.jpeg" alt="Vidhya Sri P - Technical Coordinator" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">TECHNICAL COORDINATOR</div>
+              <h4 class="coord-name">Vidhya Sri P (IV/CSE)</h4>
+              <a href="tel:+919566510791" class="coord-contact-link" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 95665 10791
+              </a>
+            </div>
+
+            <!-- Student 6: Non-Technical Coordinator - RAHUL KRISHNA P -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/RaHul.jpeg" alt="RAHUL KRISHNA P - Non-Technical Coordinator" class="coord-photo" loading="lazy" style="object-position: center 20%;">
+              </div>
+              <div class="coord-role-badge gold-role">NON TECHNICAL COORDINATOR</div>
+              <h4 class="coord-name">RAHUL KRISHNA P (IV/CSE)</h4>
+              <a href="tel:+917010540044" class="coord-contact-link" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 70105 40044
+              </a>
+            </div>
+
+            <!-- Student 7: Non-Technical Coordinator - DURGA S -->
+            <div class="coord-card-2k26 coord-marquee-card">
+              <div class="coord-img-wrapper">
+                <img src="assets/Durga.jpeg" alt="DURGA S - Non-Technical Coordinator" class="coord-photo" loading="lazy" style="object-position: center 18%;">
+              </div>
+              <div class="coord-role-badge gold-role">NON TECHNICAL COORDINATOR</div>
+              <h4 class="coord-name">DURGA S (IV/CSE)</h4>
+              <a href="tel:+918825772853" class="coord-contact-link" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +91 88257 72853
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="marquee-hint-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span>Hover or tap card to pause scrolling</span>
       </div>
     </div>
 
@@ -5102,6 +5546,11 @@ input:checked + label .description {
 
 <!-- Contact & Social Media Section (ErrONiX 2K26) -->
 <section id="contact" class="contact-social-section">
+  <!-- Ambient Atmospheric Glow Behind Contact -->
+  <div class="ambient-glow-bg" aria-hidden="true">
+    <div class="ambient-orb contact-orb-indigo"></div>
+    <div class="ambient-orb contact-orb-crimson"></div>
+  </div>
   <div class="contact-social-container">
     
     <!-- Contact Us Block -->
@@ -5201,7 +5650,9 @@ input:checked + label .description {
 
 <!-- ========== FOOTER ========== -->
 <footer id="footer" class="erronix-footer">
-  <div class="footer-glow-backdrop"></div>
+  <div class="footer-glow-backdrop" aria-hidden="true">
+    <div class="footer-orb-horizon"></div>
+  </div>
   <div class="footer-container">
     <!-- Brand Header -->
     <div class="footer-brand">
@@ -5223,8 +5674,8 @@ input:checked + label .description {
       <div class="footer-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#events">Events</a>
         <a href="#schedule">Schedule</a>
+        <a href="#events">Events</a>
         <a href="#registrationProtocol">Registration</a>
         <a href="#coordinators">Coordinators</a>
         <a href="#gallery">Gallery</a>
@@ -5488,18 +5939,42 @@ updateCountdown();
 </script>
 
 <script>
-  // Dark/Light Mode Theme Switcher
+  // Dark/Light Mode Theme Switcher with Erronix Loader Animation
   const themeToggleBtn = document.getElementById("themeToggleBtn");
   if (themeToggleBtn) {
-    themeToggleBtn.addEventListener("click", () => {
+    themeToggleBtn.addEventListener("click", (e) => {
       const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
       const nextTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", nextTheme);
-      try {
-        localStorage.setItem("erronix-theme", nextTheme);
-      } catch (e) {}
+      if (window.ErronixLoader && typeof window.ErronixLoader.switchTheme === "function") {
+        window.ErronixLoader.switchTheme(nextTheme);
+      } else {
+        document.documentElement.setAttribute("data-theme", nextTheme);
+        try {
+          localStorage.setItem("erronix-theme", nextTheme);
+        } catch (e) {}
+      }
     });
   }
+</script>
+
+<script>
+  // Student Coordinators Scrolling Marquee - Touch Pause & Accessible Interaction
+  (function() {
+    const studentMarquee = document.getElementById('student-marquee');
+    if (!studentMarquee) return;
+
+    let touchTimeout;
+    studentMarquee.addEventListener('touchstart', () => {
+      clearTimeout(touchTimeout);
+      studentMarquee.classList.add('is-paused');
+    }, { passive: true });
+
+    studentMarquee.addEventListener('touchend', () => {
+      touchTimeout = setTimeout(() => {
+        studentMarquee.classList.remove('is-paused');
+      }, 2500);
+    }, { passive: true });
+  })();
 </script>
 
 <script src="assets/registration-modal.js" defer></script>

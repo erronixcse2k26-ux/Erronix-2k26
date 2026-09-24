@@ -199,6 +199,124 @@
   line-height: 1.45;
 }
 
+/* ==========================================================================
+   Compact Participation & Rewards Highlight (Modal)
+   ========================================================================== */
+.erronix-reg-rewards {
+  background: rgba(225, 29, 72, 0.05);
+  border: 1px solid rgba(225, 29, 72, 0.28);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .erronix-reg-rewards {
+  background: #FFF1F2;
+  border-color: rgba(225, 29, 72, 0.24);
+}
+
+[data-theme="dark"] .erronix-reg-rewards {
+  background: rgba(225, 29, 72, 0.08);
+  border-color: rgba(225, 29, 72, 0.35);
+  box-shadow: 0 0 16px rgba(225, 29, 72, 0.08);
+}
+
+.erronix-reg-rewards-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: var(--reg-crimson-primary);
+  margin-bottom: 8px;
+}
+
+.reg-rewards-trophy {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.erronix-reg-rewards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erronix-reg-reward-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 0;
+  font-size: 0.82rem;
+}
+
+.reg-reward-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.reg-reward-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.reg-reward-name {
+  font-weight: 600;
+  color: var(--reg-text-primary);
+  letter-spacing: 0.1px;
+}
+
+.reg-reward-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.reg-reward-badge-all {
+  background: rgba(148, 163, 184, 0.18);
+  color: var(--reg-text-primary);
+  border: 1px solid var(--reg-silver-border);
+}
+
+[data-theme="dark"] .reg-reward-badge-all {
+  background: rgba(192, 192, 192, 0.12);
+  color: #E2E8F0;
+  border-color: rgba(192, 192, 192, 0.3);
+}
+
+.reg-reward-badge-winner {
+  background: rgba(225, 29, 72, 0.14);
+  color: var(--reg-crimson-hover);
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  font-weight: 800;
+}
+
+[data-theme="light"] .reg-reward-badge-winner {
+  background: rgba(225, 29, 72, 0.12);
+  color: #BE123C;
+  border-color: rgba(225, 29, 72, 0.3);
+}
+
+@media (max-width: 420px) {
+  .erronix-reg-reward-row {
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 3px 0;
+  }
+}
+
 /* Section Label */
 .erronix-reg-label {
   display: block;

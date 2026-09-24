@@ -1,1 +1,158 @@
-/* Erronix 2K26 - Hero Section: Clean, professional, static poster layout */
+/* ==========================================================================
+   ERRONIX 2K26 - Hero Section Perimeter Animated Traveling Glow
+   Subtle, premium, hardware-accelerated border illumination tracing
+   the rounded rectangular perimeter of the Erronix 2K26 Hero Frame.
+   Palette sampled directly from the Erronix Phoenix Logo:
+   Gold (#F59E0B / #FEF08A), Orange (#F97316), Crimson (#E11D48),
+   Purple (#9333EA), Indigo (#6366F1).
+   ========================================================================== */
+
+/* Theme-adaptive opacity variables */
+:root,
+[data-theme="light"] {
+  --hero-glow-bloom-opacity: 0.45;
+  --hero-glow-line-opacity: 0.85;
+}
+
+[data-theme="dark"] {
+  --hero-glow-bloom-opacity: 0.65;
+  --hero-glow-line-opacity: 0.95;
+}
+
+/* Ensure hero-frame children stay comfortably above the glow */
+.hero-frame > *:not(.hero-perimeter-glow) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Glow Effect Container */
+.hero-perimeter-glow {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  animation: heroBeamGlowPulse 5s ease-in-out infinite alternate;
+}
+
+/* Soft diffused bloom aura */
+.hero-glow-beam-bloom {
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  padding: 14px;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  overflow: hidden;
+  filter: blur(14px);
+  opacity: var(--hero-glow-bloom-opacity, 0.65);
+}
+
+/* Crisp glowing border line */
+.hero-glow-beam-line {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 2.5px;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  overflow: hidden;
+  filter: blur(0.5px);
+  opacity: var(--hero-glow-line-opacity, 0.95);
+}
+
+/* Rotating Conic Gradient Discs (GPU accelerated) */
+.hero-glow-beam-bloom::before,
+.hero-glow-beam-line::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2500px;
+  height: 2500px;
+  margin-top: -1250px;
+  margin-left: -1250px;
+  border-radius: 50%;
+  transform-origin: center center;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    transparent 295deg,
+    rgba(99, 102, 241, 0) 296deg,
+    rgba(99, 102, 241, 0.45) 308deg,
+    rgba(147, 51, 234, 0.75) 322deg,
+    rgba(225, 29, 72, 0.92) 338deg,
+    rgba(249, 115, 22, 1) 350deg,
+    rgba(245, 158, 11, 1) 357deg,
+    rgba(254, 240, 138, 1) 360deg,
+    rgba(245, 158, 11, 0.5) 363deg,
+    transparent 366deg,
+    transparent 360deg
+  );
+  animation: heroBeamTravel 10s linear infinite;
+  will-change: transform;
+}
+
+/* Precise perimeter travel trajectory:
+   Top Center (0deg) -> Top Right (60deg) -> Bottom Right (120deg)
+   -> Bottom Center (180deg) -> Bottom Left (240deg) -> Top Left (300deg)
+   -> back to Top Center (360deg) seamlessly */
+@keyframes heroBeamTravel {
+  0% {
+    transform: rotate(0deg);
+  }
+  15.8% {
+    transform: rotate(60deg);
+  }
+  34.2% {
+    transform: rotate(120deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  65.8% {
+    transform: rotate(240deg);
+  }
+  84.2% {
+    transform: rotate(300deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Subtle, organic luminescence breathing */
+@keyframes heroBeamGlowPulse {
+  0% {
+    opacity: 0.88;
+    filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.20));
+  }
+  30% {
+    opacity: 1.0;
+    filter: drop-shadow(0 0 7px rgba(249, 115, 22, 0.32));
+  }
+  60% {
+    opacity: 0.82;
+    filter: drop-shadow(0 0 4px rgba(225, 29, 72, 0.22));
+  }
+  100% {
+    opacity: 0.92;
+    filter: drop-shadow(0 0 6px rgba(147, 51, 234, 0.28));
+  }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-perimeter-glow,
+  .hero-glow-beam-bloom::before,
+  .hero-glow-beam-line::before {
+    animation: none !important;
+    display: none !important;
+  }
+}

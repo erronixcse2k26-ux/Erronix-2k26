@@ -1,0 +1,402 @@
+/* ==========================================================================
+   ERRONIX 2K26 - Unified Ambient Atmospheric Glow System
+   Luminous, hardware-accelerated radial light drifts across all sections.
+   Sampled strictly from the official Erronix Phoenix Logo:
+   Gold (#F59E0B / #FBBF24), Fiery Orange (#F97316),
+   ErrONiX Crimson (#E11D48 / #FB365D), Royal Violet (#9333EA / #7C3AED),
+   and Celestial Indigo (#6366F1).
+   ========================================================================== */
+
+/* Theme-adaptive ambient opacity levels */
+:root,
+[data-theme="light"] {
+  --ambient-opacity-hero: 0.46;
+  --ambient-opacity-about: 0.36;
+  --ambient-opacity-schedule: 0.34;
+  --ambient-opacity-events: 0.40;
+  --ambient-opacity-cta: 0.50;
+  --ambient-opacity-coordinators: 0.34;
+  --ambient-opacity-contact: 0.34;
+  --ambient-opacity-footer: 0.40;
+  --ambient-opacity-detail: 0.42;
+}
+
+[data-theme="dark"] {
+  --ambient-opacity-hero: 0.72;
+  --ambient-opacity-about: 0.55;
+  --ambient-opacity-schedule: 0.50;
+  --ambient-opacity-events: 0.58;
+  --ambient-opacity-cta: 0.76;
+  --ambient-opacity-coordinators: 0.50;
+  --ambient-opacity-contact: 0.50;
+  --ambient-opacity-footer: 0.60;
+  --ambient-opacity-detail: 0.62;
+}
+
+/* Ensure section content containers remain elevated above the ambient light */
+.hero-frame,
+.about-container,
+.countdown-container,
+.schedule-container-2k26,
+.events-container-2k26,
+.gallery-container,
+.coordinators-container,
+.contact-social-container,
+.footer-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ambient Glow Container Layer (per section) */
+.ambient-glow-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Base Ambient Orb - Additive screen blending in dark mode, smooth blending in light mode */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  mix-blend-mode: normal;
+}
+
+[data-theme="dark"] .ambient-orb,
+[data-theme="dark"] .footer-orb-horizon {
+  mix-blend-mode: screen !important;
+}
+
+[data-theme="light"] .ambient-orb,
+[data-theme="light"] .footer-orb-horizon {
+  mix-blend-mode: normal !important;
+}
+
+/* --------------------------------------------------------------------------
+   1. HERO SECTION - Majestic Phoenix atmospheric glow
+   -------------------------------------------------------------------------- */
+.hero-orb-gold {
+  top: -10%;
+  left: 2%;
+  width: min(720px, 75vw);
+  height: min(560px, 60vw);
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.65) 0%, rgba(249, 115, 22, 0.38) 42%, rgba(225, 29, 72, 0.12) 65%, transparent 75%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-hero);
+  animation: ambientDriftA 16s ease-in-out infinite;
+}
+
+.hero-orb-crimson {
+  bottom: -10%;
+  right: 2%;
+  width: min(700px, 72vw);
+  height: min(540px, 58vw);
+  background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.60) 0%, rgba(147, 51, 234, 0.36) 45%, rgba(99, 102, 241, 0.12) 65%, transparent 75%);
+  filter: blur(70px);
+  opacity: var(--ambient-opacity-hero);
+  animation: ambientDriftB 20s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   2. ABOUT SECTION - Subtle aura behind innovation story
+   -------------------------------------------------------------------------- */
+.about-orb-purple {
+  top: 10%;
+  left: -5%;
+  width: min(600px, 65vw);
+  height: min(480px, 52vw);
+  background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.50) 0%, rgba(225, 29, 72, 0.28) 46%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-about);
+  animation: ambientDriftA 19s ease-in-out infinite;
+}
+
+.about-orb-amber {
+  bottom: 8%;
+  right: -2%;
+  width: min(580px, 62vw);
+  height: min(460px, 50vw);
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.48) 0%, rgba(249, 115, 22, 0.24) 45%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-about);
+  animation: ambientDriftB 23s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   3. COUNTDOWN & REGISTRATION / CTA SECTION - Luminous focal beacon
+   -------------------------------------------------------------------------- */
+.countdown-orb-crimson {
+  top: 50%;
+  left: 15%;
+  margin-top: -240px;
+  width: min(620px, 68vw);
+  height: min(500px, 56vw);
+  background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.65) 0%, rgba(251, 54, 93, 0.36) 45%, transparent 74%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-cta);
+  animation: ambientDriftD 14s ease-in-out infinite;
+}
+
+.countdown-orb-gold {
+  top: 50%;
+  right: 15%;
+  margin-top: -220px;
+  width: min(600px, 65vw);
+  height: min(480px, 52vw);
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.60) 0%, rgba(249, 115, 22, 0.32) 48%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-cta);
+  animation: ambientDriftA 18s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   4. SCHEDULE SECTION - Atmospheric indigo and golden warmth
+   -------------------------------------------------------------------------- */
+.schedule-orb-violet {
+  top: 15%;
+  left: -4%;
+  width: min(620px, 65vw);
+  height: min(500px, 52vw);
+  background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.48) 0%, rgba(99, 102, 241, 0.26) 45%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-schedule);
+  animation: ambientDriftB 21s ease-in-out infinite;
+}
+
+.schedule-orb-gold {
+  bottom: 10%;
+  right: -2%;
+  width: min(600px, 62vw);
+  height: min(480px, 50vw);
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.46) 0%, rgba(249, 115, 22, 0.24) 45%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-schedule);
+  animation: ambientDriftA 19s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   5. EVENTS SECTION - Subtle ambient accents behind competition cards
+   -------------------------------------------------------------------------- */
+.events-orb-indigo {
+  top: 8%;
+  left: 2%;
+  width: min(650px, 70vw);
+  height: min(520px, 55vw);
+  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.52) 0%, rgba(147, 51, 234, 0.30) 48%, transparent 74%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-events);
+  animation: ambientDriftB 22s ease-in-out infinite;
+}
+
+.events-orb-amber {
+  bottom: 10%;
+  right: 5%;
+  width: min(630px, 68vw);
+  height: min(500px, 52vw);
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.50) 0%, rgba(225, 29, 72, 0.28) 50%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-events);
+  animation: ambientDriftA 17s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   6. COORDINATORS SECTION - Warm golden & crimson radiance
+   -------------------------------------------------------------------------- */
+.coordinators-orb-gold {
+  top: 12%;
+  left: -2%;
+  width: min(620px, 65vw);
+  height: min(480px, 52vw);
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.48) 0%, rgba(249, 115, 22, 0.25) 45%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-coordinators);
+  animation: ambientDriftA 20s ease-in-out infinite;
+}
+
+.coordinators-orb-crimson {
+  bottom: 10%;
+  right: -3%;
+  width: min(600px, 62vw);
+  height: min(460px, 50vw);
+  background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.48) 0%, rgba(147, 51, 234, 0.25) 48%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-coordinators);
+  animation: ambientDriftB 24s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   7. CONTACT SECTION - Royal Indigo & ErrONiX Crimson
+   -------------------------------------------------------------------------- */
+.contact-orb-indigo {
+  top: 15%;
+  left: 5%;
+  width: min(620px, 65vw);
+  height: min(480px, 52vw);
+  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.50) 0%, rgba(124, 58, 237, 0.26) 45%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-contact);
+  animation: ambientDriftB 21s ease-in-out infinite;
+}
+
+.contact-orb-crimson {
+  bottom: 8%;
+  right: 5%;
+  width: min(580px, 62vw);
+  height: min(460px, 50vw);
+  background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.50) 0%, rgba(245, 158, 11, 0.24) 48%, transparent 72%);
+  filter: blur(65px);
+  opacity: var(--ambient-opacity-contact);
+  animation: ambientDriftA 19s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   8. FOOTER - Luminous Phoenix horizon line
+   -------------------------------------------------------------------------- */
+footer.erronix-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-orb-horizon {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  width: min(920px, 90vw);
+  height: 260px;
+  margin-left: calc(min(920px, 90vw) / -2);
+  background: radial-gradient(ellipse at 50% 0%, rgba(225, 29, 72, 0.55) 0%, rgba(245, 158, 11, 0.32) 42%, transparent 75%);
+  filter: blur(55px);
+  opacity: var(--ambient-opacity-footer);
+  animation: ambientDriftC 16s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   ASYCHRONOUS SLOW DRIFT ANIMATIONS (12s - 24s cycles)
+   -------------------------------------------------------------------------- */
+
+/* Drift A: Top-Left -> Center -> Top-Right -> Center -> Top-Left */
+@keyframes ambientDriftA {
+  0% {
+    transform: translate3d(-12%, -10%, 0) scale(1);
+  }
+  25% {
+    transform: translate3d(5%, 3%, 0) scale(1.06);
+  }
+  50% {
+    transform: translate3d(14%, -8%, 0) scale(0.96);
+  }
+  75% {
+    transform: translate3d(3%, 4%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-12%, -10%, 0) scale(1);
+  }
+}
+
+/* Drift B: Bottom-Right -> Center -> Bottom-Left -> Center -> Bottom-Right */
+@keyframes ambientDriftB {
+  0% {
+    transform: translate3d(14%, 10%, 0) scale(0.97);
+  }
+  25% {
+    transform: translate3d(2%, 0%, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-14%, 8%, 0) scale(1);
+  }
+  75% {
+    transform: translate3d(-2%, -3%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(14%, 10%, 0) scale(0.97);
+  }
+}
+
+/* Drift C: Gentle Horizontal Horizon Sweep */
+@keyframes ambientDriftC {
+  0% {
+    transform: translate3d(-10%, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(10%, 0, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-10%, 0, 0) scale(1);
+  }
+}
+
+/* Drift D: Breathing Diagonal Pulse */
+@keyframes ambientDriftD {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(-8%, 6%, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(6%, -5%, 0) scale(0.95);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .hero-orb-gold,
+  .hero-orb-crimson,
+  .events-orb-indigo,
+  .events-orb-amber,
+  .countdown-orb-crimson,
+  .countdown-orb-gold,
+  .schedule-orb-violet,
+  .schedule-orb-gold,
+  .coordinators-orb-gold,
+  .coordinators-orb-crimson,
+  .contact-orb-indigo,
+  .contact-orb-crimson {
+    filter: blur(50px);
+  }
+  
+  .about-orb-purple,
+  .about-orb-amber,
+  .footer-orb-horizon {
+    filter: blur(45px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-orb-gold,
+  .hero-orb-crimson,
+  .events-orb-indigo,
+  .events-orb-amber,
+  .countdown-orb-crimson,
+  .countdown-orb-gold,
+  .schedule-orb-violet,
+  .schedule-orb-gold,
+  .coordinators-orb-gold,
+  .coordinators-orb-crimson,
+  .contact-orb-indigo,
+  .contact-orb-crimson {
+    filter: blur(40px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY: Respect prefers-reduced-motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb,
+  .footer-orb-horizon {
+    animation: none !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+  }
+}

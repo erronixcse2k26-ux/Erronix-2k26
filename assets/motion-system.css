@@ -54,11 +54,15 @@
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.45;
-  mix-blend-mode: multiply;
+  filter: blur(75px);
+  opacity: 0.55;
+  mix-blend-mode: normal;
   pointer-events: none;
   will-change: transform, opacity;
+}
+
+[data-theme="dark"] .ambient-orb {
+  mix-blend-mode: screen;
 }
 
 .ambient-orb-1 {

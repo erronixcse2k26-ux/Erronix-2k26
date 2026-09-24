@@ -136,7 +136,7 @@
       }
     });
 
-    const staffCards = document.querySelectorAll('.single-staff-grid, .coord-card-2k26');
+    const staffCards = document.querySelectorAll('.single-staff-grid, .faculty-grid .coord-card-2k26');
     staffCards.forEach(function (staff, idx) {
       if (!staff.classList.contains('is-revealed')) {
         staff.classList.add('reveal-fade-up');
@@ -144,6 +144,12 @@
         revealObserver.observe(staff);
       }
     });
+
+    const studentMarquee = document.querySelector('.coord-marquee-container');
+    if (studentMarquee && !studentMarquee.classList.contains('is-revealed')) {
+      studentMarquee.classList.add('reveal-fade-up');
+      revealObserver.observe(studentMarquee);
+    }
 
     // 7. CONTACT SECTION (Staggered Fade-Up)
     const contactCards = document.querySelectorAll(`
