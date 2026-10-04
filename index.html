@@ -475,6 +475,163 @@ nav ul li a:hover::after { width: 100%; }
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* ========= SPOT REGISTRATION ANNOUNCEMENT MARQUEE ========= */
+:root {
+  --navbar-height: 71px;
+  --marquee-height: 38px;
+}
+
+@media (max-width: 992px) {
+  :root {
+    --navbar-height: 63px;
+    --marquee-height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --navbar-height: 62px;
+    --marquee-height: 32px;
+  }
+}
+
+html {
+  scroll-padding-top: calc(var(--navbar-height, 71px) + var(--marquee-height, 38px) + 20px);
+}
+
+.spot-reg-marquee {
+  position: fixed;
+  top: var(--navbar-height, 71px);
+  left: 0;
+  width: 100%;
+  height: var(--marquee-height, 38px);
+  z-index: 1080;
+  background: #FFFFFF;
+  color: #1E293B;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+  border-bottom: 1.5px solid var(--silver-border, #CBD5E1);
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  user-select: none;
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+[data-theme="dark"] .spot-reg-marquee {
+  background: #0E1321;
+  color: #F1F5F9;
+  border-bottom-color: rgba(192, 192, 192, 0.2);
+  border-top-color: rgba(192, 192, 192, 0.1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.spot-reg-marquee .marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marqueeScroll 55s linear infinite;
+}
+
+.spot-reg-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.spot-reg-marquee .marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 32px;
+  padding-right: 32px;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1E293B;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+[data-theme="dark"] .spot-reg-marquee .marquee-item {
+  color: #F1F5F9;
+}
+
+.live-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16A34A;
+  box-shadow: 0 0 8px rgba(22, 163, 74, 0.6);
+  animation: liveBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes liveBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+.marquee-highlight {
+  font-family: 'Audiowide', sans-serif;
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 1.2px;
+  color: #BE123C;
+  text-shadow: 0 0 6px rgba(225, 29, 72, 0.2);
+}
+
+[data-theme="dark"] .spot-reg-marquee .marquee-highlight {
+  color: #FB365D;
+  text-shadow: 0 0 12px rgba(251, 54, 93, 0.5);
+}
+
+.marquee-subtext {
+  color: #475569;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+[data-theme="dark"] .spot-reg-marquee .marquee-subtext {
+  color: #94A3B8;
+}
+
+.marquee-sep {
+  color: #E11D48;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .spot-reg-marquee .marquee-track {
+    animation: marqueeScroll 45s linear infinite;
+  }
+  .spot-reg-marquee .marquee-group {
+    gap: 20px;
+    padding-right: 20px;
+  }
+  .marquee-item {
+    font-size: 0.78rem;
+    gap: 8px;
+  }
+  .marquee-highlight {
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+  }
+  .marquee-subtext {
+    font-size: 0.74rem;
+  }
+}
+
 /* ========= HERO SECTION (Clean & Professional Academic Symposium) ========= */
 .hero {
   position: relative;
@@ -482,7 +639,7 @@ nav ul li a:hover::after { width: 100%; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 110px 20px 50px 20px;
+  padding: calc(var(--navbar-height, 71px) + var(--marquee-height, 38px) + 20px) 20px 50px 20px;
   background: var(--bg-dark);
   overflow: hidden;
 }
@@ -882,7 +1039,7 @@ nav ul li a:hover::after { width: 100%; }
 /* Responsive design for Hero Section */
 @media (max-width: 768px) {
   .hero {
-    padding: 100px 16px 40px 16px;
+    padding: calc(var(--navbar-height, 63px) + var(--marquee-height, 34px) + 16px) 16px 40px 16px;
     min-height: auto;
   }
   .hero-frame {
@@ -945,7 +1102,7 @@ nav ul li a:hover::after { width: 100%; }
 
 @media (max-width: 480px) {
   .hero {
-    padding: 90px 12px 30px 12px;
+    padding: calc(var(--navbar-height, 62px) + var(--marquee-height, 32px) + 12px) 12px 30px 12px;
   }
   .hero-frame {
     padding: 24px 14px;
@@ -4387,6 +4544,71 @@ input:checked + label .description {
     </div>
   </nav>
 
+  <!-- Spot Registration Announcement Marquee Bar -->
+  <aside class="spot-reg-marquee" id="spotRegMarquee" aria-label="On Spot Registration Notice">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span class="marquee-item">
+          <span class="live-indicator"></span>
+          <span class="marquee-highlight">⚡ ON SPOT REGISTRATION AVAILABLE ⚡</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="marquee-subtext">Walk-in registrations open at the campus venue desk</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="live-indicator"></span>
+          <span class="marquee-highlight">⚡ ON SPOT REGISTRATION AVAILABLE ⚡</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="marquee-subtext">Report to CSE Department Desk for spot registration</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="live-indicator"></span>
+          <span class="marquee-highlight">⚡ ON SPOT REGISTRATION AVAILABLE ⚡</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="marquee-subtext">Registrations open for Technical &amp; Non-Technical Events</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+      </div>
+      <!-- Duplicate group for gapless continuous marquee loop -->
+      <div class="marquee-group" aria-hidden="true">
+        <span class="marquee-item">
+          <span class="live-indicator"></span>
+          <span class="marquee-highlight">⚡ ON SPOT REGISTRATION AVAILABLE ⚡</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="marquee-subtext">Walk-in registrations open at the campus venue desk</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="live-indicator"></span>
+          <span class="marquee-highlight">⚡ ON SPOT REGISTRATION AVAILABLE ⚡</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="marquee-subtext">Report to CSE Department Desk for spot registration</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="live-indicator"></span>
+          <span class="marquee-highlight">⚡ ON SPOT REGISTRATION AVAILABLE ⚡</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">
+          <span class="marquee-subtext">Registrations open for Technical &amp; Non-Technical Events</span>
+        </span>
+        <span class="marquee-sep">✦</span>
+      </div>
+    </div>
+  </aside>
+
 <!-- Hero Section (ErrONiX 2K26 Academic Poster Style) -->
 <section id="home" class="hero">
   <!-- Ambient Atmospheric Glow Behind Hero -->
@@ -5680,6 +5902,22 @@ input:checked + label .description {
 </footer>
 <script>
 /* ========== SCRIPTS ========== */
+
+/* ================= SPOT REGISTRATION MARQUEE POSITION SYNC ================= */
+function syncNavbarAndMarquee() {
+  const nav = document.querySelector('nav');
+  const marquee = document.getElementById('spotRegMarquee');
+  if (nav && marquee) {
+    const navHeight = nav.offsetHeight;
+    document.documentElement.style.setProperty('--navbar-height', navHeight + 'px');
+    marquee.style.top = navHeight + 'px';
+  }
+}
+window.addEventListener('resize', syncNavbarAndMarquee);
+window.addEventListener('orientationchange', syncNavbarAndMarquee);
+window.addEventListener('load', syncNavbarAndMarquee);
+document.addEventListener('DOMContentLoaded', syncNavbarAndMarquee);
+syncNavbarAndMarquee();
 
 /* ================= NAVBAR TOGGLE ================= */
 const menuToggle = document.getElementById('menu-toggle');
